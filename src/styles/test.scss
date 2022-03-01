@@ -1,0 +1,13 @@
+.test {
+  @apply border border-red-600 font-bold text-xl rounded p-2;
+
+  &:hover {
+    @apply underline  bg-red-600 text-white shadow-lg cursor-pointer;
+  }
+}
+
+.dark {
+  .test:hover {
+    @apply bg-stone-900;
+  }
+}
