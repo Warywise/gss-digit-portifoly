@@ -13,13 +13,14 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <ProfileCard />
+
       <main className={styles.main}>
 
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <ProfileCard />
 
         <h1 className="test">
           Tailwind Css
