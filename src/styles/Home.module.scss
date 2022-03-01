@@ -1,8 +1,11 @@
 .container {
+  @apply grid-cols-1 md:grid-cols-[25%_75%];
+  display: grid;
   padding: 0 2rem;
 }
 
 .main {
+  @apply col-auto;
   min-height: 100vh;
   padding: 4rem 0;
   flex: 1;

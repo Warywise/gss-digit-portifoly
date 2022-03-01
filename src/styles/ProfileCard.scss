@@ -1,0 +1,38 @@
+.profile-card {
+  @apply grid justify-center col-start-1 col-end-1;
+  @apply container drop-shadow-lg bg-stone-300 p-2 rounded md:h-fit md:max-h-[95vh] -mt-1;
+
+  .profile-image {
+    @apply shadow-lg border border-slate-500 rounded-full;
+    @apply w-[50vw] h-[50vw] md:w-[20vw] md:h-[20vw] m-[15%] mt-0;
+    contain: content;
+
+    .image {
+      @apply m-auto mt-[-15%];
+    }
+  }
+
+  .profile-card-content {
+    @apply grid mt-[-15%];
+
+    h2 {
+      @apply text-3xl font-semibold leading-8;
+    }
+
+    h4 {
+      @apply mt-1 text-base font-semibold text-stone-700 leading-5;
+    }
+  }
+
+  .profile-card-social {
+    @apply mt-2 flex justify-center gap-x-4 gap-y-2 md:justify-between md:grid flex-wrap;
+  }
+
+  .social-tag:hover {
+    @apply brightness-110 contrast-125 saturate-150;
+
+    svg {
+      @apply animate-bounce;
+    }
+  }
+}
