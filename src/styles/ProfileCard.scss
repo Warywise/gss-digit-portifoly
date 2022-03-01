@@ -1,5 +1,6 @@
 .profile-card {
-  @apply container grid justify-center col-start-1 col-end-1 bg-stone-300 p-2 rounded max-h-[85vh];
+  @apply grid justify-center col-start-1 col-end-1;
+  @apply container bg-stone-300 p-2 rounded md:max-h-[85vh];
 
   .profile-image {
     @apply shadow-lg border border-stone-500 rounded-full;
@@ -9,5 +10,21 @@
     .image {
       @apply m-auto mt-[-15%];
     }
+  }
+
+  .profile-card-content {
+    @apply grid mt-[-15%];
+
+    h2 {
+      @apply text-3xl font-semibold;
+    }
+
+    h4 {
+      @apply text-base font-semibold text-stone-600;
+    }
+  }
+
+  .profile-card-social {
+    @apply flex justify-between md:grid;
   }
 }
