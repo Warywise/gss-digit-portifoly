@@ -1,16 +1,15 @@
 import { NextComponentType } from 'next';
-import Image from 'next/image';
 
 const ProfileCard: NextComponentType = () => {
   return (
     <div className="profile-card">
-      <Image
-        src="/gust-sant.jpeg"
-        className="profile-image"
-        alt="Gustavo Sant'Anna"
-        width="150px"
-        height="150px"
-      />
+      <span className="profile-image">
+        <img
+          src="/gust-sant.jpeg"
+          className="image"
+          alt="Gustavo Sant'Anna"
+          />
+        </span>
       <h2>Gustavo Sant'Anna</h2>
       <h4>Desenvolvedor Web FullStack Jr</h4>
       <a href="https://github.com/Warywise" target="_blank">GitHub</a>
