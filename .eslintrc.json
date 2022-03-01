@@ -1,3 +1,19 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "parserOptions": {
+    "ecmaFeatures": {
+        "jsx": true,
+        "tsx": true
+    }
+},
+"parser": "babel-eslint",
+"plugins": [
+  "react",
+  "next"
+],
+"rules": {
+  "no-unused-vars": 1,
+  "react-hooks/exhaustive-deps": 0,
+  "semi": 1
+}
 }
