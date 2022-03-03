@@ -8,17 +8,37 @@
 .main {
   @apply p-6 md:p-12 md:col-start-2;
   @apply bg-stone-200 rounded;
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
 }
 
 h1.title {
-  margin: 0;
-  margin-bottom: 0.5rem;
-  line-height: 1.25;
   font-size: calc(1rem + 3vw);
   font-weight: 400;
+  line-height: 1.25;
+  margin: 0;
+  margin-bottom: 0.5rem;
+  position: relative;
+  width: fit-content;
+
+  span {
+    @apply bg-slate-100 p-2 text-center top-1/2 opacity-0;
+    @apply shadow-md rounded-bl-full rounded-tr-full rounded-br-full p-4;
+    transform: scale(0.1);
+    font-size: calc(0.5rem + 1vw);
+    position: absolute;
+    transition: opacity 0.5s ease, transform 0.15s ease;
+    
+    b {
+      @apply italic;
+    }
+  }
+
+  &:hover span, &:focus span, &:active span {
+    @apply opacity-100 w-max;
+    transform: skewX(15deg) scale(1);
+  }
 }
 
 .nav {

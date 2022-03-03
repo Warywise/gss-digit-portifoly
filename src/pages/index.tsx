@@ -20,6 +20,9 @@ const Home: NextPage = () => {
 
         <h1 className={styles.title}>
           Bem Vindo(a)!
+          <span>
+            <b>Obrigado pela <br/>visita, <br/>volte sempre!</b>
+          </span>
         </h1>
 
         <nav className={styles.nav}>
