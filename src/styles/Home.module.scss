@@ -5,7 +5,7 @@
 }
 
 .main {
-  @apply col-auto;
+  @apply md:col-start-2;
   min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
