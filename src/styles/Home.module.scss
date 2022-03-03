@@ -11,6 +11,44 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  position: relative;
+
+  button {
+    @apply flex items-center gap-2 px-2 py-1 w-fit;
+    @apply shadow-md rounded-lg border-teal-500;
+    @apply absolute top-2 right-4;
+    animation: ShineBtn 4s infinite linear;
+    background-image: linear-gradient(
+      to top right, #99f6e4 15%, #ccfbf1, #99f6e4 15%, #f0fdfa
+      );
+    font-size: calc(0.5rem + 1vw);
+
+    svg {
+      font-size: calc(1rem + 1vw);
+    }
+
+    &:hover, &:active {
+      @apply saturate-150 brightness-125;
+    }
+
+    &:active {
+      transform: scale(0.985);
+    }
+  }
+}
+.loginBtn {
+  @apply flex items-center gap-2 px-2 py-1 w-fit;
+  @apply shadow rounded-lg border-teal-500;
+  @apply absolute top-2 right-4;
+  animation: ShineSpan 4s infinite linear;
+  background-image: linear-gradient(
+    to top right, #f0fdfa, #99f6e4 5%, #ccfbf1, #99f6e4 5%
+    );
+  font-size: calc(0.5rem + 1vw);
+
+  svg {
+    font-size: calc(1rem + 1vw);
+  }
 }
 
 h1.title {
@@ -88,6 +126,26 @@ h1.title {
   .logo {
     height: 1em;
     margin-left: 0.5rem;
+  }
+}
+
+@keyframes ShineBtn {
+  0% {
+    opacity: 1;
+  }
+  
+  75% {
+    opacity: 0.1;
+  }
+}
+
+@keyframes ShineSpan {
+  0% {
+    opacity: 0.1;
+  }
+  
+  45% {
+    opacity: 1;
   }
 }
 

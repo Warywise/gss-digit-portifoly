@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ProfileCard from '../components/ProfileCard';
 import styles from '../styles/Home.module.scss';
+import { MdConnectWithoutContact } from 'react-icons/md';
 
 const Home: NextPage = () => {
   return (
@@ -24,6 +25,15 @@ const Home: NextPage = () => {
             <b>Obrigado pela <br/>visita, <br/>volte sempre!</b>
           </span>
         </h1>
+
+        <span className={styles.loginBtn}>
+          <MdConnectWithoutContact className="login-icon" />
+          Conectar-se
+        </span>
+        <button type="button">
+          <MdConnectWithoutContact className="login-icon" />
+          Conectar-se
+        </button>
 
         <nav className={styles.nav}>
           <Link href="/projects">
