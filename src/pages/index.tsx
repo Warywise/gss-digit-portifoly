@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import ProfileCard from '../components/ProfileCard';
 import styles from '../styles/Home.module.scss';
 
@@ -22,27 +23,21 @@ const Home: NextPage = () => {
         </h1>
 
         <nav className={styles.nav}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Projetos</h2>
-          </a>
+          <Link href="/projects">
+            <h2 className={styles.card}>Projetos</h2>
+          </Link>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Habilidades</h2>
-          </a>
+          <Link href="/skills">
+            <h2 className={styles.card}>Habilidades</h2>
+          </Link>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Networking</h2>
-          </a>
+          <Link href="/networking">
+            <h2 className={styles.card}>Networking</h2>
+          </Link>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Depoimentos</h2>
-          </a>
+          <Link href="/testimonials">
+            <h2 className={styles.card}>Depoimentos</h2>
+          </Link>
         </nav>
       </main>
 
