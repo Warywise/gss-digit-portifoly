@@ -23,25 +23,25 @@ const Home: NextPage = () => {
 
         <nav className={styles.nav}>
           <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation</h2>
+            <h2>Projetos</h2>
           </a>
 
           <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn</h2>
+            <h2>Habilidades</h2>
           </a>
 
           <a
             href="https://github.com/vercel/next.js/tree/canary/examples"
             className={styles.card}
           >
-            <h2>Examples</h2>
+            <h2>Networking</h2>
           </a>
 
           <a
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
           >
-            <h2>Deploy</h2>
+            <h2>Depoimentos</h2>
           </a>
         </nav>
       </main>
