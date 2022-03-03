@@ -1,12 +1,13 @@
 .container {
-  @apply grid-cols-1 md:grid-cols-[25%_75%];
+  @apply grid-cols-1 md:grid-cols-[23%_73%];
+  @apply px-6 gap-2 content-between justify-between lg:gap-0 md:px-[2%];
   display: grid;
-  padding: 0 2rem;
+  min-height: 100vh;
 }
 
 .main {
-  @apply p-6 md:p-12 md:col-start-2 bg-stone-200 rounded;
-  min-height: 100vh;
+  @apply p-6 md:p-12 md:col-start-2;
+  @apply bg-stone-200 rounded;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -21,11 +22,19 @@ h1.title {
 }
 
 .nav {
+  @apply overflow-x-auto will-change-scroll py-2;
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  max-width: 800px;
+  gap: 0.75rem;
 
+  &::-webkit-scrollbar {
+    @apply rounded-full h-3;
+  }
+  &::-webkit-scrollbar-thumb {
+    @apply bg-stone-300 rounded-full border border-solid border-stone-500;
+  }
+  &::-webkit-scrollbar-track {
+    @apply bg-stone-400 rounded-full;
+  }
 
   .card {
     padding: 0.5rem 1rem;
@@ -35,7 +44,7 @@ h1.title {
     transition: color 0.15s ease, border-color 0.15s ease;
 
     h2 {
-      font-size: calc(0.5rem + 1.5vw);
+      font-size: calc(0.5rem + 1.75vw);
       font-weight: 400;
     }
 
@@ -47,12 +56,13 @@ h1.title {
 }
 
 .footer {
+  align-items: center;
+  border-top: 1px solid #eaeaea;
   display: flex;
   flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
   justify-content: center;
-  align-items: center;
+  padding: 1rem 0;
+  width: 100vw;
 
   a {
     display: flex;
