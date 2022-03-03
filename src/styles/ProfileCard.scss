@@ -1,7 +1,7 @@
 .profile-card {
-  @apply grid col-start-1;
+  @apply grid md:col-start-1;
   @apply drop-shadow bg-stone-300 p-2 rounded;
-  @apply container md:h-fit md:max-h-[95vh] -mt-1 md:fixed md:w-fit md:max-w-[23%];
+  @apply container -mt-1 md:h-fit md:max-h-[95vh] md:fixed md:w-fit md:max-w-[23%];
 
   .profile-image {
     @apply shadow-lg border border-slate-500 rounded-full;
