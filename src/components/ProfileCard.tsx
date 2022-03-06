@@ -7,7 +7,7 @@ const ProfileCard: NextComponentType = () => {
   return (
     <div className="profile-card">
       <span className="profile-image">
-        <img src="/gust-sant.jpeg" className="image" alt="Gustavo Sant'Anna" />
+        <img src="/gust-sant.jpg" className="image" alt="Gustavo Sant'Anna" />
       </span>
       <div className="profile-card-content">
         <h2>Gustavo Sant'Anna</h2>
