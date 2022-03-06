@@ -7,7 +7,7 @@ export default [
   },
   {
     name: 'ChoqueFlix',
-    img: 'https://user-images.githubusercontent.com/85768828/156933469-e5670217-d20d-4838-bbdb-4b053f03a95b.gif',
+    img: 'https://user-images.githubusercontent.com/85768828/156933617-eba902b5-2534-4e71-b74e-34c4f903fbc7.gif',
     url: 'https://choqueflix.vercel.app/',
     gitRep: 'https://github.com/Warywise/choqueflix',
   }
