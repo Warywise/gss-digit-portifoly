@@ -1,15 +1,16 @@
 .container {
-  @apply grid-cols-1 md:grid-cols-[23%_73%];
+  @apply grid-cols-1 md:grid-cols-[23%_48%_25%] md:grid-rows-[fit_1fr];
   @apply px-6 gap-2 content-between justify-between md:px-[2%] lg:gap-0;
   display: grid;
   min-height: 100vh;
 
   main {
-    @apply md:col-start-2;
+    @apply md:col-start-2 md:col-end-4 md:row-span-2;
   }
 }
 
 .mainNav {
+  @apply md:col-start-2 md:col-end-4 md:row-start-1 md:row-end-2;
   @apply p-6 md:p-12;
   @apply bg-stone-200 rounded;
   display: flex;
@@ -95,13 +96,13 @@ h1.title {
     @apply bg-stone-400 rounded-full;
   }
 
-  h2.card {
+  h3.card {
     @apply rounded-lg px-3 py-1 cursor-pointer;
     border: 1.5px solid whitesmoke;
     transition: color 0.15s ease, border-color 0.15s ease;
 
     &:hover, &:focus, &:active {
-      color: #2563eb;
+      color: #14b8a6;
       border-color: #0070f3;
     }
   }

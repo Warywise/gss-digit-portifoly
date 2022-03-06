@@ -2,10 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@import './ProfileCard.scss';
+@import './components/ProfileCard.scss';
+@import './components/ProjectPost.scss';
 
 html,
 body {
+  @apply text-stone-900;
   background-color: whitesmoke;
   padding: 0;
   margin: 0;
@@ -29,6 +31,11 @@ h1 {
 }
 
 h2 {
-  font-size: calc(0.5rem + 1.75vw);
+  font-size: calc(0.75rem + 1.75vw);
+  font-weight: 400;
+}
+
+h3 {
+  font-size: calc(0.5rem + 1.5vw);
   font-weight: 400;
 }

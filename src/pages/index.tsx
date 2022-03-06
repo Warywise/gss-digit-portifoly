@@ -1,9 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
-
-import { MdConnectWithoutContact } from 'react-icons/md';
+import MainNav from '../components/MainNav';
 
 import ProfileCard from '../components/ProfileCard';
 import ProjectPost from '../components/ProjectPost';
@@ -22,43 +20,12 @@ const Home: NextPage = () => {
 
       <ProfileCard />
 
+      <MainNav />
+
       <main>
-        <section className={styles.mainNav}>
-          <h1 className={styles.title}>
-            Bem Vindo(a)!
-            <span>
-              <b>Obrigado pela <br />visita, <br />volte sempre!</b>
-            </span>
-          </h1>
-
-          <span className={styles.loginBtn}>
-            <MdConnectWithoutContact className="login-icon" />
-            Conectar-se
-          </span>
-          <button type="button">
-            <MdConnectWithoutContact className="login-icon" />
-            Conectar-se
-          </button>
-
-          <nav className={styles.nav}>
-            <Link href="/projects">
-              <h2 className={styles.card}>Projetos</h2>
-            </Link>
-
-            <Link href="/skills">
-              <h2 className={styles.card}>Habilidades</h2>
-            </Link>
-
-            <Link href="/networking">
-              <h2 className={styles.card}>Networking</h2>
-            </Link>
-
-            <Link href="/testimonials">
-              <h2 className={styles.card}>Depoimentos</h2>
-            </Link>
-          </nav>
+        <section className='projects'>
+          {ProjData.map((proj) => (<ProjectPost {...proj} />)) }
         </section>
-        {ProjData.map((proj) => (<ProjectPost {...proj} />)) }
       </main>
 
       <footer className={styles.footer}>
