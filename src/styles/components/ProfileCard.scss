@@ -1,10 +1,10 @@
 .profile-card {
   @apply grid md:col-start-1;
-  @apply drop-shadow bg-stone-300 p-2 rounded;
+  @apply drop-shadow-sm bg-stone-100 p-2 rounded;
   @apply container -mt-1 md:h-fit md:max-h-[95vh] md:fixed md:w-fit md:max-w-[23%];
 
   .profile-image {
-    @apply shadow-lg border border-slate-500 rounded-full;
+    @apply shadow-lg border border-slate-300 rounded-full;
     @apply w-[50vw] h-[50vw] md:w-[20vw] md:h-[20vw] m-[15%] mt-0;
     contain: content;
 

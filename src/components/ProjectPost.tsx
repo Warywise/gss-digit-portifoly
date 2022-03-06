@@ -8,37 +8,33 @@ interface ProjectPostProps {
 
 const ProjectPost: FC<PropsWithChildren<ProjectPostProps>> = (props) => {
   return (
-    <article
-      className='bg-stone-200 rounded grid justify-center gap-2 my-6 w-fit p-4'
-    >
+    <article className='project-post-card'>
       <h2>{props.name}</h2>
-      <Image
-        loader={() => props.img}
-        src={props.img}
-        alt={`Project ${props.name} DEMO`}
-        width='400'
-        height='200'
-      />
-      <div className='flex justify-around'>
+      <span className='project-img'>
+        <Image
+          loader={() => props.img}
+          src={props.img}
+          alt={`Project ${props.name} DEMO`}
+          width='2'
+          height='1'
+          layout='responsive'
+        />
+      </span>
+      <hr></hr>
+      <div className='project-post-buttons'>
         <button
           type='button'
           onClick={() => global.alert('Obrigado!')}
-          className='bg-stone-100 rounded-md font-medium shadow px-2 py-1'>
+        >
           Apoiar
         </button>
         <a href={props.url} target='_blank'>
-          <button
-            type='button'
-            className='bg-stone-100 rounded-md font-medium shadow px-2 py-1'
-          >
+          <button type='button'>
             Visitar Site
           </button>
         </a>
         <a href={props.gitRep} target='_blank'>
-          <button
-            type='button'
-            className='bg-stone-100 rounded-md font-medium shadow px-2 py-1'
-          >
+          <button type='button'>
             Repositório
           </button>
         </a>

@@ -1,0 +1,32 @@
+.project-post-card {
+  @apply border border-stone-400 rounded;
+  @apply grid grid-rows-[fit_1fr_fit] justify-items-stretch gap-2 py-4 w-full;
+
+  h2 {
+    @apply px-2;
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+      Bitstream Vera Sans Mono, Courier New, monospace;
+  }
+
+  .project-img {
+    @apply relative w-full row-start-2 row-end-3;
+  }
+
+  hr {
+    @apply border-stone-400 p-2 mt-4 w-[95%] place-self-center;
+  }
+
+  .project-post-buttons {
+    @apply flex justify-around;
+
+    button {
+      @apply font-medium px-2 py-1;
+      @apply border border-stone-300 bg-stone-100 rounded-md drop-shadow;
+      transition: background-color 0.15s ease, color 0.15s ease;
+
+      &:hover {
+        @apply bg-stone-600 text-stone-50;
+      }
+    }
+  }
+}

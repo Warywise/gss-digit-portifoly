@@ -5,14 +5,19 @@
   min-height: 100vh;
 
   main {
-    @apply md:col-start-2 md:col-end-4 md:row-span-2;
+    @apply shadow bg-stone-100 rounded my-4;
+    @apply flex justify-center md:col-start-2 md:col-end-3 md:row-start-2;
+
+    section {
+      @apply w-[95%] grid justify-items-stretch gap-4 py-4;
+    }
   }
 }
 
 .mainNav {
   @apply md:col-start-2 md:col-end-4 md:row-start-1 md:row-end-2;
   @apply p-6 md:p-12;
-  @apply bg-stone-200 rounded;
+  @apply shadow bg-stone-100 rounded;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -63,7 +68,7 @@ h1.title {
   width: fit-content;
 
   span {
-    @apply bg-slate-100 p-2 text-center top-1/2 opacity-0;
+    @apply bg-slate-50 p-2 text-center top-1/2 opacity-0;
     @apply shadow-md rounded-bl-full rounded-tr-full rounded-br-full p-4;
     transform: scale(0.1);
     font-size: calc(0.5rem + 1vw);
@@ -97,21 +102,18 @@ h1.title {
   }
 
   h3.card {
-    @apply rounded-lg px-3 py-1 cursor-pointer;
-    border: 1.5px solid whitesmoke;
+    @apply border border-stone-400 rounded-lg px-3 py-1 cursor-pointer;
     transition: color 0.15s ease, border-color 0.15s ease;
 
     &:hover, &:focus, &:active {
-      color: #14b8a6;
-      border-color: #0070f3;
+      @apply text-teal-900 border-teal-500;
     }
   }
 }
 
 .footer {
-  @apply py-4 col-span-full;
+  @apply border-t border-stone-50 py-4 col-span-full;
   align-items: center;
-  border-top: 1px solid #eaeaea;
   display: flex;
   flex: 1;
   justify-content: center;
