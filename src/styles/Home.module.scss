@@ -3,10 +3,14 @@
   @apply px-6 gap-2 content-between justify-between md:px-[2%] lg:gap-0;
   display: grid;
   min-height: 100vh;
+
+  main {
+    @apply md:col-start-2;
+  }
 }
 
-.main {
-  @apply p-6 md:p-12 md:col-start-2;
+.mainNav {
+  @apply p-6 md:p-12;
   @apply bg-stone-200 rounded;
   display: flex;
   flex: 1;
@@ -52,9 +56,6 @@
 }
 
 h1.title {
-  font-size: calc(1rem + 3vw);
-  font-weight: 400;
-  line-height: 1.25;
   margin: 0;
   margin-bottom: 0.5rem;
   position: relative;
@@ -98,8 +99,6 @@ h1.title {
     @apply rounded-lg px-3 py-1 cursor-pointer;
     border: 1.5px solid whitesmoke;
     transition: color 0.15s ease, border-color 0.15s ease;
-    font-size: calc(0.5rem + 1.75vw);
-    font-weight: 400;
 
     &:hover, &:focus, &:active {
       color: #2563eb;
