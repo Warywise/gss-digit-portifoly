@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
-import HeaderNav from '../components/HeaderNav';
 
 import ProfileCard from '../components/ProfileCard';
+import Image from 'next/image';
+import HeaderNav from '../components/HeaderNav';
 import ProjectPost from '../components/ProjectPost';
 import ProjData from '../PROJECTS_DATA';
 
@@ -18,9 +18,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <HeaderNav />
-
       <ProfileCard />
+
+      <HeaderNav />
 
       <main>
         <section className='projects'>

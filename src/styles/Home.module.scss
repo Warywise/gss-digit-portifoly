@@ -5,7 +5,7 @@
   min-height: 100vh;
 
   main {
-    @apply shadow bg-stone-100 rounded my-4;
+    @apply shadow bg-stone-50 rounded my-4;
     @apply flex justify-center md:col-start-2 md:col-end-3 md:row-start-2;
 
     section {
@@ -17,7 +17,7 @@
 .HeaderNav {
   @apply md:col-start-2 md:col-end-4 md:row-start-1 md:row-end-2;
   @apply p-6 md:p-12;
-  @apply shadow bg-stone-100 rounded;
+  @apply shadow bg-stone-50 rounded;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -27,7 +27,7 @@
     @apply flex items-center gap-2 px-2 py-1 w-fit;
     @apply shadow-md rounded-lg border-teal-500;
     @apply absolute top-2 right-4;
-    animation: ShineBtn 4s infinite linear;
+    animation: ShineBtn 4s infinite ease-out;
     background-image: linear-gradient(
       to top right, #99f6e4 15%, #ccfbf1, #99f6e4 15%, #f0fdfa
       );
@@ -45,68 +45,69 @@
       transform: scale(0.985);
     }
   }
-}
-.loginBtn {
-  @apply flex items-center gap-2 px-2 py-1 w-fit;
-  @apply shadow rounded-lg border-teal-500;
-  @apply absolute top-2 right-4;
-  animation: ShineSpan 4s infinite linear;
-  background-image: linear-gradient(
-    to top right, #f0fdfa, #99f6e4 5%, #ccfbf1, #99f6e4 5%
-    );
-  font-size: calc(0.5rem + 1vw);
 
-  svg {
-    font-size: calc(1rem + 1vw);
-  }
-}
-
-h1.title {
-  margin: 0;
-  margin-bottom: 0.5rem;
-  position: relative;
-  width: fit-content;
-
-  span {
-    @apply bg-slate-50 p-2 text-center top-1/2 opacity-0;
-    @apply shadow-md rounded-bl-full rounded-tr-full rounded-br-full p-4;
-    transform: scale(0.1);
+  .loginBtn {
+    @apply flex items-center gap-2 px-2 py-1 w-fit;
+    @apply shadow rounded-lg border-teal-500;
+    @apply absolute top-2 right-4;
+    animation: ShineSpan 4s infinite ease-out;
+    background-image: linear-gradient(
+      to top right, #f0fdfa, #99f6e4 5%, #ccfbf1, #99f6e4 5%
+      );
     font-size: calc(0.5rem + 1vw);
-    position: absolute;
-    transition: opacity 0.5s ease, transform 0.15s ease;
-    
-    b {
-      @apply italic;
+
+    svg {
+      font-size: calc(1rem + 1vw);
     }
   }
 
-  &:hover span, &:focus span, &:active span {
-    @apply opacity-100 w-max;
-    transform: skewX(15deg) scale(1);
-  }
-}
+  h1.title {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    position: relative;
+    width: fit-content;
 
-.nav {
-  @apply overflow-x-auto will-change-scroll py-2;
-  display: flex;
-  gap: 1rem;
+    span {
+      @apply bg-slate-50 p-2 text-center top-1/2 opacity-0;
+      @apply shadow-md rounded-bl-full rounded-tr-full rounded-br-full p-4;
+      transform: scale(0.1);
+      font-size: calc(0.5rem + 1vw);
+      position: absolute;
+      transition: opacity 0.5s ease, transform 0.15s ease;
+      
+      b {
+        @apply italic;
+      }
+    }
 
-  &::-webkit-scrollbar {
-    @apply rounded-full h-3;
-  }
-  &::-webkit-scrollbar-thumb {
-    @apply bg-stone-300 rounded-full border border-solid border-stone-500;
-  }
-  &::-webkit-scrollbar-track {
-    @apply bg-stone-400 rounded-full;
+    &:hover span, &:focus span, &:active span {
+      @apply opacity-100 w-max;
+      transform: skewX(15deg) scale(1);
+    }
   }
 
-  h3.card {
-    @apply border border-stone-400 rounded-lg px-3 py-1 cursor-pointer;
-    transition: color 0.15s ease, border-color 0.15s ease;
+  .nav {
+    @apply overflow-x-auto will-change-scroll py-2;
+    display: flex;
+    gap: 1rem;
 
-    &:hover, &:focus, &:active {
-      @apply text-teal-900 border-teal-500;
+    &::-webkit-scrollbar {
+      @apply rounded-full h-3;
+    }
+    &::-webkit-scrollbar-thumb {
+      @apply bg-stone-300 rounded-full border border-solid border-stone-500;
+    }
+    &::-webkit-scrollbar-track {
+      @apply bg-stone-400 rounded-full;
+    }
+
+    h3.card {
+      @apply border border-stone-400 rounded-lg px-3 py-1 cursor-pointer;
+      transition: color 0.15s ease, border-color 0.15s ease;
+
+      &:hover, &:focus, &:active {
+        @apply text-teal-900 border-teal-500;
+      }
     }
   }
 }
@@ -137,16 +138,16 @@ h1.title {
   }
   
   75% {
-    opacity: 0.1;
+    opacity: 0.3;
   }
 }
 
 @keyframes ShineSpan {
   0% {
-    opacity: 0.1;
+    opacity: 0.3;
   }
   
-  45% {
+  35% {
     opacity: 1;
   }
 }

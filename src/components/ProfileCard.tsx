@@ -2,12 +2,19 @@ import { NextComponentType } from 'next';
 import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
 import { BiMailSend } from 'react-icons/bi';
 import SocialIcon from './SocialIcon';
+import Image from 'next/image';
 
 const ProfileCard: NextComponentType = () => {
   return (
     <div className="profile-card">
       <span className="profile-image">
-        <img src="/gust-sant.jpg" className="image" alt="Gustavo Sant'Anna" />
+        <Image
+          src="/gust-sant.jpg"
+          alt="Gustavo Sant'Anna"
+          layout='fill'
+          objectFit='cover'
+          objectPosition='50% 75%'
+        />
       </span>
       <div className="profile-card-content">
         <h2>Gustavo Sant'Anna</h2>
@@ -25,7 +32,7 @@ const ProfileCard: NextComponentType = () => {
           />
         </a>
         <a href="mailto:g_santanna@outlook.com?subject=PortifolyFeedback">
-        <SocialIcon
+          <SocialIcon
             Component={BiMailSend} iconName={'Email'} bgColor="bg-emerald-600"
           />
         </a>

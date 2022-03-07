@@ -29,14 +29,10 @@ const ProjectPost: FC<PropsWithChildren<ProjectPostProps>> = (props) => {
           Apoiar
         </button>
         <a href={props.url} target='_blank'>
-          <button type='button'>
             Visitar Site
-          </button>
         </a>
         <a href={props.gitRep} target='_blank'>
-          <button type='button'>
             Repositório
-          </button>
         </a>
       </div>
     </article>);

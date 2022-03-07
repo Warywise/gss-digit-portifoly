@@ -4,8 +4,6 @@
 
   h2 {
     @apply px-2;
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-      Bitstream Vera Sans Mono, Courier New, monospace;
   }
 
   .project-img {
@@ -19,13 +17,14 @@
   .project-post-buttons {
     @apply flex justify-around;
 
-    button {
-      @apply font-medium px-2 py-1;
+    button, a {
+      @apply flex justify-center;
+      @apply font-medium w-[30%] py-1;
       @apply border border-stone-300 bg-stone-100 rounded-md drop-shadow;
       transition: background-color 0.15s ease, color 0.15s ease;
 
       &:hover {
-        @apply bg-stone-600 text-stone-50;
+        @apply bg-stone-600 text-zinc-50;
       }
     }
   }

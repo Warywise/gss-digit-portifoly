@@ -7,10 +7,6 @@
     @apply shadow-lg border border-slate-300 rounded-full;
     @apply w-[50vw] h-[50vw] md:w-[20vw] md:h-[20vw] m-[15%] mt-0;
     contain: content;
-
-    .image {
-      @apply m-auto mt-[-15%];
-    }
   }
 
   .profile-card-content {
