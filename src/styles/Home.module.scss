@@ -1,12 +1,12 @@
 .container {
-  @apply grid-cols-1 md:grid-cols-[23%_48%_25%] md:grid-rows-[fit_1fr];
-  @apply px-6 gap-2 content-between justify-between md:px-[2%] lg:gap-0;
+  @apply grid-cols-1 md:grid-cols-[23%_48%_25%] md:grid-rows-[fit_fit_1fr];
+  @apply px-2 gap-2 content-between justify-between md:px-[2%] lg:gap-0;
   display: grid;
   min-height: 100vh;
 
   main {
     @apply shadow bg-stone-50 rounded my-4;
-    @apply flex justify-center md:col-start-2 md:col-end-3 md:row-start-2;
+    @apply flex justify-center md:col-start-2 md:col-end-3 md:row-span-3;
 
     section {
       @apply w-[95%] grid justify-items-stretch gap-4 py-4;
@@ -14,10 +14,10 @@
   }
 }
 
-.HeaderNav {
-  @apply md:col-start-2 md:col-end-4 md:row-start-1 md:row-end-2;
-  @apply p-6 md:p-12;
-  @apply shadow bg-stone-50 rounded;
+.headerTitle {
+  @apply md:col-start-2 md:col-end-4 md:row-span-1;
+  @apply px-4 py-2 md:px-6 md:py-4;
+  @apply shadow-[0_-2px_3px_0_rgb(0,0,0,0.1),0_-2px_2px_-1px_rgb(0,0,0,0.1)] bg-stone-50;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -85,29 +85,34 @@
       transform: skewX(15deg) scale(1);
     }
   }
+}
 
-  .nav {
-    @apply overflow-x-auto will-change-scroll py-2;
-    display: flex;
-    gap: 1rem;
+.headerNav {
+  @apply md:col-start-2 md:col-end-4 md:row-span-2;
+  @apply p-4 -mt-2 md:p-8 sticky top-0;
+  @apply shadow-[0_2px_3px_0_rgb(0,0,0,0.1),0_2px_2px_-1px_rgb(0,0,0,0.1)] bg-stone-50 rounded;
+  @apply overflow-x-auto will-change-scroll py-2;
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  z-index: 1;
 
-    &::-webkit-scrollbar {
-      @apply rounded-full h-3;
-    }
-    &::-webkit-scrollbar-thumb {
-      @apply bg-stone-300 rounded-full border border-solid border-stone-500;
-    }
-    &::-webkit-scrollbar-track {
-      @apply bg-stone-400 rounded-full;
-    }
+  &::-webkit-scrollbar {
+    @apply rounded-full h-2;
+  }
+  &::-webkit-scrollbar-thumb {
+    @apply bg-stone-200 rounded-full border border-solid border-stone-500;
+  }
+  &::-webkit-scrollbar-track {
+    @apply bg-stone-300 m-1 rounded-full;
+  }
 
-    h3.card {
-      @apply border border-stone-400 rounded-lg px-3 py-1 cursor-pointer;
-      transition: color 0.15s ease, border-color 0.15s ease;
+  h3.card {
+    @apply border border-stone-400 rounded-lg px-3 py-1 cursor-pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
 
-      &:hover, &:focus, &:active {
-        @apply text-teal-900 border-teal-500;
-      }
+    &:hover, &:focus, &:active {
+      @apply text-teal-900 border-teal-500;
     }
   }
 }

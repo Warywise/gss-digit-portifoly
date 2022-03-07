@@ -24,6 +24,7 @@ const Home: NextPage = () => {
 
       <main>
         <section className='projects'>
+          <h5>Projetos:</h5>
           {ProjData.map((proj) => (<ProjectPost {...proj} />)) }
         </section>
       </main>

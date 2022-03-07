@@ -6,41 +6,43 @@ import styles from '../styles/Home.module.scss';
 
 const HeaderNav: FC = () => {
   return (
-    <section className={styles.HeaderNav}>
-          <h1 className={styles.title}>
-            Bem Vindo(a)!
-            <span>
-              <b>Obrigado pela <br />visita, <br />volte sempre!</b>
-            </span>
-          </h1>
-
-          <span className={styles.loginBtn}>
-            <MdConnectWithoutContact className="login-icon" />
-            Conectar-se
+    <>
+      <div className={styles.headerTitle}>
+        <h1 className={styles.title}>
+          Bem Vindo(a)!
+          <span>
+            <b>Obrigado pela <br />visita, <br />volte sempre!</b>
           </span>
-          <button type="button">
-            <MdConnectWithoutContact className="login-icon" />
-            Conectar-se
-          </button>
+        </h1>
 
-          <nav className={styles.nav}>
-            <Link href="/projects">
-              <h3 className={styles.card}>Projetos</h3>
-            </Link>
+        <span className={styles.loginBtn}>
+          <MdConnectWithoutContact className="login-icon" />
+          Conectar-se
+        </span>
+        <button type="button">
+          <MdConnectWithoutContact className="login-icon" />
+          Conectar-se
+        </button>
+      </div>
 
-            <Link href="/skills">
-              <h3 className={styles.card}>Habilidades</h3>
-            </Link>
+      <nav className={styles.headerNav}>
+        <Link href="/projects">
+          <h3 className={styles.card}>Projetos</h3>
+        </Link>
 
-            <Link href="/networking">
-              <h3 className={styles.card}>Networking</h3>
-            </Link>
+        <Link href="/skills">
+          <h3 className={styles.card}>Habilidades</h3>
+        </Link>
 
-            <Link href="/testimonials">
-              <h3 className={styles.card}>Depoimentos</h3>
-            </Link>
-          </nav>
-        </section>);
+        <Link href="/networking">
+          <h3 className={styles.card}>Networking</h3>
+        </Link>
+
+        <Link href="/testimonials">
+          <h3 className={styles.card}>Depoimentos</h3>
+        </Link>
+      </nav>
+    </>);
 }
 
 export default HeaderNav;
