@@ -4,9 +4,9 @@ import { MdConnectWithoutContact } from 'react-icons/md';
 import styles from '../styles/Home.module.scss';
 
 
-const MainNav: FC = () => {
+const HeaderNav: FC = () => {
   return (
-    <section className={styles.mainNav}>
+    <section className={styles.HeaderNav}>
           <h1 className={styles.title}>
             Bem Vindo(a)!
             <span>
@@ -43,4 +43,4 @@ const MainNav: FC = () => {
         </section>);
 }
 
-export default MainNav;
+export default HeaderNav;
