@@ -34,7 +34,7 @@ const ProjectPost: FC<PropsWithChildren<ProjectPostProps>> = (props) => {
         </button>
         <a href={props.url} target='_blank'>
           <CgWebsite className='button-icon' />
-          Visitar Site
+          Visitar
         </a>
         <a href={props.gitRep} target='_blank'>
         <AiOutlineFileSearch className='button-icon' />
