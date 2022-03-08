@@ -18,13 +18,21 @@
     @apply flex justify-around;
 
     button, a {
-      @apply flex justify-center;
-      @apply font-medium w-[30%] py-1;
+      @apply grid grid-cols-[30%_1fr] items-center justify-items-start;
+      @apply font-medium w-[30%] py-1 gap-2;
       @apply border border-stone-300 bg-stone-100 rounded-md drop-shadow;
       transition: background-color 0.15s ease, color 0.15s ease;
 
       &:hover {
         @apply bg-stone-600 text-zinc-50;
+      }
+
+      .button-icon {
+        @apply text-amber-700 text-xl justify-self-end;
+      }
+
+      &:hover > .button-icon {
+        @apply brightness-125 saturate-150;
       }
     }
   }

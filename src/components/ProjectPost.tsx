@@ -1,6 +1,9 @@
 import { FC, PropsWithChildren } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
+import { BiRocket } from 'react-icons/bi';
+import { CgWebsite } from 'react-icons/cg';
+import { AiOutlineFileSearch } from 'react-icons/ai';
 
 interface ProjectPostProps {
   name: string, img: string, url: string, gitRep: string,
@@ -26,13 +29,16 @@ const ProjectPost: FC<PropsWithChildren<ProjectPostProps>> = (props) => {
           type='button'
           onClick={() => global.alert('Obrigado!')}
         >
+          <BiRocket className='button-icon' />
           Apoiar
         </button>
         <a href={props.url} target='_blank'>
-            Visitar Site
+          <CgWebsite className='button-icon' />
+          Visitar Site
         </a>
         <a href={props.gitRep} target='_blank'>
-            Repositório
+        <AiOutlineFileSearch className='button-icon' />
+          Detalhes
         </a>
       </div>
     </article>);
