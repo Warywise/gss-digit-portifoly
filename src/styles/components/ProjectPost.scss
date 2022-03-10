@@ -18,9 +18,10 @@
     @apply flex justify-around;
 
     button, a {
-      @apply grid grid-cols-[30%_1fr] items-center justify-items-start;
-      @apply font-medium w-[30%] py-1 gap-2;
+      @apply text-sm font-medium w-[31%];
+      @apply flex items-center justify-center py-1 gap-1;
       @apply border border-stone-300 bg-stone-100 rounded-md drop-shadow;
+      @apply md:text-base md:justify-items-center lg:gap-2;
       transition: background-color 0.15s ease, color 0.15s ease;
 
       &:hover {
@@ -28,7 +29,7 @@
       }
 
       .button-icon {
-        @apply text-amber-700 text-xl justify-self-end;
+        @apply text-amber-700 text-lg md:text-xl justify-self-end;
       }
 
       &:hover > .button-icon {
