@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 
 import ProfileCard from '../components/ProfileCard';
@@ -9,7 +9,13 @@ import ProjData from '../PROJECTS_DATA';
 
 import styles from '../styles/Home.module.scss';
 
-const Home: NextPage = () => {
+export const getStaticProps: GetStaticProps = async (_context) => {
+  return {
+    props: { value: 1 }
+  };
+}
+
+const Home: NextPage<{ value: number }> = (props) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -25,7 +31,9 @@ const Home: NextPage = () => {
       <main>
         <section className='projects'>
           <h5>Projetos:</h5>
-          {ProjData.map((proj, ind) => (<ProjectPost key={`projct${ind}`} {...proj} />))}
+          {ProjData.map((proj, ind) => (
+            <ProjectPost key={`projct${ind}`} {...proj} value={props.value} />
+          ))}
         </section>
       </main>
 
