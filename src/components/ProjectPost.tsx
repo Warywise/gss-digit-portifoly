@@ -16,8 +16,11 @@ interface ProjectPostProps {
 const ProjectPost: FC<PropsWithChildren<ProjectPostProps>> = (props) => {
   const [likesCount, setLikesCount] = useState(0);
   const [alreadyLike, setAlreadyLike] = useState(false);
+  const LocalStrgKey = 'sants_portifoly_projects_anonimousUser';
 
-  const LocalStore = new HandleLocalStorage('sants-portifoly-projects-anonimousUser');
+  const LocalStore = new HandleLocalStorage(LocalStrgKey);
+
+
 
   useEffect(() => {
     // fetch('projects')
@@ -27,11 +30,13 @@ const ProjectPost: FC<PropsWithChildren<ProjectPostProps>> = (props) => {
         .find(({ projectName }) => projectName === props.name);
 
       if (storageContent) {
-        const newStorage = LocalStore.get()
+        if (!storageContent.updated) {
+          const newStorage = LocalStore.get()
           .filter(({ projectName }) => projectName !== props.name);
         
         newStorage.push({ projectName: props.name, updated: true })
         LocalStore.set(newStorage);
+        }
         setAlreadyLike(true);
       }
     }
@@ -58,10 +63,11 @@ const ProjectPost: FC<PropsWithChildren<ProjectPostProps>> = (props) => {
       <div className='project-post-buttons'>
         <button
           type='button'
-          onClick={() => dispatch({ type: 'INC', payload: props.name })}
+          className={alreadyLike ? 'liked' : ''}
+          onClick={() => {}}
         >
           <BiRocket className='button-icon' />
-          Apoiar
+          { alreadyLike ? 'Demais!' : 'Apoiar' }
         </button>
         <a href={props.url} target='_blank'>
           <CgWebsite className='button-icon' />

@@ -24,10 +24,10 @@ export default class HandleLocalStorage {
   }
 }
 
-function LocalTest() {
-  const Local = new HandleLocalStorage('chave');
+// function LocalTest() {
+//   const Local = new HandleLocalStorage('chave');
 
-  Local.set('valor');
+//   Local.set([{ projectName: 'name', updated: false }]);
 
-  if (Local.verify()) return Local.get();
-}
+//   if (Local.verify()) return Local.get();
+// }

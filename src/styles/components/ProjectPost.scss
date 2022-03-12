@@ -17,6 +17,18 @@
   .project-post-buttons {
     @apply flex justify-around;
 
+    button.liked {
+      @apply bg-stone-600 text-zinc-50;
+
+      .button-icon {
+        @apply text-emerald-500 brightness-125 saturate-150;
+      }
+
+      &:hover {
+        @apply brightness-125 saturate-150;
+      }
+    }
+
     button, a {
       @apply text-sm font-medium w-[31%];
       @apply flex items-center justify-center py-1 gap-1;
