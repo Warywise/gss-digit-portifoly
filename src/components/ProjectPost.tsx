@@ -20,7 +20,23 @@ const ProjectPost: FC<PropsWithChildren<ProjectPostProps>> = (props) => {
 
   const LocalStore = new HandleLocalStorage(LocalStrgKey);
 
+  const handleLikeProjects = () => {
+    if (alreadyLike) {
+      LocalStore.set(
+        LocalStore.get().filter(({ projectName }) => projectName !== props.name)
+      );
+      setLikesCount(likesCount - 1);
+    } else {
+      const currentStorage = LocalStore.verify() ? LocalStore.get() : [];
+      LocalStore.set(
+        [...currentStorage, { projectName: props.name, updated: false }]
+      );
+      setLikesCount(likesCount + 1);
+    }
+    setAlreadyLike(!alreadyLike);
 
+    // fetch('/post')
+  }
 
   useEffect(() => {
     // fetch('projects')
@@ -32,18 +48,19 @@ const ProjectPost: FC<PropsWithChildren<ProjectPostProps>> = (props) => {
       if (storageContent) {
         if (!storageContent.updated) {
           const newStorage = LocalStore.get()
-          .filter(({ projectName }) => projectName !== props.name);
-        
-        newStorage.push({ projectName: props.name, updated: true })
-        LocalStore.set(newStorage);
+            .filter(({ projectName }) => projectName !== props.name);
+
+          newStorage.push({ projectName: props.name, updated: true })
+          LocalStore.set(newStorage);
         }
         setAlreadyLike(true);
+        setLikesCount(1); // temporário até implementar lógica com um DataBase
       }
     }
 
     // setLikesCount();
   }, [])
-  
+
 
   return (
     <article className='project-post-card'>
@@ -58,23 +75,23 @@ const ProjectPost: FC<PropsWithChildren<ProjectPostProps>> = (props) => {
           layout='responsive'
         />
       </span>
-      { likesCount }
+      <span className='likes-count'>{likesCount}</span>
       <hr />
       <div className='project-post-buttons'>
         <button
           type='button'
           className={alreadyLike ? 'liked' : ''}
-          onClick={() => {}}
+          onClick={handleLikeProjects}
         >
           <BiRocket className='button-icon' />
-          { alreadyLike ? 'Demais!' : 'Apoiar' }
+          {alreadyLike ? 'Demais!' : 'Apoiar'}
         </button>
         <a href={props.url} target='_blank'>
           <CgWebsite className='button-icon' />
           Visitar
         </a>
         <a href={props.gitRep} target='_blank'>
-        <AiOutlineFileSearch className='button-icon' />
+          <AiOutlineFileSearch className='button-icon' />
           Detalhes
         </a>
       </div>
