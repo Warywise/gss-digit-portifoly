@@ -32,7 +32,7 @@ const Home: NextPage<{ value: number }> = (props) => {
         <section className='projects'>
           <h5>Projetos:</h5>
           {ProjData.map((proj, ind) => (
-            <ProjectPost key={`projct${ind}`} {...proj} value={props.value} />
+            <ProjectPost key={`projct${ind}`} {...proj} />
           ))}
         </section>
       </main>
