@@ -1,5 +1,5 @@
 .container {
-  @apply grid-cols-1 md:grid-cols-[23%_48%_25%] md:grid-rows-[fit_fit_1fr];
+  @apply grid-cols-1;
   @apply px-2 gap-2 content-between justify-between md:px-[2%] lg:gap-0;
   display: grid;
   min-height: 100vh;

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Link from 'next/link';
 import { MdConnectWithoutContact } from 'react-icons/md';
-import styles from '../styles/Home.module.scss';
+import styles from '../styles/Home.module.css';
 
 const HeaderNav: FC = () => {
   return (
