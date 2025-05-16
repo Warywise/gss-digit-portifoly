@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #edededed;
   --foreground: #171717;
@@ -52,7 +54,37 @@
   --color-info: #60a5fa; /* blue-400 */
 }
 
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+
+  --color-secondary: var(--color-secondary);
+  --color-secondary-hover: var(--color-secondary-hover);
+
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+
+  --color-muted: var(--color-muted);
+  --color-border: var(--color-border);
+  --color-ring: var(--color-ring);
+
+  --color-text: var(--color-text);
+  --color-subtle-text: var(--color-subtle-text);
+  --color-placeholder: var(--color-placeholder);
+
+  --color-danger: var(--color-danger);
+  --color-warning: var(--color-warning);
+  --color-success: var(--color-success);
+  --color-info: var(--color-info);
+}
+
 body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;

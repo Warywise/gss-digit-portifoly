@@ -2,7 +2,7 @@
 
 const AboutPage = () => {
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center min-h-screen p-4">
       <h1>About Me</h1>
       <p>
         I am a software developer with a passion for creating web applications.
