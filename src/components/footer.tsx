@@ -11,18 +11,29 @@ const Footer = () => {
           <Link
             className="text-sm text-subtle-text hover:text-primary transition-colors"
             href="https://github.com/Warywise"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            title="GitHub"
           >
             <span className="hover:underline">GitHub</span>
           </Link>
           <Link
             className="text-sm text-subtle-text hover:text-primary transition-colors"
             href="mailto:g_santanna@outlook.com"
+            rel="noopener noreferrer"
+            aria-label="Email"
+            title="Email"
           >
             <span className="hover:underline">Send an email</span>
           </Link>
           <Link
             className="text-sm text-subtle-text hover:text-primary transition-colors"
             href="https://linkedin.com/in/g-s-s"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            title="LinkedIn"
           >
             <span className="hover:underline">LinkedIn</span>
           </Link>

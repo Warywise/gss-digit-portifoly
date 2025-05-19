@@ -16,7 +16,7 @@
   --color-accent-hover: #059669;
 
   --color-muted: #f3f4f6; /* gray-100 */
-  --color-border: #e5e7eb; /* gray-200 */
+  --color-border: #cfd4dd; /* gray-200 */
   --color-ring: #cbd5e1; /* gray-300 */
 
   --color-text: #111827; /* gray-900 */
@@ -89,4 +89,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   transition: background 0.25s ease-in-out, color 0.25s ease-in-out;
+}
+
+.dark-mode-btn {
+  @apply rounded-full border border-solid border-border relative;
+  @apply transition-colors bg-foreground/50 hover:bg-foreground/80 hover:border-transparent;
+  @apply flex items-center justify-center px-4 py-1;
 }
