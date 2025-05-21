@@ -28,7 +28,7 @@ const Header = () => {
   }, []);
 
   const scrollClass = scrolled
-    ? "bg-background/80 dark:bg-primary/50 backdrop-blur-md shadow-sm py-2"
+    ? "bg-background/50 dark:bg-foreground/30 backdrop-blur-sm shadow-sm py-2"
     : "bg-transparent py-4";
 
   return (
