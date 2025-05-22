@@ -26,7 +26,7 @@ export default {
         ring: 'var(--color-ring)',
 
         text: 'var(--color-text)',
-        'subtle-text': 'var(--color-subtle-text)',
+        'subtitle': 'var(--color-subtitle)',
         placeholder: 'var(--color-placeholder)',
 
         danger: 'var(--color-danger)',

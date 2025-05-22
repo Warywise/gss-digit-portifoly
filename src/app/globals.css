@@ -20,7 +20,7 @@
   --color-ring: #cbd5e1; /* gray-300 */
 
   --color-text: #111827; /* gray-900 */
-  --color-subtle-text: #6b7280; /* gray-500 */
+  --color-subtitle: #6b7280; /* gray-500 */
   --color-placeholder: #9ca3af; /* gray-400 */
   --color-danger: #ef4444; /* red-500 */
   --color-warning: #f59e0b; /* yellow-500 */
@@ -46,7 +46,7 @@
   --color-ring: #4b5563; /* gray-600 */
 
   --color-text: #f3f4f6; /* gray-100 */
-  --color-subtle-text: #9ca3af; /* gray-400 */
+  --color-subtitle: #9ca3af; /* gray-400 */
   --color-placeholder: #6b7280; /* gray-500 */
   --color-danger: #f87171; /* red-400 */
   --color-warning: #fbbf24; /* yellow-400 */
@@ -72,7 +72,7 @@
   --color-ring: var(--color-ring);
 
   --color-text: var(--color-text);
-  --color-subtle-text: var(--color-subtle-text);
+  --color-subtitle: var(--color-subtitle);
   --color-placeholder: var(--color-placeholder);
 
   --color-danger: var(--color-danger);
@@ -95,4 +95,8 @@ body {
   @apply rounded-full border border-solid border-border relative;
   @apply transition-colors bg-foreground/50 hover:bg-foreground/80 hover:border-transparent;
   @apply flex items-center justify-center px-4 py-1;
+}
+
+.footer-social-link {
+  @apply text-sm text-subtitle hover:text-primary transition-colors grid justify-items-center;
 }

@@ -44,19 +44,19 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <Link
               href="/"
-              className="text-sm font-medium hover:text-primary transition-colors"
+              className="hover:text-primary transition-colors"
             >
               Home
             </Link>
             <Link
               href="/about"
-              className="text-sm font-medium hover:text-primary transition-colors"
+              className="hover:text-primary transition-colors"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="text-sm font-medium hover:text-primary transition-colors"
+              className="hover:text-primary transition-colors"
             >
               Contact
             </Link>
