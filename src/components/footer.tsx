@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa6";
+import Link from 'next/link';
+import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa6';
 
 const Footer = () => {
   return (

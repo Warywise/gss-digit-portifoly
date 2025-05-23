@@ -1,7 +1,6 @@
-import Image from "next/image";
-import Button from "./button";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+import Image from 'next/image';
+import Button from './button';
+import { redirect } from 'next/navigation';
 
 const Profile = () => {
   return (
@@ -15,13 +14,13 @@ const Profile = () => {
 
           <div className="flex-1 text-center md:text-left">
             {/* Name and title */}
-            <h1 className="text-2xl font-bold mb-1">Gustavo Sant'Anna</h1>
+            <h1 className="text-2xl font-bold mb-1">{"Gustavo Sant'Anna"}</h1>
             <p className="text-subtitle mb-2">Fullstack Developer</p>
 
             {/* Bio */}
             <p className="mb-4 max-w-md">
-              Passionate developer with 3+ years of experience building modern
-              web and mobile applications. Specializing in TypeScript, React and NodeJs.
+              Passionate developer with 3+ years of experience building modern web and mobile
+              applications. Specializing in TypeScript, React and NodeJs.
             </p>
 
             {/* Action button */}
