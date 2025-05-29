@@ -1,0 +1,25 @@
+.tooltip {
+  @apply absolute z-50 select-none rounded-lg bg-placeholder py-3 px-6 text-center align-middle text-xs font-bold text-text shadow-md shadow-gray-900/10 transition-all;
+  @apply hover:shadow-lg hover:shadow-gray-900/20 focus:shadow-none;
+  @apply disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  top: -150%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip-trigger {
+  @apply whitespace-normal break-words rounded-lg font-sans text-sm font-normal focus:outline-none;
+}
+
+.tooltip-trigger:hover + .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip-container {
+  position: relative;
+}
