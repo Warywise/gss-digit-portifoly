@@ -1,5 +1,7 @@
+import { JSX } from 'react';
+
 interface ButtonProps {
-  label: string;
+  label: string | JSX.Element;
   onClick?: () => void;
   variant?:
     | 'default'
