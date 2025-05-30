@@ -1,0 +1,88 @@
+const projects = [
+  {
+    id: '1a2b3c-4d5e-6f7g8h9i0j1k',
+    name: 'Nyan Catrometer',
+    img: 'https://user-images.githubusercontent.com/85768828/156932072-b2657998-4515-4fbf-ad20-d660108808a9.gif',
+    description:
+      'A simple and fun timer app that features the iconic Nyan Cat. It allows users to set timers and enjoy the Nyan Cat animation while waiting.',
+    deployed: true,
+    techStacks: ['React', 'HTML', 'CSS', 'JavaScript'],
+    comments: 3,
+    likes: 5,
+    commits: 17,
+    url: 'https://warywise.github.io/nyan-cronometer/',
+    gitRep: 'https://github.com/Warywise/nyan-cronometer',
+  },
+  {
+    id: '2b3c4d-5e6f-7g8h9i0j1k2l',
+    name: 'ChoqueFlix',
+    img: 'https://user-images.githubusercontent.com/85768828/156933617-eba902b5-2534-4e71-b74e-34c4f903fbc7.gif',
+    description:
+      'Um site baseado no design da Netflix com o tema do canal do youtube Choque de Cultura. Dispõe de diversas informações de filmes obtidos através da API do TMDB.',
+    deployed: true,
+    techStacks: ['Vanilla', 'HTML', 'CSS', 'JavaScript', 'JQuery'],
+    comments: 14,
+    likes: 9,
+    commits: 246,
+    url: 'https://choqueflix.vercel.app/',
+    gitRep: 'https://github.com/Warywise/choqueflix',
+  },
+  {
+    id: '1a2b3c-4d5-6f7g8h9i0j1k',
+    name: 'Nyan Catrometer',
+    img: 'https://user-images.githubusercontent.com/85768828/156932072-b2657998-4515-4fbf-ad20-d660108808a9.gif',
+    description:
+      'A simple and fun timer app that features the iconic Nyan Cat. It allows users to set timers and enjoy the Nyan Cat animation while waiting.',
+    deployed: true,
+    techStacks: ['React', 'HTML', 'CSS', 'JavaScript'],
+    comments: 3,
+    likes: 5,
+    commits: 17,
+    url: 'https://warywise.github.io/nyan-cronometer/',
+    gitRep: 'https://github.com/Warywise/nyan-cronometer',
+  },
+  {
+    id: '2b3c4d-5e6-7g8h9i0j1k2l',
+    name: 'ChoqueFlix',
+    img: 'https://user-images.githubusercontent.com/85768828/156933617-eba902b5-2534-4e71-b74e-34c4f903fbc7.gif',
+    description:
+      'Um site baseado no design da Netflix com o tema do canal do youtube Choque de Cultura. Dispõe de diversas informações de filmes obtidos através da API do TMDB.',
+    deployed: true,
+    techStacks: ['Vanilla', 'HTML', 'CSS', 'JavaScript', 'JQuery'],
+    comments: 14,
+    likes: 9,
+    commits: 246,
+    url: 'https://choqueflix.vercel.app/',
+    gitRep: 'https://github.com/Warywise/choqueflix',
+  },
+  {
+    id: '1ab3c-4d5e-6f7g8h9i0j1k',
+    name: 'Nyan Catrometer',
+    img: 'https://user-images.githubusercontent.com/85768828/156932072-b2657998-4515-4fbf-ad20-d660108808a9.gif',
+    description:
+      'A simple and fun timer app that features the iconic Nyan Cat. It allows users to set timers and enjoy the Nyan Cat animation while waiting.',
+    deployed: true,
+    techStacks: ['React', 'HTML', 'CSS', 'JavaScript'],
+    comments: 3,
+    likes: 5,
+    commits: 17,
+    url: 'https://warywise.github.io/nyan-cronometer/',
+    gitRep: 'https://github.com/Warywise/nyan-cronometer',
+  },
+  {
+    id: '2bc4d-5e6f-7g8h9i0j1k2l',
+    name: 'ChoqueFlix',
+    img: 'https://user-images.githubusercontent.com/85768828/156933617-eba902b5-2534-4e71-b74e-34c4f903fbc7.gif',
+    description:
+      'Um site baseado no design da Netflix com o tema do canal do youtube Choque de Cultura. Dispõe de diversas informações de filmes obtidos através da API do TMDB.',
+    deployed: true,
+    techStacks: ['Vanilla', 'HTML', 'CSS', 'JavaScript', 'JQuery'],
+    comments: 14,
+    likes: 9,
+    commits: 246,
+    url: 'https://choqueflix.vercel.app/',
+    gitRep: 'https://github.com/Warywise/choqueflix',
+  },
+];
+
+export default projects;

@@ -29,7 +29,7 @@ const Button: React.FC<ButtonProps> = ({
     default: 'bg-primary text-muted hover:bg-primary-hover',
     secondary: 'bg-secondary hover:bg-secondary-hover',
     outline: 'border border-input bg-background hover:bg-accent/80',
-    ghost: 'hover:bg-accent hover:text-foreground',
+    ghost: 'hover:bg-placeholder/80 hover:text-foreground',
     link: 'text-primary underline-offset-4 hover:underline hover:border border-primary/25',
     danger: 'bg-danger hover:bg-danger/80 hover:text-muted',
     warning: 'bg-warning hover:bg-warning/80 hover:text-muted',
