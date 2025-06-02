@@ -1,3 +1,5 @@
+'use client'
+
 export interface ProjectObj { projectName: string, updated: boolean };
 
 export default class HandleLocalStorage {
