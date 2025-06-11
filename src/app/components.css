@@ -1,5 +1,5 @@
 .tooltip {
-  @apply absolute z-50 rounded-lg bg-placeholder shadow-md shadow-gray-900/10 transition-all;
+  @apply absolute z-50 rounded-lg bg-placeholder/80 shadow-md shadow-ring/50 dark:shadow-ring/20 transition-all;
   @apply py-3 px-6 w-max max-w-48;
   @apply select-none text-left align-middle text-xs font-bold text-text;
   @apply hover:shadow-lg hover:shadow-gray-900/20 focus:shadow-none;
@@ -32,7 +32,7 @@
   @apply disabled:pointer-events-none disabled:opacity-50;
 }
 
-.pj-button {
+.proj-button {
   @apply py-1 h-auto text-text/80 border border-background hover:border-placeholder;
 }
 
