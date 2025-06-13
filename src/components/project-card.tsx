@@ -47,7 +47,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <article
       ref={elementRef}
-      className="flex flex-col justify-between rounded-lg overflow-hidden shadow-sm border border-border animate-fade-in post-animation"
+      className="flex flex-col justify-between rounded-lg overflow-hidden shadow-sm border border-border animate-fade-in post-animation max-w-sm"
     >
       <div>
         {/* Project Image */}

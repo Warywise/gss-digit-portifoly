@@ -101,10 +101,3 @@ body {
 .footer-social-link {
   @apply text-sm text-subtitle hover:text-primary transition-colors grid justify-items-center;
 }
-
-.search-input {
-  @apply flex rounded-md border border-border bg-foreground/5 ring-offset-background;
-  @apply w-8 md:w-full focus:w-full pl-10 py-1 md:py-2 transition-all;
-  @apply placeholder:text-placeholder md:text-sm;
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
-}
