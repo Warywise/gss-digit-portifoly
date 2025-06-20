@@ -34,7 +34,7 @@ const FilterTabs: React.FC<FilterTabsProps> = ({ handleFilter }) => {
   }, [filter, handleFilter]);
 
   return (
-    <div className="block">
+    <div className="block row-start-2">
       <div className="mb-6 inline-flex items-center justify-center rounded-md bg-muted p-1">
         <Button
           style={filter === 'All' ? 'bg-placeholder/50 text-foreground' : ''}

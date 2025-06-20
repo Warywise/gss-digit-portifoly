@@ -11,12 +11,11 @@ export default function Home() {
   const [projects, setProjects] = useState(projectsData);
 
   return (
-    <div className="grid items-start justify-items-center min-h-screen p-8 gap-16 sm:p-16">
+    <div className="grid items-start justify-items-center min-h-screen p-4 gap-16 sm:p-16">
       <Profile />
-      {/* TODO: ajustar grid em telas sm */}
       <main className="flex flex-col gap-16 row-start-2 items-center sm:items-start w-full">
-        <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-          <h2 className="text-2xl font-bold">Projects</h2>
+        <div className="mb-6 grid grid-cols-2 gap-4 w-full">
+          <h2 className="text-xl md:text-2xl font-bold">Projects</h2>
 
           <SearchInput handleSearch={setProjects} />
 
