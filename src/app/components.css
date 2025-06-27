@@ -47,3 +47,8 @@
   @apply placeholder:text-placeholder md:text-sm;
   @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
 }
+
+.modal {
+  @apply fixed grid place-items-center;
+  @apply inset-0 z-[999] h-screen w-screen bg-background/60 backdrop-blur-md transition-all duration-200;
+}

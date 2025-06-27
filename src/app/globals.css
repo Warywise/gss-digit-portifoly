@@ -13,8 +13,8 @@
   --color-secondary: #3b82f6; /* blue-500 */
   --color-secondary-hover: #2563eb;
 
-  --color-accent: #10b981; /* green-500 */
-  --color-accent-hover: #059669;
+  --color-accent: #11c590;
+  --color-accent-hover: #09a590;
 
   --color-muted: #f3f4f6; /* gray-100 */
   --color-border: #cfd4dd; /* gray-200 */
@@ -24,8 +24,8 @@
   --color-subtitle: #6b7280; /* gray-500 */
   --color-placeholder: #9ca3af; /* gray-400 */
   --color-danger: #ef4444; /* red-500 */
-  --color-warning: #f59e0b; /* yellow-500 */
-  --color-success: #22c55e; /* green-500 */
+  --color-warning: #f5af0b; /* yellow-500 */
+  --color-success: #22c556; /* green-500 */
   --color-info: #3b82f6; /* blue-500 */
 }
 
