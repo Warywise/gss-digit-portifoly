@@ -5,6 +5,7 @@ import Badge from './badge';
 import Tooltip from './tooltip';
 import Button from './button';
 import { FaMessage, FaRocket, FaShare } from 'react-icons/fa6';
+import Modal from './modal';
 
 interface ProjectCardProps {
   project: {
@@ -108,7 +109,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               variant="link"
               size="sm"
               style="proj-button"
-              onClick={() => setIsLiked(!isLiked)}
+              onClick={() => {
+                setIsLiked(!isLiked);
+                setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
+              }}
             />
           </Tooltip>
 
@@ -140,6 +144,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </Tooltip>
         </div>
       </div>
+
+      <Modal
+        visible={isDetailsOpen}
+        onCancel={() => setIsDetailsOpen(false)}
+        onConfirm={() => setIsDetailsOpen(false)}
+        closabe
+        header="Its a simple dialog. This is the Header."
+        body="The key to success is to have success, because who has success, is a successfull person.
+          This is a simple modal dialog component that will be used to display information that can
+          be showed on a modal dialog."
+        // size="md"
+        // hideOkButton
+        // hideCancelButton
+      />
     </article>
   );
 };
