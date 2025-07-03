@@ -1,11 +1,11 @@
 'use client';
 import Image from 'next/image';
 import { useLayoutEffect, useRef, useState } from 'react';
-import Badge from './badge';
-import Tooltip from './tooltip';
-import Button from './button';
+import Badge from './ui/badge';
+import Tooltip from './ui/tooltip';
+import Button from './ui/button';
 import { FaMessage, FaRocket, FaShare } from 'react-icons/fa6';
-import Modal from './modal';
+import ProjectDetailsModal from './project-details-modal';
 
 interface ProjectCardProps {
   project: {
@@ -18,6 +18,8 @@ interface ProjectCardProps {
     comments: number;
     likes?: number;
     deployed?: boolean;
+    url?: string;
+    gitRepo?: string;
   };
 }
 
@@ -145,18 +147,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </div>
       </div>
 
-      <Modal
+      <ProjectDetailsModal
+        imgWidth={width}
+        project={project}
+        setVisible={setIsDetailsOpen}
         visible={isDetailsOpen}
-        onCancel={() => setIsDetailsOpen(false)}
-        onConfirm={() => setIsDetailsOpen(false)}
-        closabe
-        header="Its a simple dialog. This is the Header."
-        body="The key to success is to have success, because who has success, is a successfull person.
-          This is a simple modal dialog component that will be used to display information that can
-          be showed on a modal dialog."
-        // size="md"
-        // hideOkButton
-        // hideCancelButton
       />
     </article>
   );

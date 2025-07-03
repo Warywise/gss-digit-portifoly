@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import projectsData from '@/PROJECTS_DATA';
-import Button from './button';
+import Button from './ui/button';
 
 interface FilterTabsProps {
   handleFilter: Dispatch<
@@ -16,7 +16,7 @@ interface FilterTabsProps {
         likes: number;
         commits: number;
         url: string;
-        gitRep: string;
+        gitRepo: string;
       }[]
     >
   >;
