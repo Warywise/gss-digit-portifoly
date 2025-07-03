@@ -50,5 +50,10 @@
 
 .modal {
   @apply fixed grid place-items-center;
-  @apply inset-0 z-[999] h-screen w-screen bg-background/60 backdrop-blur-md transition-all duration-200;
+  @apply inset-0 z-[999] h-screen w-screen transition-all duration-200;
+}
+
+.inner-modal {
+  @apply relative rounded-lg bg-muted shadow-md overflow-y-scroll;
+  @apply p-4 max-h-[90vh];
 }
