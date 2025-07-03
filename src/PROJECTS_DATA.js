@@ -11,7 +11,7 @@ const projects = [
     likes: 7,
     commits: 17,
     url: 'https://warywise.github.io/nyan-cronometer/',
-    gitRep: 'https://github.com/Warywise/nyan-cronometer',
+    gitRepo: 'https://github.com/Warywise/nyan-cronometer',
   },
   {
     id: '2b3c4d-5e6f-7g8h9i0j1k2l',
@@ -25,7 +25,7 @@ const projects = [
     likes: 6,
     commits: 246,
     url: 'https://choqueflix.vercel.app/',
-    gitRep: 'https://github.com/Warywise/choqueflix',
+    gitRepo: 'https://github.com/Warywise/choqueflix',
   },
   {
     id: '1a2b3c-4d5-6f7g8h9i0j1k',
@@ -39,7 +39,7 @@ const projects = [
     likes: 5,
     commits: 17,
     url: 'https://warywise.github.io/nyan-cronometer/',
-    gitRep: 'https://github.com/Warywise/nyan-cronometer',
+    gitRepo: 'https://github.com/Warywise/nyan-cronometer',
   },
   {
     id: '2b3c4d-5e6-7g8h9i0j1k2l',
@@ -53,7 +53,7 @@ const projects = [
     likes: 9,
     commits: 246,
     url: 'https://choqueflix.vercel.app/',
-    gitRep: 'https://github.com/Warywise/choqueflix',
+    gitRepo: 'https://github.com/Warywise/choqueflix',
   },
   {
     id: '1ab3c-4d5e-6f7g8h9i0j1k',
@@ -67,7 +67,7 @@ const projects = [
     likes: 14,
     commits: 17,
     url: 'https://warywise.github.io/nyan-cronometer/',
-    gitRep: 'https://github.com/Warywise/nyan-cronometer',
+    gitRepo: 'https://github.com/Warywise/nyan-cronometer',
   },
   {
     id: '2bc4d-5e6f-7g8h9i0j1k2l',
@@ -81,7 +81,7 @@ const projects = [
     likes: 9,
     commits: 246,
     url: 'https://choqueflix.vercel.app/',
-    gitRep: 'https://github.com/Warywise/choqueflix',
+    gitRepo: 'https://github.com/Warywise/choqueflix',
   },
 ];
 
