@@ -17,7 +17,7 @@ interface SearcInputProps {
         likes: number;
         commits: number;
         url: string;
-        gitRep: string;
+        gitRepo: string;
       }[]
     >
   >;
