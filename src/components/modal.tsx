@@ -1,4 +1,4 @@
-import React, { JSX } from 'react';
+import React, { JSX, useEffect, useRef } from 'react';
 import Button from './button';
 
 interface ModalProps {
@@ -26,10 +26,11 @@ const Modal: React.FC<ModalProps> = ({
   footer,
   size = 'md',
 }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
   const modalSizes = {
-    sm: 'w-1/5',
-    md: 'w-2/5',
-    lg: 'w-3/5',
+    sm: 'w-3/5 md:w-2/5 lg:w-1/5',
+    md: 'w-5/6 md:w-3/5 lg:w-2/5',
+    lg: 'w-19/20 md:w-4/5 lg:w-3/5',
   };
 
   const handleBlur = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -39,6 +40,17 @@ const Modal: React.FC<ModalProps> = ({
     if (!targetElement.offsetParent) onCancel();
   };
 
+  useEffect(() => {
+    if (visible) {
+      setTimeout(
+        () => modalRef.current?.classList.add('bg-foreground/60', 'backdrop-blur-md'),
+        100,
+      );
+    } else {
+      modalRef.current?.classList.remove('bg-foreground/60', 'backdrop-blur-md');
+    }
+  }, [visible]);
+
   return (
     <div
       className={`modal ${
@@ -47,33 +59,39 @@ const Modal: React.FC<ModalProps> = ({
           : 'opacity-0 pointer-events-none -translate-y-8 scale-90'
       }`}
       onClick={handleBlur}
+      ref={modalRef}
     >
-      <div className={`relative m-4 p-4 rounded-lg bg-background shadow-sm ${modalSizes[size]}`}>
-        <div className="flex shrink-0 items-center pb-4 text-xl font-medium text-text/80">
+      <div className={`inner-modal ${modalSizes[size]}`}>
+        <header className="flex shrink-0 items-center pb-4 text-xl font-medium text-text/80">
           {header}
           {closabe && (
             <span
               className="absolute right-2.5 top-1 cursor-pointer hover:text-text/75"
               onClick={onCancel}
             >
-              X
+              x
             </span>
           )}
-        </div>
+        </header>
         <div className="relative border-t border-border py-4 leading-normal text-text/75 font-light">
           {body}
         </div>
-        {/* TODO: fazer footer com possibilidade de botões de ações nele ou não */}
-        {/* TODO: responsividade mobile */}
-        <div className="flex shrink-0 flex-wrap items-center pt-4 justify-end gap-2">
+        <footer className="flex shrink-0 flex-wrap items-center pt-4 gap-2">
           {footer}
-          {!hideCancelButton && (
-            <Button variant="outline" onClick={onCancel} label="Cancelar" style="hover:bg-muted" />
-          )}
-          {!hideOkButton && onConfirm && (
-            <Button variant="success" onClick={onConfirm} label="Confirmar" />
-          )}
-        </div>
+          <div className="flex w-full justify-end gap-2">
+            {!hideCancelButton && (
+              <Button
+                variant="outline"
+                onClick={onCancel}
+                label="Cancelar"
+                style="hover:bg-muted"
+              />
+            )}
+            {!hideOkButton && onConfirm && (
+              <Button variant="success" onClick={onConfirm} label="Confirmar" />
+            )}
+          </div>
+        </footer>
       </div>
     </div>
   );
