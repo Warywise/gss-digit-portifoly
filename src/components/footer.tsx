@@ -3,7 +3,7 @@ import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
-    <footer className="bottom-0 container px-4 py-8 border-t border-border">
+    <footer className="bottom-0 container px-4 py-8 mt-12 border-t border-border min-w-full">
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-sm text-subtitle">
           &copy; {new Date().getFullYear()} Gss Digit. All rights reserved.

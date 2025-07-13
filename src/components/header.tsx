@@ -30,11 +30,11 @@ const Header = () => {
   }, []);
 
   const scrollClass = scrolled
-    ? 'bg-background/50 dark:bg-foreground/30 backdrop-blur-sm shadow-sm py-2'
-    : 'bg-transparent py-4';
+    ? 'bg-background/50 dark:bg-foreground/30 backdrop-blur-sm shadow-sm'
+    : 'bg-transparent';
 
   return (
-    <header className={`sticky px-4 top-0 z-50 transition-all duration-200 ${scrollClass}`}>
+    <header className={`sticky px-4 top-0 z-50 transition-all duration-200 py-3 ${scrollClass}`}>
       <div className="container flex items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
           <span className="text-xl font-bold text-text">Gss Digit</span>
