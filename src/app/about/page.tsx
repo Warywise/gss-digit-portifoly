@@ -1,7 +1,19 @@
+import techsData from '@/TECHS_DATA';
 import Button from '@/components/ui/button';
 import Image from 'next/image';
 
 const AboutPage = () => {
+  const TechCard = ({ tag, techs }: { tag: string; techs: string[] }) => (
+    <article className="bg-card border border-border rounded-lg p-4">
+      <h3 className="font-medium mb-2">{tag}</h3>
+      <ul className="text-sm space-y-1 text-subtitle">
+        {techs.map((tech) => (
+          <li key={tech}>{tech}</li>
+        ))}
+      </ul>
+    </article>
+  );
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-1">
@@ -67,71 +79,9 @@ const AboutPage = () => {
           <section>
             <h2 className="text-2xl font-semibold mb-4">Skills</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div className="bg-card border border-border rounded-lg p-4">
-                <h3 className="font-medium mb-2">Frontend</h3>
-                <ul className="text-sm space-y-1 text-subtitle">
-                  <li>React & React Native</li>
-                  <li>TypeScript</li>
-                  <li>Next.js</li>
-                  <li>Tailwind CSS</li>
-                  <li>Redux</li>
-                </ul>
-              </div>
-
-              <div className="bg-card border border-border rounded-lg p-4">
-                <h3 className="font-medium mb-2">Backend</h3>
-                <ul className="text-sm space-y-1 text-subtitle">
-                  <li>Node.js</li>
-                  <li>Express</li>
-                  <li>Python</li>
-                  <li>Django</li>
-                  <li>RESTful APIs</li>
-                </ul>
-              </div>
-
-              <div className="bg-card border border-border rounded-lg p-4">
-                <h3 className="font-medium mb-2">Database</h3>
-                <ul className="text-sm space-y-1 text-subtitle">
-                  <li>MongoDB</li>
-                  <li>PostgreSQL</li>
-                  <li>Firebase</li>
-                  <li>Redis</li>
-                  <li>GraphQL</li>
-                </ul>
-              </div>
-
-              <div className="bg-card border border-border rounded-lg p-4">
-                <h3 className="font-medium mb-2">DevOps</h3>
-                <ul className="text-sm space-y-1 text-subtitle">
-                  <li>Docker</li>
-                  <li>Kubernetes</li>
-                  <li>CI/CD</li>
-                  <li>AWS</li>
-                  <li>Vercel</li>
-                </ul>
-              </div>
-
-              <div className="bg-card border border-border rounded-lg p-4">
-                <h3 className="font-medium mb-2">Tools</h3>
-                <ul className="text-sm space-y-1 text-subtitle">
-                  <li>Git & GitHub</li>
-                  <li>Jira</li>
-                  <li>Figma</li>
-                  <li>VS Code</li>
-                  <li>Postman</li>
-                </ul>
-              </div>
-
-              <div className="bg-card border border-border rounded-lg p-4">
-                <h3 className="font-medium mb-2">Soft Skills</h3>
-                <ul className="text-sm space-y-1 text-subtitle">
-                  <li>Team Leadership</li>
-                  <li>Agile Methodology</li>
-                  <li>Problem Solving</li>
-                  <li>Communication</li>
-                  <li>Mentoring</li>
-                </ul>
-              </div>
+              {techsData.map((data) => (
+                <TechCard key={data.tag} tag={data.tag} techs={data.techs} />
+              ))}
             </div>
           </section>
 
