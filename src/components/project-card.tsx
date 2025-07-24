@@ -6,21 +6,10 @@ import Tooltip from './ui/tooltip';
 import Button from './ui/button';
 import { FaMessage, FaRocket, FaShare } from 'react-icons/fa6';
 import ProjectDetailsModal from './project-details-modal';
+import ProjectDataType from '@/types/projects';
 
 interface ProjectCardProps {
-  project: {
-    id: string;
-    name: string;
-    description: string;
-    img: string;
-    techStacks: string[];
-    commits: number;
-    comments: number;
-    likes?: number;
-    deployed?: boolean;
-    url?: string;
-    gitRepo?: string;
-  };
+  project: ProjectDataType;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
@@ -57,7 +46,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         <div className="relative cursor-pointer" onClick={() => setIsDetailsOpen(true)}>
           <Image
             loading="lazy"
-            src={project.img}
+            src={project.imgThumb}
             alt={project.name}
             className="w-full aspect-video object-cover"
             width={width}

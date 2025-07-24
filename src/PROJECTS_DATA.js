@@ -2,6 +2,7 @@ const projects = [
   {
     id: '1a2b3c-4d5e-6f7g8h9i0j1k',
     name: 'Nyan Catrometer',
+    imgThumb: 'https://github.com/user-attachments/assets/eea94a61-277a-4eb1-9ffc-6296f1d1d37d',
     img: 'https://user-images.githubusercontent.com/85768828/156932072-b2657998-4515-4fbf-ad20-d660108808a9.gif',
     description:
       'A simple and fun timer app that features the iconic Nyan Cat. It allows users to set timers and enjoy the Nyan Cat animation while waiting.',
@@ -16,6 +17,7 @@ const projects = [
   {
     id: '2b3c4d-5e6f-7g8h9i0j1k2l',
     name: 'ChoqueFlix',
+    imgThumb: 'https://github.com/user-attachments/assets/841b7e0d-c075-49b4-8b1a-8c365c3da936',
     img: 'https://user-images.githubusercontent.com/85768828/156933617-eba902b5-2534-4e71-b74e-34c4f903fbc7.gif',
     description:
       'Um site baseado no design da Netflix com o tema do canal do youtube Choque de Cultura. Dispõe de diversas informações de filmes obtidos através da API do TMDB.',
@@ -30,6 +32,7 @@ const projects = [
   {
     id: '1a2b3c-4d5-6f7g8h9i0j1k',
     name: 'Nyan Catrometer',
+    imgThumb: 'https://github.com/user-attachments/assets/eea94a61-277a-4eb1-9ffc-6296f1d1d37d',
     img: 'https://user-images.githubusercontent.com/85768828/156932072-b2657998-4515-4fbf-ad20-d660108808a9.gif',
     description:
       'A simple and fun timer app that features the iconic Nyan Cat. It allows users to set timers and enjoy the Nyan Cat animation while waiting.',
@@ -44,6 +47,7 @@ const projects = [
   {
     id: '2b3c4d-5e6-7g8h9i0j1k2l',
     name: 'ChoqueFlix',
+    imgThumb: 'https://github.com/user-attachments/assets/841b7e0d-c075-49b4-8b1a-8c365c3da936',
     img: 'https://user-images.githubusercontent.com/85768828/156933617-eba902b5-2534-4e71-b74e-34c4f903fbc7.gif',
     description:
       'Um site baseado no design da Netflix com o tema do canal do youtube Choque de Cultura. Dispõe de diversas informações de filmes obtidos através da API do TMDB.',
@@ -58,6 +62,7 @@ const projects = [
   {
     id: '1ab3c-4d5e-6f7g8h9i0j1k',
     name: 'Nyan Catrometer',
+    imgThumb: 'https://github.com/user-attachments/assets/eea94a61-277a-4eb1-9ffc-6296f1d1d37d',
     img: 'https://user-images.githubusercontent.com/85768828/156932072-b2657998-4515-4fbf-ad20-d660108808a9.gif',
     description:
       'A simple and fun timer app that features the iconic Nyan Cat. It allows users to set timers and enjoy the Nyan Cat animation while waiting.',
@@ -72,6 +77,7 @@ const projects = [
   {
     id: '2bc4d-5e6f-7g8h9i0j1k2l',
     name: 'ChoqueFlix',
+    imgThumb: 'https://github.com/user-attachments/assets/841b7e0d-c075-49b4-8b1a-8c365c3da936',
     img: 'https://user-images.githubusercontent.com/85768828/156933617-eba902b5-2534-4e71-b74e-34c4f903fbc7.gif',
     description:
       'Um site baseado no design da Netflix com o tema do canal do youtube Choque de Cultura. Dispõe de diversas informações de filmes obtidos através da API do TMDB.',
