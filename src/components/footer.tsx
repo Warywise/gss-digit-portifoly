@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa6';
+import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
@@ -22,6 +22,17 @@ const Footer = () => {
           </Link>
           <Link
             className="footer-social-link"
+            href="https://linkedin.com/in/g-s-s"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            title="LinkedIn"
+          >
+            <FaLinkedin />
+            <span className="hover:underline">LinkedIn</span>
+          </Link>
+          <Link
+            className="footer-social-link"
             href="mailto:g_santanna@outlook.com"
             rel="noopener noreferrer"
             aria-label="Email"
@@ -32,14 +43,14 @@ const Footer = () => {
           </Link>
           <Link
             className="footer-social-link"
-            href="https://linkedin.com/in/g-s-s"
+            href="https://wa.me/5521972499255?text=👋"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            title="LinkedIn"
+            aria-label="Whatsapp"
+            title="Whatsapp"
           >
-            <FaLinkedin />
-            <span className="hover:underline">LinkedIn</span>
+            <FaWhatsapp />
+            <span className="hover:underline">Whatsapp</span>
           </Link>
         </div>
       </div>
