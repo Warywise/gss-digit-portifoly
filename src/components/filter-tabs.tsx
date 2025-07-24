@@ -1,25 +1,10 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import projectsData from '@/PROJECTS_DATA';
 import Button from './ui/button';
+import ProjectDataType from '@/types/projects';
 
 interface FilterTabsProps {
-  handleFilter: Dispatch<
-    SetStateAction<
-      {
-        id: string;
-        name: string;
-        img: string;
-        description: string;
-        deployed: boolean;
-        techStacks: string[];
-        comments: number;
-        likes: number;
-        commits: number;
-        url: string;
-        gitRepo: string;
-      }[]
-    >
-  >;
+  handleFilter: Dispatch<SetStateAction<ProjectDataType[]>>;
 }
 
 const FilterTabs: React.FC<FilterTabsProps> = ({ handleFilter }) => {

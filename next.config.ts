@@ -6,7 +6,10 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    remotePatterns: [new URL('https://user-images.githubusercontent.com/**')],
+    remotePatterns: [
+      new URL('https://user-images.githubusercontent.com/**'),
+      new URL('https://github.com/user-attachments/assets/**'),
+    ],
   },
 };
 
