@@ -2,25 +2,10 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import projectsData from '@/PROJECTS_DATA';
 import { FaSearch } from 'react-icons/fa';
+import ProjectDataType from '@/types/projects';
 
 interface SearcInputProps {
-  handleSearch: Dispatch<
-    SetStateAction<
-      {
-        id: string;
-        name: string;
-        img: string;
-        description: string;
-        deployed: boolean;
-        techStacks: string[];
-        comments: number;
-        likes: number;
-        commits: number;
-        url: string;
-        gitRepo: string;
-      }[]
-    >
-  >;
+  handleSearch: Dispatch<SetStateAction<ProjectDataType[]>>;
 }
 
 const SearchInput: React.FC<SearcInputProps> = ({ handleSearch }) => {
