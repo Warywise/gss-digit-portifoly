@@ -2,6 +2,41 @@ import techsData from '@/TECHS_DATA';
 import Button from '@/components/ui/button';
 import Image from 'next/image';
 
+interface ExperienceProps {
+  position: string;
+  startAt: string;
+  endAt: string | null;
+  company: string;
+  jobDescription: string;
+}
+
+const jobsData = [
+  {
+    position: 'Desenvolvedor de Software',
+    startAt: 'Out 2024',
+    endAt: null,
+    company: 'Invenzi',
+    jobDescription:
+      'Desenvolvimento e manutenção de uma plataforma multi-idioma para controle de acesso. Atuei com diversas integrações com hardware e regras personalizadas por local. Envolvido em features novas, refatorações e melhorias contínuas.',
+  },
+  {
+    position: 'Desenvolvedor Fullstack Jr II',
+    startAt: 'Jun 2023',
+    endAt: 'Out 2024',
+    company: 'W3lcome',
+    jobDescription:
+      'Desenvolvimento de novas features e microserviços em uma plataforma multi-idioma de gerenciamento de visitas e reservas. Também trabalhei com integrações, manutenção e arquitetura de código.',
+  },
+  {
+    position: 'Analista de Desenvolvimento Jr',
+    startAt: 'Abr 2022',
+    endAt: 'Mar 2023',
+    company: 'PontuaX',
+    jobDescription:
+      'Atuação em produto voltado à pontuação por abastecimento de combustível, com alta prioridade em atualizações constantes em tempo real. Desenvolvi features, análises e refatorações, prezando pela performance e escalabilidade da aplicação.',
+  },
+];
+
 const AboutPage = () => {
   const TechCard = ({ tag, techs }: { tag: string; techs: string[] }) => (
     <article className="bg-card border border-border rounded-lg p-4">
@@ -12,6 +47,17 @@ const AboutPage = () => {
         ))}
       </ul>
     </article>
+  );
+
+  const ExperienceCard = (job: ExperienceProps) => (
+    <div className={`border-l-2 ${job.endAt ? 'border-muted' : 'border-primary'} pl-4`}>
+      <div className="flex justify-between items-center mb-2">
+        <h3 className="font-medium">{job.position}</h3>
+        <span className="text-sm text-subtitle">{`${job.startAt} - ${job.endAt || 'Present'}`}</span>
+      </div>
+      <p className="text-sm text-subtitle mb-1">{job.company}</p>
+      <p className="text-sm">{job.jobDescription}</p>
+    </div>
   );
 
   return (
@@ -57,20 +103,19 @@ const AboutPage = () => {
           <section>
             <h2 className="text-2xl font-semibold mb-4">Biography</h2>
             <div className="prose max-w-none">
-              <p className="mb-4">
-                I&apos;m a passionate full-stack developer with over 5 years of experience building
-                web and mobile applications. My journey in tech started with a computer science
-                degree, followed by roles at startups and established tech companies.
+              <p className="mb-3">
+                I&apos;m a full-stack developer from Brazil with over 3 years of experience building
+                web and mobile applications. I specialize in Node.js, React, and TypeScript, and
+                have worked with tools like PostgreSQL, AWS, React Native and others.
               </p>
-              <p className="mb-4">
-                I specialize in React, TypeScript, and modern cloud architectures. I enjoy solving
-                complex problems and creating intuitive user experiences. When I&apos;m not coding,
-                you can find me hiking, reading sci-fi novels, or experimenting with new cooking
-                recipes.
+              <p className="mb-3">
+                Beyond code, I&apos;m a husband, a dad, and a guy who enjoys music, nature, and
+                creating a positive vibe wherever I go. I value teamwork, clean communication, and
+                delivering solutions that truly make a difference.
               </p>
               <p>
-                I&apos;m always open to discussing new projects and opportunities. Feel free to
-                reach out if you&apos;d like to collaborate or just have a chat about technology!
+                Whether it&apos;s a new opportunity or just a good tech conversation, feel free to
+                get in touch!
               </p>
             </div>
           </section>
@@ -90,41 +135,9 @@ const AboutPage = () => {
             <h2 className="text-2xl font-semibold mb-4">Experience</h2>
 
             <div className="space-y-6">
-              <div className="border-l-2 border-primary pl-4 pb-2">
-                <div className="flex justify-between items-center mb-2">
-                  <h3 className="font-medium">Senior Frontend Developer</h3>
-                  <span className="text-sm text-subtitle">2022 - Present</span>
-                </div>
-                <p className="text-sm text-subtitle mb-1">TechCorp Inc.</p>
-                <p className="text-sm">
-                  Led the frontend team in developing a SaaS platform with React and TypeScript.
-                  Improved performance by 40% and implemented CI/CD workflows.
-                </p>
-              </div>
-
-              <div className="border-l-2 border-muted pl-4 pb-2">
-                <div className="flex justify-between items-center mb-2">
-                  <h3 className="font-medium">Full Stack Developer</h3>
-                  <span className="text-sm text-subtitle">2019 - 2022</span>
-                </div>
-                <p className="text-sm text-subtitle mb-1">InnovateSoft</p>
-                <p className="text-sm">
-                  Developed and maintained multiple client applications using React, Node.js, and
-                  MongoDB. Collaborated with design teams to implement responsive UI/UX.
-                </p>
-              </div>
-
-              <div className="border-l-2 border-muted pl-4">
-                <div className="flex justify-between items-center mb-2">
-                  <h3 className="font-medium">Junior Developer</h3>
-                  <span className="text-sm text-subtitle">2017 - 2019</span>
-                </div>
-                <p className="text-sm text-subtitle mb-1">StartupHub</p>
-                <p className="text-sm">
-                  Built features for a mobile app using React Native. Integrated RESTful APIs and
-                  implemented user authentication flows.
-                </p>
-              </div>
+              {jobsData.map((job, ind) => (
+                <ExperienceCard key={`${job.company}-${ind}`} {...job} />
+              ))}
             </div>
           </section>
         </div>
