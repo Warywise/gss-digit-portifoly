@@ -62,7 +62,7 @@ const AboutPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-1">
+      <main className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-1">
         {/* Profile Column */}
         <div className="md:col-span-1">
           <article className="flex flex-col justify-between rounded-lg overflow-hidden shadow-sm border border-border animate-fade-in post-animation max-w-sm p-1">
@@ -141,7 +141,7 @@ const AboutPage = () => {
             </div>
           </section>
         </div>
-      </div>
+      </main>
     </div>
   );
 };
