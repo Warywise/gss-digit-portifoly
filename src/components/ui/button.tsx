@@ -1,6 +1,6 @@
-import { JSX } from 'react';
+import { ButtonHTMLAttributes, JSX } from 'react';
 
-interface ButtonProps {
+interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'style'> {
   label: string | JSX.Element;
   onClick?: () => void;
   variant?:
@@ -24,6 +24,7 @@ const Button: React.FC<ButtonProps> = ({
   size = 'default',
   style,
   ref,
+  ...props
 }) => {
   const variants = {
     default: 'bg-primary text-muted hover:bg-primary-hover',
@@ -47,6 +48,7 @@ const Button: React.FC<ButtonProps> = ({
       className={`base-button ${variants[variant]} ${sizes[size]} ${style}`}
       onClick={onClick}
       ref={ref}
+      {...props}
     >
       {label}
     </button>
