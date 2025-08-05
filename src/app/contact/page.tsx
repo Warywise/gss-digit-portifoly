@@ -1,5 +1,9 @@
+'use client';
+
+import Button from '@/components/ui/button';
+import Input from '@/components/ui/input';
 import Link from 'next/link';
-import { JSX } from 'react';
+import { JSX, useState } from 'react';
 import {
   FaEnvelope,
   FaGithub,
@@ -46,12 +50,46 @@ const SocialItem = ({ icon, link }: { link: string; icon: JSX.Element }) => (
   </Link>
 );
 
+const INITIAL_STATE = {
+  name: '',
+  email: '',
+  subject: '',
+  message: '',
+};
+
 const ContactUsPage = () => {
+  // const { toast } = useToast();
+  const [formState, setFormState] = useState(INITIAL_STATE);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormState((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate form submission
+    setTimeout(() => {
+      // toast({
+      //   title: 'Message sent!',
+      //   description: "Thank you for your message. I'll get back to you soon.",
+      // });
+      setFormState(INITIAL_STATE);
+      setIsSubmitting(false);
+    }, 1500);
+  };
+
   return (
-    <div className="container py-8">
+    <div className="container p-8">
       <h1 className="text-3xl font-bold mb-8 text-center">Contact Us</h1>
-      <main className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        <div className="space-y-6">
+      <main className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
+        <section className="space-y-6">
           <h2 className="text-2xl font-semibold">Let&apos;s Connect</h2>
           <p className="text-subtitle">
             Have a project in mind or just want to say hello? Fill out the form and I&apos;ll get
@@ -110,7 +148,86 @@ const ContactUsPage = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </section>
+        <section className="grid space-y-6">
+          <Card>
+            <div className="flex flex-col space-y-1.5 p-6">
+              <h3 className="text-2xl font-semibold leading-none tracking-tight">Send a message</h3>
+              <p className="text-sm text-muted-foreground">
+                Fill out the form below to get in touch with me.
+              </p>
+            </div>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-medium">
+                    Name
+                  </label>
+                  <Input
+                    id="name"
+                    name="name"
+                    placeholder="Your name"
+                    value={formState.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium">
+                    Email
+                  </label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="Your email address"
+                    value={formState.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="subject" className="text-sm font-medium">
+                    Subject
+                  </label>
+                  <Input
+                    id="subject"
+                    name="subject"
+                    placeholder="What's this about?"
+                    value={formState.subject}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-medium">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Your message"
+                    rows={5}
+                    value={formState.message}
+                    onChange={handleChange}
+                    className="custom-textarea"
+                    required
+                  />
+                </div>
+
+                <Button
+                  label={isSubmitting ? 'Sending...' : 'Send Message'}
+                  type="submit"
+                  style="w-full"
+                  disabled={false}
+                />
+              </form>
+            </CardContent>
+          </Card>
+        </section>
       </main>
     </div>
   );
