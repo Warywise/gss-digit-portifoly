@@ -81,3 +81,14 @@
 .custom-textarea {
   @apply flex min-h-[80px] w-full rounded-md border border-border bg-background/70 px-3 py-2 text-sm ring-offset-background placeholder:text-subtitle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
 }
+
+.toast {
+  @apply relative w-full max-w-sm bg-background dark:bg-background/95 my-2;
+  @apply shadow-lg rounded-lg pointer-events-auto ring-1 ring-foreground overflow-hidden;
+  animation: fade-in-right 0.2s ease-out;
+}
+
+@keyframes fade-in-right {
+  0% { opacity: 0; transform: translateX(20px) }
+  100% { opacity: 1; transform: translateX(0) }
+}
