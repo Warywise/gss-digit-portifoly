@@ -26,7 +26,7 @@ const projects = [
     comments: 18,
     likes: 6,
     commits: 246,
-    url: 'https://choqueflix.vercel.app/',
+    url: 'https://warywise.github.io/choqueflix',
     gitRepo: 'https://github.com/Warywise/choqueflix',
   },
   {
@@ -56,7 +56,7 @@ const projects = [
     comments: 14,
     likes: 9,
     commits: 246,
-    url: 'https://choqueflix.vercel.app/',
+    url: 'https://warywise.github.io/choqueflix',
     gitRepo: 'https://github.com/Warywise/choqueflix',
   },
   {
@@ -86,7 +86,7 @@ const projects = [
     comments: 34,
     likes: 9,
     commits: 246,
-    url: 'https://choqueflix.vercel.app/',
+    url: 'https://warywise.github.io/choqueflix',
     gitRepo: 'https://github.com/Warywise/choqueflix',
   },
 ];
