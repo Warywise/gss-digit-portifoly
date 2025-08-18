@@ -1,6 +1,7 @@
 import techsData from '@/TECHS_DATA';
 import Button from '@/components/ui/button';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ExperienceProps {
   position: string;
@@ -91,7 +92,9 @@ const AboutPage = () => {
                   <p>Portuguese (Native), English (Conversational)</p>
                 </div>
 
-                <Button label="Download Resume" style="w-full" />
+                <Link href="/my_resume.pdf" download="currículo-gustavo-santanna.pdf">
+                  <Button label="Download Resume" style="w-full" />
+                </Link>
               </div>
             </div>
           </article>
