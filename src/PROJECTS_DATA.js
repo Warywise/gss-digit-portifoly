@@ -30,7 +30,22 @@ const projects = [
     gitRepo: 'https://github.com/Warywise/choqueflix',
   },
   {
-    id: '1a2b3c-4d5-6f7g8h9i0j1k',
+    id: '3c4d5e-6f7g-8h9i0j1k2l3m',
+    name: 'Trybers Online Store',
+    imgThumb: 'https://github.com/user-attachments/assets/82e07e46-adb5-4def-a248-6ab063621e5f',
+    img: 'https://github.com/user-attachments/assets/602ff035-db36-4d3e-a5b5-be377ef3c212',
+    description:
+      'Aplicação de e-commerce para treinar consumo de API, gerenciamento de estado e layout responsivo com React, consumindo dados da API DummyJSON.',
+    deployed: true,
+    techStacks: ['React', 'HTML', 'CSS', 'JavaScript'],
+    comments: 12,
+    likes: 8,
+    commits: 45,
+    url: 'https://warywise.github.io/online-store/',
+    gitRepo: 'https://github.com/Warywise/online-store',
+  },
+  {
+    id: '4d5e6f-7g8h-9i0j1k2l3m4n',
     name: 'Three Meals',
     imgThumb: 'https://github.com/user-attachments/assets/aad2aaa2-e504-4f0f-9003-1079541362e5',
     img: 'https://github.com/user-attachments/assets/83c3dae4-e5b0-4206-a77f-f0985db30496',
@@ -45,7 +60,7 @@ const projects = [
     gitRepo: 'https://github.com/Warywise/sant-recipes-app',
   },
   {
-    id: '2b3c4d-5e6-7g8h9i0j1k2l',
+    id: '5e6f7g-8h9i-0j1k2l3m4n5o',
     name: 'ChoqueFlix',
     imgThumb: 'https://github.com/user-attachments/assets/841b7e0d-c075-49b4-8b1a-8c365c3da936',
     img: 'https://user-images.githubusercontent.com/85768828/156933617-eba902b5-2534-4e71-b74e-34c4f903fbc7.gif',
@@ -60,7 +75,7 @@ const projects = [
     gitRepo: 'https://github.com/Warywise/choqueflix',
   },
   {
-    id: '1ab3c-4d5e-6f7g8h9i0j1k',
+    id: '6f7g8h-9i0j-1k2l3m4n5o6p',
     name: 'Nyan Catrometer',
     imgThumb: 'https://github.com/user-attachments/assets/eea94a61-277a-4eb1-9ffc-6296f1d1d37d',
     img: 'https://user-images.githubusercontent.com/85768828/156932072-b2657998-4515-4fbf-ad20-d660108808a9.gif',
