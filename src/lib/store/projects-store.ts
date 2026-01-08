@@ -11,7 +11,6 @@ const fetchProjectsState = async () => {
 
   const { data, error } = await supabase
     .from('projects')
-    // TODO: ver como funciona com apenas "project_technologies ( name )"
     .select(`
       *,
       technologies:project_technologies (

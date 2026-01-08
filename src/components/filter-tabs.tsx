@@ -1,13 +1,13 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import projectsData from '@/PROJECTS_DATA';
 import Button from './ui/button';
 import ProjectDataType from '@/types/projects';
 
 interface FilterTabsProps {
   handleFilter: Dispatch<SetStateAction<ProjectDataType[]>>;
+  projectsData: ProjectDataType[];
 }
 
-const FilterTabs: React.FC<FilterTabsProps> = ({ handleFilter }) => {
+const FilterTabs: React.FC<FilterTabsProps> = ({ handleFilter, projectsData }) => {
   const [filter, setFilter] = useState('All');
 
   useEffect(() => {
