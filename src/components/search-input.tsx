@@ -1,14 +1,14 @@
 'use client';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import projectsData from '@/PROJECTS_DATA';
 import { FaSearch } from 'react-icons/fa';
 import ProjectDataType from '@/types/projects';
 
 interface SearcInputProps {
   handleSearch: Dispatch<SetStateAction<ProjectDataType[]>>;
+  projectsData: ProjectDataType[];
 }
 
-const SearchInput: React.FC<SearcInputProps> = ({ handleSearch }) => {
+const SearchInput: React.FC<SearcInputProps> = ({ handleSearch, projectsData }) => {
   const [searchTerm, setSearchTerm] = useState<string | null>(null);
 
   useEffect(() => {

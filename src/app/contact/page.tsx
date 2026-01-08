@@ -1,5 +1,3 @@
-'use client';
-
 import { Card, CardContent, InfoCard } from '@/components/ui/card';
 import { JSX } from 'react';
 import Link from 'next/link';
