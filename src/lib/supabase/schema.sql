@@ -109,6 +109,7 @@ create trigger on_auth_user_created
 
 -- ================================================================
 -- 1. HABILITAR RLS (Segurança a Nível de Linha)
+-- O padrão do Supabase é "Ninguém acessa nada" quando ativado.
 -- ================================================================
 
 alter table projects enable row level security;
@@ -118,23 +119,29 @@ alter table profiles enable row level security;
 alter table interactions enable row level security;
 
 -- ================================================================
--- 2. LIMPEZA (Remove regras antigas para garantir que este script seja a verdade única)
+-- 2. LIMPEZA (Remove regras antigas para garantir que não haja conflitos)
 -- ================================================================
 
-drop policy if exists "Projetos são públicos" on projects;
+-- Policies de Projects
+drop policy if exists "Projetos são públicos para leitura" on projects;
 drop policy if exists "Admin full access" on projects;
 
-drop policy if exists "Techs são públicas" on technologies;
+-- Policies de Technologies
+drop policy if exists "Techs são públicas para leitura" on technologies;
 
-drop policy if exists "Relações são públicas" on project_technologies;
+-- Policies de Project Technologies
+drop policy if exists "Relações entre projeto e tech são públicas" on project_technologies;
 
-drop policy if exists "Perfis são públicos" on profiles;
+-- Policies de Profiles
+drop policy if exists "Perfis são públicos para leitura" on profiles;
 drop policy if exists "Usuário altera seu próprio perfil" on profiles;
 drop policy if exists "Update own profile" on profiles;
 
-drop policy if exists "Interações são públicas" on interactions;
-drop policy if exists "Usuários podem interagir" on interactions;
-drop policy if exists "Usuário pode deletar sua interação" on interactions;
+-- Policies de Interactions
+drop policy if exists "Interações são públicas para leitura" on interactions;
+drop policy if exists "Usuário pode criar interação em seu nome" on interactions;
+drop policy if exists "Usuário pode deletar suas próprias interações" on interactions;
+drop policy if exists "Usuário pode editar seus próprios comentários" on interactions;
 
 -- ================================================================
 -- 3. REGRAS DE APENAS LEITURA (Conteúdo do Site)
@@ -155,30 +162,37 @@ on project_technologies for select using (true);
 -- 4. REGRAS DA TABELA PROFILES
 -- ================================================================
 
+-- Leitura: Qualquer pessoa pode ver o nome/avatar de quem comentou.
 create policy "Perfis são públicos para leitura" 
 on profiles for select using (true);
 
-create policy "Usuário pode atualizar seu próprio perfil" 
+-- Atualização: O usuário só pode editar o próprio perfil (ex: mudar display_name).
+-- A trigger 'handle_new_user' cuida da criação (INSERT), então aqui só precisamos liberar o UPDATE.
+create policy "Usuário altera seu próprio perfil" 
 on profiles for update 
-using (auth.uid() = id)
-with check (auth.uid() = id);
+using ( (select auth.uid()) = id )
+with check ( (select auth.uid()) = id );
 
 -- ================================================================
 -- 5. REGRAS DA TABELA INTERACTIONS (Comentários e Likes)
 -- ================================================================
 
+-- Leitura: Todo mundo vê os comentários e likes de todo mundo.
 create policy "Interações são públicas para leitura" 
 on interactions for select using (true);
 
+-- Criação: O usuário (anônimo ou real) pode criar, DESDE QUE o user_id seja ele mesmo.
 create policy "Usuário pode criar interação em seu nome" 
 on interactions for insert 
-with check (auth.uid() = user_id);
+with check ( (select auth.uid()) = user_id );
 
+-- Exclusão: O usuário só pode apagar o que ele mesmo escreveu/curtiu.
 create policy "Usuário pode deletar suas próprias interações" 
 on interactions for delete 
-using (auth.uid() = user_id);
+using ( (select auth.uid()) = user_id );
 
+-- Edição: Se você quiser permitir editar comentários no futuro.
 create policy "Usuário pode editar seus próprios comentários" 
 on interactions for update
-using (auth.uid() = user_id)
-with check (auth.uid() = user_id);
+using ( (select auth.uid()) = user_id )
+with check ( (select auth.uid()) = user_id );
