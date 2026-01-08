@@ -1,9 +1,13 @@
-import { createClient } from '@/lib/supabase/server';
+
 import { unstable_cache } from 'next/cache';
 import ProjectDataType from '@/types/projects';
+import { createClient } from '@supabase/supabase-js';
 
 const fetchProjectsState = async () => {
-  const supabase = await createClient();
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
 
   const { data, error } = await supabase
     .from('projects')
@@ -13,7 +17,7 @@ const fetchProjectsState = async () => {
       technologies:project_technologies (
         technologies (name)
       ),
-      interactions:project_interactions (
+      interactions:interactions (
         id,
         type,
         content,
@@ -51,7 +55,7 @@ export const getProjectsStore = unstable_cache(
         imgThumb: project.img_thumb || '',
         img: project.img_gif || '',
         // TODO: mudar pra ter as duas opções ptbr e en
-        description: project.description_pt || project.description_en || '',
+        description: project.description_ptbr || project.description_en || '',
         deployed: project.deployed,
         techStacks: project.technologies?.map((t: any) => t.technologies?.name) || [],
 
