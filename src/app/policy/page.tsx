@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const PolicyPage = () => (
@@ -10,20 +11,39 @@ const PolicyPage = () => (
         <p className="text-base text-text-800 mb-4">
           This page outlines the terms and policies regarding the collection, use, and disclosure of
           personal information when you use this portfolio website, located at{' '}
-          <a href="https://gss-digit.vercel.app" className="text-primary hover:underline">
+          <Link
+            href="https://gss-digit.vercel.app"
+            className="text-primary hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             https://gss-digit.vercel.app
-          </a>
+          </Link>
+          , powered by{' '}
+          <Link
+            href="https://vercel.com"
+            className="text-primary hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Vercel
+          </Link>
           .
         </p>
         <h3 className="text-lg font-medium mb-2">1. Information We Collect</h3>
         <p className="text-base text-text-800 mb-4">
-          To provide an interactive experience, specifically the ability to leave comments on
-          projects, we collect the following information:
+          To provide an interactive experience, specifically the ability to leave comments or likes
+          on projects, we collect the following information:
         </p>
         <ul className="list-disc list-inside mb-4">
           <li>
             Information you provide via Google OAuth: When you choose to log in using your Google
             account to leave a comment, we receive your Name and Email Address from Google.
+          </li>
+          <li>
+            Information you provide directly: When you choose to log in using Email and Password, we
+            collect the provided Email Address. You may also provide a display name (it can be
+            anything you want) to be shown alongside your comments.
           </li>
         </ul>
         <p className="text-base text-text-800 mb-4">
@@ -47,10 +67,18 @@ const PolicyPage = () => (
         </ul>
         <h3 className="text-lg font-medium mb-2">3. Data Storage and Security</h3>
         <p className="text-base text-text-800 mb-4">
-          Your information (name and email) is stored securely in our database, hosted by Supabase.
-          We take commercially acceptable measures to protect your information from loss, theft, and
-          unauthorized access. We do not share any personally identifying information publicly or
-          with third parties, except when required to by law.
+          Your information (name and email) is stored securely in our database, hosted by{' '}
+          <Link
+            className="text-primary hover:underline"
+            href="https://supabase.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Supabase
+          </Link>
+          . We take commercially acceptable measures to protect your information from loss, theft,
+          and unauthorized access. We do not share any personally identifying information publicly
+          or with third parties, except when required to by law.
         </p>
         <h3 className="text-lg font-medium mb-2">4. Your Rights</h3>
         <p className="text-base text-text-800 mb-4">
