@@ -8,11 +8,13 @@ export async function toggleLike(projectId: string) {
   const supabase = await createClient();
 
   // Autenticação e atualização no banco...
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   if (!user) throw new Error('Unauthorized');
 
   const { data: existingLike } = await supabase
-    .from('project_interactions')
+    .from('interactions')
     .select('id')
     .eq('project_id', projectId)
     .eq('user_id', user.id)
@@ -20,25 +22,27 @@ export async function toggleLike(projectId: string) {
     .single();
 
   if (existingLike) {
-    await supabase.from('project_interactions').delete().eq('id', existingLike.id);
+    await supabase.from('interactions').delete().eq('id', existingLike.id);
   } else {
-    await supabase.from('project_interactions').insert({
+    await supabase.from('interactions').insert({
       project_id: projectId,
       user_id: user.id,
       type: 'like',
     });
   }
 
-  revalidateTag('projects-store'); 
+  revalidateTag('projects-store');
 }
 
 // Action p/ Comentários
 export async function addComment(projectId: string, content: string) {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   if (!user) throw new Error('Unauthorized');
 
-  await supabase.from('project_interactions').insert({
+  await supabase.from('interactions').insert({
     project_id: projectId,
     user_id: user.id,
     type: 'comment',

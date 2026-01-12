@@ -7,6 +7,7 @@ import Input from '@/components/ui/input';
 import { useEffect, useState } from 'react';
 import { FaGoogle, FaUserSecret, FaEnvelope } from 'react-icons/fa6';
 import { useToast } from '@/components/ui/toast';
+import { AuthError } from '@supabase/supabase-js';
 
 interface AuthModalProps {
   visible: boolean;
@@ -24,6 +25,18 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
   const [name, setName] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
 
+  const onFinaly = (error: AuthError | null, message: string) => {
+    if (error) {
+      showToast('error', error.message);
+    } else {
+      showToast('success', message);
+      onSuccess?.();
+      onClose();
+    }
+
+    setLoading(false);
+  };
+
   // 1. Login com Google
   const handleGoogleLogin = async () => {
     setLoading(true);
@@ -34,12 +47,7 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
       },
     });
 
-    if (error) {
-      showToast('error', error.message);
-      setLoading(false);
-    } else {
-      showToast('success', 'Sucesso! Você está logado com sua conta Google.');
-    }
+    onFinaly(error, 'Login com Google realizado com sucesso!');
   };
 
   // 2. Login Anônimo
@@ -54,14 +62,7 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
       },
     });
 
-    if (error) {
-      showToast('error', 'Erro ao entrar como anônimo.');
-      setLoading(false);
-    } else {
-      showToast('success', 'Você entrou no modo anônimo!');
-      if (onSuccess) onSuccess();
-      onClose();
-    }
+    onFinaly(error, 'Você entrou no modo anônimo!');
   };
 
   // 3. Login/Cadastro com Email
@@ -95,14 +96,7 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
       error = res.error;
     }
 
-    if (error) {
-      showToast('error', error.message);
-    } else {
-      showToast('success', isSignUp ? 'Cadastro realizado com sucesso!' : 'Bem-vindo de volta!');
-      if (!isSignUp && onSuccess) onSuccess();
-      onClose();
-    }
-    setLoading(false);
+    onFinaly(error, isSignUp ? 'Cadastro realizado com sucesso!' : 'Bem-vindo de volta!');
   };
 
   const showEmailForm = () => {
@@ -122,7 +116,12 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
     <div className="text-center w-full">
       <h2 className="text-xl font-bold">Identifique-se</h2>
       <p className="text-sm text-subtitle mt-1">
-        Para interagir com os projetos, precisamos saber quem você é.
+        Para interagir com os projetos, precisamos saber quem você é. Seus dados estão seguros, veja
+        nossa{' '}
+        <a href="/policy" className="text-primary hover:underline">
+          Política de Privacidade
+        </a>
+        .
       </p>
     </div>
   );

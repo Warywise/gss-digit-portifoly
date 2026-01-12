@@ -1,19 +1,23 @@
-"use client";
-import { useState } from "react";
-import SearchInput from "./search-input";
-import FilterTabs from "./filter-tabs";
-import ProjectCard from "./project-card";
-import { FaRegCircleQuestion } from "react-icons/fa6";
-import ProjectDataType from "@/types/projects";
+'use client';
+
+import { useEffect, useState } from 'react';
+import SearchInput from './search-input';
+import FilterTabs from './filter-tabs';
+import ProjectCard from './project-card';
+import { FaRegCircleQuestion } from 'react-icons/fa6';
+import ProjectDataType from '@/types/projects';
 
 interface ProjectsMainPageProps {
   projectsData: ProjectDataType[];
 }
 
-export default function ProjectsMainPage({
-  projectsData,
-}: ProjectsMainPageProps) {
+export default function ProjectsMainPage({ projectsData }: ProjectsMainPageProps) {
   const [projects, setProjects] = useState(projectsData);
+
+  // TODO: carregar atualização com filtros ativos
+  useEffect(() => {
+    setProjects(projectsData);
+  }, [projectsData]);
 
   return (
     <main className="flex flex-col gap-16 row-start-2 items-center sm:items-start w-full">
