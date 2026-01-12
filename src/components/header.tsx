@@ -4,6 +4,14 @@ import { THEME_STORAGE_KEY } from '@/utils/constants';
 import { getStoredItem, setStoredItem } from '@/utils/handleLocalStorage';
 import Link from 'next/link';
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { FaRightFromBracket } from 'react-icons/fa6';
+import Button from './ui/button';
+import { FaUser } from 'react-icons/fa';
+import Image from 'next/image';
+import { useAuth } from '@/lib/providers/auth-provider';
+import { createClient } from '@/lib/supabase/client';
+import { useRouter } from 'next/navigation';
+import { useToast } from './ui/toast';
 
 // Botão do Menu Mobile (Hamburger/Close)
 const MobileMenuButton = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) => (
@@ -49,7 +57,21 @@ const Header = () => {
 
   const sentinelRef = useRef<HTMLDivElement>(null);
 
-  // console.log(getStoredItem<boolean>(THEME_STORAGE_KEY));
+  const { user, loading } = useAuth();
+  const userData = user?.user_metadata;
+  const supabase = createClient();
+  const router = useRouter();
+  const showToast = useToast();
+
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error('Erro ao sair:', error);
+    } else {
+      showToast('success', 'Você saiu da conta.');
+      router.refresh();
+    }
+  };
 
   const handleChangeTheme = useCallback(() => {
     const html = document.querySelector('html');
@@ -91,25 +113,25 @@ const Header = () => {
     <>
       <header className={`sticky px-4 top-0 z-50 transition-all duration-200 py-3 ${scrollClass}`}>
         <div className="container flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold text-text">Gss Digit</span>
-          </Link>
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link href="/" className="text-lg hover:text-primary transition-colors">
+              Home
+            </Link>
+            <Link href="/about" className="text-lg hover:text-primary transition-colors">
+              About
+            </Link>
+            <Link href="/contact" className="text-lg hover:text-primary transition-colors">
+              Contact
+            </Link>
+          </nav>
 
           <div className="flex items-center space-x-4">
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-lg hover:text-primary transition-colors">
-                Home
-              </Link>
-              <Link href="/about" className="text-lg hover:text-primary transition-colors">
-                About
-              </Link>
-              <Link href="/contact" className="text-lg hover:text-primary transition-colors">
-                Contact
-              </Link>
-            </nav>
-
             {/* Dark mode switcher - prefers-scheme: dark */}
-            <button type="button" className="dark-mode-btn" onClick={() => setDarkMode(!darkMode)}>
+            <button
+              type="button"
+              className="dark-mode-btn order-2 md:order-1"
+              onClick={() => setDarkMode(!darkMode)}
+            >
               <span
                 className={`absolute bg-foreground rounded-full transition-all duration-400 ${
                   darkMode ? 'right-0' : 'left-0'
@@ -118,6 +140,41 @@ const Header = () => {
                 {darkMode ? '🌙' : '☀️'}
               </span>
             </button>
+            {!loading && userData && (
+              <div className="flex items-center order-1 md:order-2 gap-3 animate-fade-in">
+                <div className="flex flex-col items-center gap-2 text-sm text-text">
+                  {userData.avatar_url ? (
+                    <Image
+                      src={userData.avatar_url}
+                      alt="Avatar"
+                      width={32}
+                      height={32}
+                      objectFit=""
+                      className="rounded-full border border-border"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-primary">
+                      <FaUser />
+                    </div>
+                  )}
+                  <span className="sm:inline font-medium">
+                    {userData.name || userData.full_name || userData.display_name}
+                  </span>
+                </div>
+
+                <Button
+                  label={
+                    <span className="flex flex-col items-center hover:underline">
+                      Sair <FaRightFromBracket size={18} />
+                    </span>
+                  }
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleLogout}
+                  title="Sair"
+                />
+              </div>
+            )}
           </div>
 
           <div className="md:hidden">
