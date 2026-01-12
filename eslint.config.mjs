@@ -21,6 +21,7 @@ const eslintConfig = [
             arrowParens: 'always',
             printWidth: 100,
             endOfLine: 'auto',
+            noUnusedVars: 'warn',
           },
         ],
       },
