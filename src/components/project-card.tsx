@@ -1,25 +1,33 @@
 'use client';
 import Image from 'next/image';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState, useTransition } from 'react';
 import Badge from './ui/badge';
 import Tooltip from './ui/tooltip';
 import Button from './ui/button';
 import { FaMessage, FaRocket, FaShare } from 'react-icons/fa6';
 import ProjectDetailsModal from './project-details-modal';
 import ProjectDataType from '@/types/projects';
+import { useAuth } from '@/lib/providers/auth-provider';
+import AuthModal from './auth-modal';
+import { toggleLike } from '@/lib/actions/interactions';
 
 interface ProjectCardProps {
   project: ProjectDataType;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const { user } = useAuth();
   const elementRef = useRef<HTMLDivElement>(null);
 
   const [width, setWidth] = useState(0);
 
   const [isLiked, setIsLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(project.likes || 0);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
+  // Estado otimista para o Like (Feedback instantâneo)
+  const [isPending, startTransition] = useTransition();
+  // TODO: Para saber se "já dei like", precisamos que o back-end retorne "liked_by_me".
 
   useLayoutEffect(() => {
     const updateWidth = () => {
@@ -35,6 +43,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       window.removeEventListener('resize', updateWidth);
     };
   }, []);
+
+  const handleLikeClick = () => {
+    if (!user) {
+      setIsAuthModalOpen(true);
+      return;
+    }
+
+    startTransition(async () => {
+      try {
+        await toggleLike(project.id);
+        setIsLiked((prev) => !prev);
+      } catch (error) {
+        console.error('Erro ao dar like:', error);
+      }
+    });
+  };
 
   return (
     <article
@@ -92,18 +116,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 <>
                   <FaRocket
                     size={18}
-                    className={isLiked ? 'fill-accent text-accent' : 'text-text/80'}
+                    className={
+                      isLiked
+                        ? 'fill-accent text-accent'
+                        : `${isPending ? 'animate-pulse text-primary' : 'text-text/80'}`
+                    }
                   />
-                  <span className="ml-1 text-xs">{likeCount}</span>
+                  <span className="ml-1 text-xs">{project.likes}</span>
                 </>
               }
               variant="link"
               size="sm"
               style="proj-button"
-              onClick={() => {
-                setIsLiked(!isLiked);
-                setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
-              }}
+              onClick={handleLikeClick}
             />
           </Tooltip>
 
@@ -112,7 +137,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               variant="link"
               size="sm"
               style="proj-button"
-              onClick={() => {}}
+              onClick={() => setIsDetailsOpen(true)}
               label={
                 <>
                   <FaMessage size={18} />
@@ -141,6 +166,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         project={project}
         setVisible={setIsDetailsOpen}
         visible={isDetailsOpen}
+      />
+
+      <AuthModal
+        visible={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onSuccess={() => {
+          toggleLike(project.id);
+        }}
       />
     </article>
   );
