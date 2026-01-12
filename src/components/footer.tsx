@@ -7,6 +7,11 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-sm text-subtitle">
           &copy; {new Date().getFullYear()} Gss Digit. All rights reserved.
+          <nav>
+            <Link href="/policy" className="footer-social-link hover:underline">
+              Privacy Policy | Terms of Service
+            </Link>
+          </nav>
         </p>
         <div className="flex space-x-4">
           <Link
