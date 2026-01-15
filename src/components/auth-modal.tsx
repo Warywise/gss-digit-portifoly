@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { FaGoogle, FaUserSecret, FaEnvelope } from 'react-icons/fa6';
 import { useToast } from '@/components/ui/toast';
 import { AuthError } from '@supabase/supabase-js';
+import { generateRandomNickname } from '@/utils/getRandomNicknames';
 
 interface AuthModalProps {
   visible: boolean;
@@ -56,7 +57,7 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
     const { error } = await supabase.auth.signInAnonymously({
       options: {
         data: {
-          display_name: 'Viajante Curioso',
+          display_name: generateRandomNickname(),
           is_anonymous: true,
         },
       },
