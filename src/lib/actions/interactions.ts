@@ -3,11 +3,25 @@
 import { createClient } from '@/lib/supabase/server';
 import { revalidateTag } from 'next/cache';
 
-// Action p/ Likes
+export async function getUserInteractions() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return [];
+
+  const { data } = await supabase
+    .from('project_interactions')
+    .select('project_id')
+    .eq('user_id', user.id);
+
+  return data?.map((item) => item.project_id) || [];
+}
+
 export async function toggleLike(projectId: string) {
   const supabase = await createClient();
 
-  // Autenticação e atualização no banco...
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -34,7 +48,6 @@ export async function toggleLike(projectId: string) {
   revalidateTag('projects-store');
 }
 
-// Action p/ Comentários
 export async function addComment(projectId: string, content: string) {
   const supabase = await createClient();
   const {
