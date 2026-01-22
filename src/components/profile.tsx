@@ -10,7 +10,12 @@ const Profile = () => {
         <div className="flex flex-col md:flex-row items-center md:items-start gap-6 py-4">
           {/* Avatar */}
           <div className="relative contain-content rounded-full size-[12em] inset-ring ring-2 ring-muted shadow-lg/30 shadow-foreground">
-            <Image src="/profile_pic.png" alt="Gustavo Sant'Anna" fill objectFit="cover" />
+            <Image
+              src="/profile_pic.png"
+              alt="Gustavo Sant'Anna"
+              style={{ objectFit: 'cover' }}
+              fill
+            />
           </div>
 
           <div className="flex-1 text-center md:text-left">

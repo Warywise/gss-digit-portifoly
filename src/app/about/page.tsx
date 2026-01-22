@@ -69,7 +69,12 @@ const AboutPage = () => {
           <article className="flex flex-col justify-between rounded-lg overflow-hidden shadow-sm border border-border animate-fade-in post-animation max-w-sm p-1">
             <div className="bg-primary/10 pt-8 pb-4 px-4 grid justify-center rounded-t-md">
               <div className="relative contain-content rounded-full size-[10em] inset-ring ring-2 ring-muted shadow-lg/40 shadow-foreground">
-                <Image src="/profile_pic.png" alt="Gustavo Sant'Anna" fill objectFit="cover" />
+                <Image
+                  src="/profile_pic.png"
+                  alt="Gustavo Sant'Anna"
+                  style={{ objectFit: 'cover' }}
+                  fill
+                />
               </div>
               <h2 className="mt-4 text-xl font-semibold">{"Gustavo Sant'Anna"}</h2>
               <p className="text-subtitle">Fullstack Developer</p>
