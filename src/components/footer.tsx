@@ -5,14 +5,14 @@ const Footer = () => {
   return (
     <footer className="bottom-0 container px-4 py-8 mt-12 border-t border-border min-w-full">
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-sm text-subtitle">
+        <nav className="text-sm text-subtitle">
           &copy; {new Date().getFullYear()} Gss Digit. All rights reserved.
-          <nav>
+          <p>
             <Link href="/policy" className="footer-social-link hover:underline">
               Privacy Policy | Terms of Service
             </Link>
-          </nav>
-        </p>
+          </p>
+        </nav>
         <div className="flex space-x-4">
           <Link
             className="footer-social-link"

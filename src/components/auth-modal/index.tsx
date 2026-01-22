@@ -2,7 +2,7 @@
 
 import { createClient } from '@/lib/supabase/client';
 import Modal from '@/components/ui/modal';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useToast } from '@/components/ui/toast';
 import { AuthError } from '@supabase/supabase-js';
 import { generateRandomNickname } from '@/utils/getRandomNicknames';
@@ -20,12 +20,12 @@ interface AuthModalProps {
 const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
   const supabase = createClient();
   const showToast = useToast();
-  const [loading, setLoading] = useState(false);
-  const [view, setView] = useState<'options' | 'email' | 'anonymous'>('options');
 
-  // Estados para Login por Email
-  // const [name, setName] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [view, setView] = useState<'options' | 'email' | 'anonymous'>('anonymous');
+
   const [isSignUp, setIsSignUp] = useState(false);
+  const [randomNickname, setRandomNickname] = useState('');
 
   const onFinaly = (error: AuthError | null, message: string) => {
     if (error) {
@@ -58,7 +58,7 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
     const { error } = await supabase.auth.signInAnonymously({
       options: {
         data: {
-          display_name: generateRandomNickname(),
+          display_name: randomNickname,
           is_anonymous: true,
         },
       },
@@ -75,6 +75,7 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
     const formData = new FormData(e.target as HTMLFormElement);
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
+    const displayName = formData.get('display_name') as string;
 
     let error;
 
@@ -84,7 +85,7 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
         password,
         options: {
           data: {
-            display_name: email.split('@')[0],
+            display_name: displayName,
             is_anonymous: false,
           },
         },
@@ -98,6 +99,10 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
       error = res.error;
     }
 
+    if (error?.code === `user_already_exists`) {
+      setIsSignUp(false);
+    }
+
     onFinaly(error, isSignUp ? 'Cadastro realizado com sucesso!' : 'Bem-vindo de volta!');
   };
 
@@ -106,13 +111,10 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
     setIsSignUp(true);
   };
 
-  useEffect(() => {
-    if (!visible) {
-      setView('options');
-      setIsSignUp(false);
-      setLoading(false);
-    }
-  }, [visible]);
+  const handleRandomNickname = useCallback(() => {
+    const nickname = generateRandomNickname();
+    setRandomNickname(nickname);
+  }, []);
 
   const getBodyModal = () => {
     switch (view) {
@@ -121,7 +123,7 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
           <LoginOptions
             onGoogleLogin={handleGoogleLogin}
             onEmailLogin={showEmailForm}
-            onAnonymousLogin={handleAnonymousLogin}
+            onAnonymousLogin={() => setView('anonymous')}
             loading={loading}
           />
         );
@@ -141,6 +143,8 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
             onCancel={() => setView('options')}
             loading={loading}
             onConfirm={handleAnonymousLogin}
+            displayName={randomNickname}
+            changeNickname={handleRandomNickname}
           />
         );
       default:
@@ -148,12 +152,20 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
           <LoginOptions
             onGoogleLogin={handleGoogleLogin}
             onEmailLogin={showEmailForm}
-            onAnonymousLogin={handleAnonymousLogin}
+            onAnonymousLogin={() => setView('anonymous')}
             loading={loading}
           />
         );
     }
   };
+
+  useEffect(() => {
+    if (!visible) {
+      setView('options');
+      setIsSignUp(false);
+      setLoading(false);
+    }
+  }, [visible]);
 
   return (
     <Modal
