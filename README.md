@@ -35,7 +35,7 @@ Um portfólio moderno e interativo desenvolvido com **Next.js 15 (App Router)**.
 2.  [x] Modelagem do Banco de Dados (PostgreSQL).
 3.  [x] Implementação do Server-side Data Store.
 4.  [ ] **(Em andamento)** Integração da Home com dados reais do Supabase.
-5.  [ ] Criação do Modal de Autenticação/Login.
+5.  [x] Criação do Modal de Autenticação/Login.
 6.  [ ] Implementação da lógica de Comentários e Likes no Frontend.
 7.  [ ] Toggle de Idioma (PT-BR / EN).
 
