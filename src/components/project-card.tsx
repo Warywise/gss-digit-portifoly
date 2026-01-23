@@ -6,13 +6,13 @@ import Tooltip from './ui/tooltip';
 import Button from './ui/button';
 import { FaMessage, FaRocket, FaShare } from 'react-icons/fa6';
 import ProjectDetailsModal from './project-details-modal';
-import ProjectDataType from '@/types/projects';
+import ProjectsModel from '@/types/projects';
 import { useAuth } from '@/lib/providers/auth-provider';
 import AuthModal from './auth-modal';
 import { toggleLike } from '@/lib/actions/interactions';
 
 interface ProjectCardProps {
-  project: ProjectDataType;
+  project: ProjectsModel;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {

@@ -1,6 +1,8 @@
 'use server';
 
 import { createClient } from '@/lib/supabase/server';
+import InteractionsModel from '@/types/interactions';
+import { PostgrestSingleResponse } from '@supabase/supabase-js';
 import { revalidateTag } from 'next/cache';
 
 export async function getUserInteractions() {
@@ -11,12 +13,12 @@ export async function getUserInteractions() {
 
   if (!user) return [];
 
-  const { data } = await supabase
-    .from('project_interactions')
-    .select('project_id')
-    .eq('user_id', user.id);
+  const { data } = (await supabase
+    .from('interactions')
+    .select(`*`)
+    .eq('user_id', user.id)) as PostgrestSingleResponse<InteractionsModel[]>;
 
-  return data?.map((item) => item.project_id) || [];
+  return data || [];
 }
 
 export async function toggleLike(projectId: string) {
