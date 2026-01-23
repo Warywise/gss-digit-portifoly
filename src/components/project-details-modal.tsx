@@ -41,12 +41,13 @@ const ProjectDetailsModal: React.FC<ProjectDetailsProps> = ({
   const ModalBody = () => (
     <div className="relative">
       <Image
-        loading="lazy"
+        className="w-full aspect-video object-cover rounded-sm"
         src={project.img}
         alt={project.name}
-        className="w-full aspect-video object-cover rounded-sm"
         width={imgWidth}
         height={imgWidth}
+        loading="lazy"
+        unoptimized
       />
       <div className="absolute top-4 right-4">
         {project.deployed && <Badge label="Deployed" style="bg-primary text-foreground" />}
