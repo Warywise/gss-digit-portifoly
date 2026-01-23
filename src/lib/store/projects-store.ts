@@ -1,17 +1,17 @@
-
-import { unstable_cache } from 'next/cache';
-import ProjectDataType from '@/types/projects';
+import { unstable_cache as unstableCache } from 'next/cache';
+import ProjectsModel from '@/types/projects';
 import { createClient } from '@supabase/supabase-js';
 
 const fetchProjectsState = async () => {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
   );
 
   const { data, error } = await supabase
     .from('projects')
-    .select(`
+    .select(
+      `
       *,
       technologies:project_technologies (
         technologies (name)
@@ -28,7 +28,8 @@ const fetchProjectsState = async () => {
           username
         )
       )
-    `)
+    `,
+    )
     .order('created_at', { ascending: false });
 
   if (error) {
@@ -39,11 +40,10 @@ const fetchProjectsState = async () => {
   return data;
 };
 
-export const getProjectsStore = unstable_cache(
-  async (): Promise<ProjectDataType[]> => {
+export const getProjectsStore = unstableCache(
+  async (): Promise<ProjectsModel[]> => {
     const rawData = await fetchProjectsState();
 
- 
     return rawData.map((project: any) => {
       const likes = project.interactions.filter((i: any) => i.type === 'like');
       const comments = project.interactions.filter((i: any) => i.type === 'comment');
@@ -60,14 +60,14 @@ export const getProjectsStore = unstable_cache(
 
         likes: likes.length || 0,
         comments: comments.length || 0,
-        
+
         commentsList: comments.map((c: any) => ({
           id: c.id,
           content: c.content,
           createdAt: c.created_at,
           author: c.profiles?.display_name || 'Anonymous',
           avatar: c.profiles?.avatar_url,
-          username: c.profiles?.username
+          username: c.profiles?.username,
         })),
 
         commits: project.commits || 0,
@@ -80,5 +80,5 @@ export const getProjectsStore = unstable_cache(
   {
     tags: ['projects-store'],
     revalidate: 3600, // 1h
-  }
+  },
 );

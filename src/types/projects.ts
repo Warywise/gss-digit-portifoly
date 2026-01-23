@@ -1,4 +1,4 @@
-export default interface ProjectDataType {
+export default interface ProjectsModel {
   id: string;
   name: string;
   imgThumb: string;

@@ -5,10 +5,10 @@ import SearchInput from './search-input';
 import FilterTabs from './filter-tabs';
 import ProjectCard from './project-card';
 import { FaRegCircleQuestion } from 'react-icons/fa6';
-import ProjectDataType from '@/types/projects';
+import ProjectsModel from '@/types/projects';
 
 interface ProjectsMainPageProps {
-  projectsData: ProjectDataType[];
+  projectsData: ProjectsModel[];
 }
 
 export default function ProjectsMainPage({ projectsData }: ProjectsMainPageProps) {
