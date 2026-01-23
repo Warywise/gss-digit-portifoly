@@ -1,3 +1,5 @@
+import { CommentInteraction } from './interactions';
+
 export default interface ProjectsModel {
   id: string;
   name: string;
@@ -7,6 +9,7 @@ export default interface ProjectsModel {
   deployed: boolean;
   techStacks: string[];
   comments: number;
+  commentsList: CommentInteraction[];
   likes: number;
   commits: number;
   url: string;

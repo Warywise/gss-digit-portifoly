@@ -65,9 +65,8 @@ export const getProjectsStore = unstableCache(
           id: c.id,
           content: c.content,
           createdAt: c.created_at,
-          author: c.profiles?.display_name || 'Anonymous',
+          author: c.profiles?.display_name || c.profiles?.username || 'Anonymous',
           avatar: c.profiles?.avatar_url,
-          username: c.profiles?.username,
         })),
 
         commits: project.commits || 0,

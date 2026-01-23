@@ -88,6 +88,17 @@
   animation: fade-in-right 0.2s ease-out;
 }
 
+.comments-box {
+  @apply flex flex-col max-h-52 overflow-y-auto bg-foreground/10;
+  @apply gap-3 w-full p-2 rounded-md;
+}
+
+.avatar-placeholder {
+  @apply flex items-center justify-center;
+  @apply bg-primary/10 text-xs font-bold text-primary ring ring-primary/20;
+  @apply w-8 h-8 rounded-full;
+}
+
 @keyframes fade-in-right {
   0% { opacity: 0; transform: translateX(20px) }
   100% { opacity: 1; transform: translateX(0) }

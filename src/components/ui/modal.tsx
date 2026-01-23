@@ -8,7 +8,7 @@ interface ModalProps {
   header?: string | JSX.Element;
   body?: string | JSX.Element;
   footer?: string | JSX.Element;
-  closabe?: boolean;
+  closable?: boolean;
   hideOkButton?: boolean;
   hideCancelButton?: boolean;
   size?: 'sm' | 'md' | 'lg';
@@ -16,7 +16,7 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({
   visible,
-  closabe,
+  closable,
   hideOkButton,
   onCancel,
   hideCancelButton,
@@ -41,6 +41,11 @@ const Modal: React.FC<ModalProps> = ({
   };
 
   useEffect(() => {
+    const html = document.querySelector('html');
+    if (html) {
+      html.style.overflow = visible ? 'hidden' : 'auto';
+    }
+
     if (visible) {
       setTimeout(
         () => modalRef.current?.classList.add('bg-foreground/60', 'backdrop-blur-md'),
@@ -64,7 +69,7 @@ const Modal: React.FC<ModalProps> = ({
       <div className={`inner-modal ${modalSizes[size]}`}>
         <header className="flex shrink-0 items-center pb-4 text-xl font-medium text-text/80">
           {header}
-          {closabe && (
+          {closable && (
             <span
               className="absolute right-2.5 top-1 cursor-pointer hover:text-text/75"
               onClick={onCancel}

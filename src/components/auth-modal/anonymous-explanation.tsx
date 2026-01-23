@@ -26,11 +26,11 @@ const AnonymousExplanation: React.FC<AnonymousExplanationProps> = ({
       <article className="bg-secondary/25 p-4 rounded-lg flex flex-col items-center gap-2">
         <FaUserSecret size={32} className="text-primary" />
         <h3 className="font-bold text-lg">Modo Anônimo</h3>
-        <p className="text-sm text-subtitle text-justify px-2">
+        <p className="text-sm text-text/70 subtitle text-justify px-2 mb-2">
           Criaremos um perfil temporário com um{' '}
           <strong className="font-extrabold">nome aleatório e divertido</strong> para você interagir
           (dar likes e comentar).
-          <br />
+          <div className="h-3" />
           Seus dados ficarão salvos neste navegador. Se quiser, poderá converter essa conta em uma
           conta real no futuro para não perder seu histórico.
         </p>
