@@ -4,7 +4,7 @@ import { THEME_STORAGE_KEY } from '@/utils/constants';
 import { getStoredItem, setStoredItem } from '@/utils/handleLocalStorage';
 import Link from 'next/link';
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { FaRightFromBracket } from 'react-icons/fa6';
+import { FaRightFromBracket, FaRightToBracket } from 'react-icons/fa6';
 import Button from './ui/button';
 import { FaUser } from 'react-icons/fa';
 import Image from 'next/image';
@@ -57,7 +57,7 @@ const Header = () => {
 
   const sentinelRef = useRef<HTMLDivElement>(null);
 
-  const { user, loading } = useAuth();
+  const { user, loading, showAuthModal } = useAuth();
   const userData = user?.user_metadata;
   const supabase = createClient();
   const router = useRouter();
@@ -125,7 +125,7 @@ const Header = () => {
             </Link>
           </nav>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center gap-3">
             {/* Dark mode switcher - prefers-scheme: dark */}
             <button
               type="button"
@@ -140,38 +140,48 @@ const Header = () => {
                 {darkMode ? '🌙' : '☀️'}
               </span>
             </button>
-            {!loading && userData && (
-              <div className="flex items-center order-1 md:order-2 gap-3 animate-fade-in">
-                <div className="flex flex-col items-center gap-2 text-sm text-text">
-                  {userData.avatar_url ? (
-                    <Image
-                      src={userData.avatar_url}
-                      alt="Avatar"
-                      width={32}
-                      height={32}
-                      objectFit=""
-                      className="rounded-full border border-border"
-                    />
-                  ) : (
-                    <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-primary">
-                      <FaUser />
-                    </div>
-                  )}
-                  <span className="sm:inline font-medium">
-                    {userData.name || userData.full_name || userData.display_name}
-                  </span>
-                </div>
+            {!loading && (
+              <div className="flex items-center text-center order-1 md:order-2 gap-3 animate-fade-in">
+                {userData && (
+                  <div className="flex flex-col items-center gap-2 text-sm text-text">
+                    {userData.avatar_url ? (
+                      <Image
+                        src={userData.avatar_url}
+                        alt="Avatar"
+                        width={32}
+                        height={32}
+                        objectFit=""
+                        className="rounded-full border border-border"
+                      />
+                    ) : (
+                      <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-primary">
+                        <FaUser />
+                      </div>
+                    )}
+                    <span className="sm:inline font-medium">
+                      {userData.name || userData.full_name || userData.display_name}
+                    </span>
+                  </div>
+                )}
 
                 <Button
                   label={
                     <span className="flex flex-col items-center hover:underline">
-                      Sair <FaRightFromBracket size={18} />
+                      {userData ? (
+                        <>
+                          Sair <FaRightFromBracket size={18} />
+                        </>
+                      ) : (
+                        <>
+                          Entrar <FaRightToBracket size={18} />
+                        </>
+                      )}
                     </span>
                   }
                   variant="ghost"
                   size="icon"
-                  onClick={handleLogout}
-                  title="Sair"
+                  onClick={userData ? handleLogout : showAuthModal}
+                  title={userData ? 'Sair da conta' : 'Entrar na conta'}
                 />
               </div>
             )}

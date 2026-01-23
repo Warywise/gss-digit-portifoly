@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { addComment, getUserInteractions, toggleLike } from '../actions/interactions';
 
-interface InteractionState {
+interface UserStoreState {
   likedProjectIds: string[];
   commentIds: string[];
   isLoading: boolean;
@@ -14,7 +14,7 @@ interface InteractionState {
   handleComment: (projectId: string, content: string) => void;
 }
 
-export const useInteractionStore = create<InteractionState>((set, get) => ({
+export const useUserStore = create<UserStoreState>((set, get) => ({
   likedProjectIds: [],
   commentIds: [],
   isLoading: false,
@@ -63,7 +63,7 @@ export const useInteractionStore = create<InteractionState>((set, get) => ({
     }
   },
 
-  // TODO: implementar tipo de action: add, edit, delete
+  // TODO: implementar futuramente tipo de action: add, edit, delete
   handleComment: async (interactionId: string, content: string) => {
     const { commentIds } = get();
 

@@ -8,26 +8,24 @@ import { FaMessage, FaRocket, FaShare } from 'react-icons/fa6';
 import ProjectDetailsModal from './project-details-modal';
 import ProjectsModel from '@/types/projects';
 import { useAuth } from '@/lib/providers/auth-provider';
-import AuthModal from './auth-modal';
 import { toggleLike } from '@/lib/actions/interactions';
+import { useUserStore } from '@/lib/store/user-store';
 
 interface ProjectCardProps {
   project: ProjectsModel;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const { user } = useAuth();
+  const { user, showAuthModal } = useAuth();
   const elementRef = useRef<HTMLDivElement>(null);
+  // Estado otimista para o Like (Feedback instantâneo)
+  const [isPending, startTransition] = useTransition();
+  const likedProjectIds = useUserStore((state) => state.likedProjectIds);
+  const isLiked = likedProjectIds.includes(project.id);
 
   const [width, setWidth] = useState(0);
 
-  const [isLiked, setIsLiked] = useState(false);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-
-  // Estado otimista para o Like (Feedback instantâneo)
-  const [isPending, startTransition] = useTransition();
-  // TODO: Para saber se "já dei like", precisamos que o back-end retorne "liked_by_me".
 
   useLayoutEffect(() => {
     const updateWidth = () => {
@@ -46,14 +44,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   const handleLikeClick = () => {
     if (!user) {
-      setIsAuthModalOpen(true);
+      showAuthModal();
       return;
     }
 
     startTransition(async () => {
       try {
         await toggleLike(project.id);
-        setIsLiked((prev) => !prev);
       } catch (error) {
         console.error('Erro ao dar like:', error);
       }
@@ -166,14 +163,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         project={project}
         setVisible={setIsDetailsOpen}
         visible={isDetailsOpen}
-      />
-
-      <AuthModal
-        visible={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        onSuccess={() => {
-          toggleLike(project.id);
-        }}
       />
     </article>
   );
