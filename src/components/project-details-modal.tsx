@@ -3,21 +3,11 @@ import Badge from './ui/badge';
 import Button from './ui/button';
 import Modal from './ui/modal';
 import React, { useEffect } from 'react';
+import ProjectsModel from '@/types/projects';
+import { formatRelativeTime } from '@/utils/date-formater';
 
 interface ProjectDetailsProps {
-  project: {
-    id: string;
-    name: string;
-    description: string;
-    img: string;
-    techStacks: string[];
-    commits: number;
-    comments: number;
-    likes?: number;
-    deployed?: boolean;
-    url?: string;
-    gitRepo?: string;
-  };
+  project: ProjectsModel;
   visible: boolean;
   setVisible: (visible: boolean) => void;
   imgWidth: number;
@@ -62,7 +52,7 @@ const ProjectDetailsModal: React.FC<ProjectDetailsProps> = ({
   );
 
   const ModalFooter = () => (
-    <div className="grid">
+    <div className="flex flex-col gap-2 w-full">
       <div className="space-y-2">
         <h4 className="font-medium">Project Links</h4>
         <div className="flex gap-2">
@@ -90,61 +80,65 @@ const ProjectDetailsModal: React.FC<ProjectDetailsProps> = ({
         </div>
       </div>
 
-      {/* TODO: implementar comentários */}
-      <div className="space-y-4 border-t border-border pt-2 mt-3">
-        <h4 className="font-medium">Comments ({project.comments})</h4>
-        <div className="space-y-3 max-h-48 overflow-y-auto">
-          <div className="flex space-x-3">
-            <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-xs font-medium">
-              JD
-            </div>
-            <div className="flex-1">
-              <div className="bg-accent/10 rounded-lg p-3">
-                <p className="text-sm font-medium">John Doe</p>
-                <p className="text-sm text-text/80">
-                  Amazing work! The design is really clean and the functionality looks great.
-                </p>
-              </div>
-              <p className="text-xs text-subtitle mt-1">2 hours ago</p>
-            </div>
-          </div>
+      {/* Comments */}
+      <div className="space-y-4 border-t border-border pt-2 mt-2 w-full">
+        <h4 className="font-medium mb-3">Comments ({project.comments})</h4>
+        <div className="comments-box">
+          {project.commentsList && project.commentsList.length > 0 ? (
+            project.commentsList.map((comment) => (
+              <div key={comment.id} className="flex space-x-2 animate-fade-in">
+                {/* Avatar */}
+                <div className="shrink-0">
+                  {comment.avatar ? (
+                    <Image
+                      src={comment.avatar}
+                      alt={comment.author}
+                      width={32}
+                      height={32}
+                      className="rounded-full border border-border"
+                    />
+                  ) : (
+                    <div className="avatar-placeholder">
+                      {comment.author.substring(0, 2).toUpperCase()}
+                    </div>
+                  )}
+                </div>
 
-          <div className="flex space-x-3">
-            <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-xs font-medium">
-              SA
-            </div>
-            <div className="flex-1">
-              <div className="bg-accent/10 rounded-lg p-3">
-                <p className="text-sm font-medium">Sarah Adams</p>
-                <p className="text-sm text-text/80">
-                  Could you share more details about the tech stack used?
-                </p>
+                {/* Conteúdo */}
+                <div className="flex-1">
+                  <div className="bg-muted/40 rounded-lg p-3 border border-border/70">
+                    <div className="flex justify-between items-start mb-1">
+                      <p className="text-sm font-semibold text-text">{comment.author}</p>
+                    </div>
+                    <p className="text-sm text-text/85 whitespace-pre-wrap">{comment.content}</p>
+                  </div>
+                  <p className="text-xs text-subtitle mt-0.5 ml-1">
+                    {formatRelativeTime(comment.createdAt)}
+                  </p>
+                </div>
               </div>
-              <p className="text-xs text-subtitle mt-1">5 hours ago</p>
+            ))
+          ) : (
+            <div className="text-center py-8 text-subtitle italic">
+              Seja o primeiro a comentar neste projeto! 🚀
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
   );
 
-  useEffect(() => {
-    const html = document.querySelector('html');
-    if (html) {
-      html.style.overflow = visible ? 'hidden' : 'auto';
-    }
-  }, [visible]);
-
   return (
     <Modal
       visible={visible}
       onCancel={() => setVisible(false)}
-      closabe
-      hideOkButton
-      hideCancelButton
       header={<ModalHeader />}
       body={<ModalBody />}
       footer={<ModalFooter />}
+      size="lg"
+      hideOkButton
+      hideCancelButton
+      closable
     />
   );
 };

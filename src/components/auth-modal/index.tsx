@@ -176,7 +176,7 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
       size="md"
       hideCancelButton
       hideOkButton
-      closabe
+      closable
     />
   );
 };

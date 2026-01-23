@@ -6,3 +6,11 @@ export default interface InteractionsModel {
   content?: string;
   created_at: string;
 }
+
+export interface CommentInteraction {
+  id: string;
+  content: string;
+  createdAt: string;
+  author: string;
+  avatar?: string;
+}
