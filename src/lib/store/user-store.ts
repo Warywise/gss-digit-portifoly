@@ -11,7 +11,7 @@ interface UserStoreState {
   clearInteractions: () => void;
 
   handleLike: (projectId: string) => Promise<void>;
-  handleComment: (projectId: string, content: string) => void;
+  handleComment: (projectId: string, content: string) => Promise<void>;
 }
 
 export const useUserStore = create<UserStoreState>((set, get) => ({
