@@ -50,7 +50,7 @@
 
 .modal {
   @apply fixed grid place-items-center;
-  @apply inset-0 z-[999] h-screen w-screen transition-all duration-200;
+  @apply inset-0 h-screen w-screen transition-all duration-200;
 }
 
 .inner-modal {
@@ -97,6 +97,10 @@
   @apply flex items-center justify-center;
   @apply bg-primary/10 text-xs font-bold text-primary ring ring-primary/20;
   @apply w-8 h-8 rounded-full;
+}
+
+.comment-input-login {
+  @apply bg-accent/5 mt-1 rounded-lg p-4 text-center border border-dashed border-border;
 }
 
 @keyframes fade-in-right {
