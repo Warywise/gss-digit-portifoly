@@ -11,6 +11,7 @@ interface ModalProps {
   closable?: boolean;
   hideOkButton?: boolean;
   hideCancelButton?: boolean;
+  index?: number;
   size?: 'sm' | 'md' | 'lg';
 }
 
@@ -24,6 +25,7 @@ const Modal: React.FC<ModalProps> = ({
   body,
   header,
   footer,
+  index,
   size = 'md',
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -58,11 +60,13 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <div
-      className={`modal ${
-        visible
-          ? 'opacity-100 translate-y-0 scale-100'
-          : 'opacity-0 pointer-events-none -translate-y-8 scale-90'
-      }`}
+      className={
+        `modal ${
+          visible
+            ? 'opacity-100 translate-y-0 scale-100'
+            : 'opacity-0 pointer-events-none -translate-y-8 scale-90'
+        }` + (index ? ` z-[${index}]` : ' z-90')
+      }
       onClick={handleBlur}
       ref={modalRef}
     >

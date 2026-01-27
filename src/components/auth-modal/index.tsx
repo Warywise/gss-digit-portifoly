@@ -173,7 +173,7 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
       onCancel={onClose}
       header={<ModalHeader />}
       body={getBodyModal()}
-      size="md"
+      index={9999}
       hideCancelButton
       hideOkButton
       closable

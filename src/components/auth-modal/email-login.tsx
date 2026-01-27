@@ -54,13 +54,13 @@ const LoginEmail: React.FC<LoginEmailProps> = ({
       <button
         type="button"
         onClick={onCancel}
-        className="text-xs text-center text-subtitle hover:underline mt-2"
+        className="text-sm text-center text-subtitle hover:underline mt-2"
       >
-        Voltar para opções
+        Voltar para opções de login
       </button>
     </div>
 
-    <p className="text-xs text-center text-subtitle">
+    <p className="text-sm text-center text-subtitle">
       {isSignUp ? 'Já tem conta? ' : 'Não tem conta? '}
       <span
         className="text-primary cursor-pointer hover:underline font-bold"

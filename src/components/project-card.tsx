@@ -5,7 +5,7 @@ import Badge from './ui/badge';
 import Tooltip from './ui/tooltip';
 import Button from './ui/button';
 import { FaMessage, FaRocket, FaShare } from 'react-icons/fa6';
-import ProjectDetailsModal from './project-details-modal';
+import ProjectDetailsModal from './project-details';
 import ProjectsModel from '@/types/projects';
 import { useAuth } from '@/lib/providers/auth-provider';
 import { toggleLike } from '@/lib/actions/interactions';

@@ -32,9 +32,9 @@ const Button: React.FC<ButtonProps> = ({
     outline: 'border border-input bg-background hover:bg-accent/80',
     ghost: 'hover:bg-placeholder/80 hover:text-foreground',
     link: 'text-primary underline-offset-4 hover:underline hover:border border-primary/25',
-    danger: 'bg-danger hover:bg-danger/80 hover:text-muted',
-    warning: 'bg-warning hover:bg-warning/80 hover:text-muted',
-    success: 'bg-success hover:bg-success/80 hover:text-muted',
+    danger: 'bg-danger/75 hover:bg-danger hover:text-muted',
+    warning: 'bg-warning/75 hover:bg-warning hover:text-muted',
+    success: 'bg-success/75 hover:bg-success hover:text-muted',
   };
   const sizes = {
     default: 'h-10 px-4 py-2',
