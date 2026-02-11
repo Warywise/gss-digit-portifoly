@@ -5,15 +5,25 @@ import Image from 'next/image';
 import Button from '../ui/button';
 import { FaPaperPlane, FaRightToBracket } from 'react-icons/fa6';
 import { useAuth } from '@/lib/providers/auth-provider';
+import { FaRegEdit, FaUndo } from 'react-icons/fa';
 
 interface CommentInputProps {
   onSubmit: (content: string) => Promise<void>;
   isSubmitting?: boolean;
+  isEdit?: boolean;
+  initialContent?: string;
+  onCancel?: () => void;
 }
 
-const CommentInput = ({ onSubmit, isSubmitting = false }: CommentInputProps) => {
+const CommentInput = ({
+  onSubmit,
+  isSubmitting = false,
+  isEdit = false,
+  initialContent = '',
+  onCancel,
+}: CommentInputProps) => {
   const { user, showAuthModal } = useAuth();
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState(initialContent);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,26 +53,30 @@ const CommentInput = ({ onSubmit, isSubmitting = false }: CommentInputProps) => 
     );
   }
 
+  const ButtonIcon = isEdit ? FaRegEdit : FaPaperPlane;
+
   const displayName =
     user.user_metadata.name || user.user_metadata.full_name || user.user_metadata.display_name;
 
   return (
     <div className="flex gap-3 items-start mt-4 animate-fade-in">
       {/* Avatar do Usuário Logado */}
-      <div className="shrink-0 hidden sm:block">
-        {!user.user_metadata.avatar_url ? (
-          <Image
-            src={user.user_metadata.avatar_url}
-            alt="Me"
-            width={32}
-            height={32}
-            className="rounded-full border border-border"
-          />
-        ) : (
-          // TODO: melhorar update do profile de acordo com o auth.user do Supabase
-          <div className="avatar-placeholder">{displayName.substring(0, 2).toUpperCase()}</div>
-        )}
-      </div>
+      {!isEdit && (
+        <div className="shrink-0 hidden sm:block">
+          {user.user_metadata.avatar_url ? (
+            <Image
+              src={user.user_metadata.avatar_url}
+              alt="Me"
+              width={32}
+              height={32}
+              className="rounded-full border border-border"
+            />
+          ) : (
+            // TODO: melhorar update do profile de acordo com o auth.user do Supabase
+            <div className="avatar-placeholder">{displayName.substring(0, 2).toUpperCase()}</div>
+          )}
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="flex-1 relative">
         <textarea
@@ -74,13 +88,23 @@ const CommentInput = ({ onSubmit, isSubmitting = false }: CommentInputProps) => 
           maxLength={500}
         />
 
-        <div className="absolute bottom-2 right-2">
+        <div className="absolute bottom-2 right-2 gap-2 flex">
+          {onCancel && (
+            <Button
+              label={<FaUndo />}
+              size="sm"
+              disabled={!content.trim() || isSubmitting}
+              title={isEdit ? 'Cancelar edição' : 'Cancelar'}
+              onClick={onCancel}
+              variant="warning"
+            />
+          )}
           <Button
             type="submit"
-            label={isSubmitting ? <span className="animate-spin">⏳</span> : <FaPaperPlane />}
-            size="icon"
+            label={isSubmitting ? <span className="animate-spin">⏳</span> : <ButtonIcon />}
+            size={onCancel ? 'sm' : 'icon'}
             disabled={!content.trim() || isSubmitting}
-            title="Enviar comentário"
+            title={isEdit ? 'Editar comentário' : 'Enviar comentário'}
           />
         </div>
       </form>

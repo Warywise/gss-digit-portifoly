@@ -1,17 +1,19 @@
 import { ButtonHTMLAttributes, JSX } from 'react';
 
+export type ButtonVariantTypes =
+  | 'default'
+  | 'outline'
+  | 'secondary'
+  | 'ghost'
+  | 'link'
+  | 'danger'
+  | 'warning'
+  | 'success';
+
 interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'style'> {
   label: string | JSX.Element;
   onClick?: () => void;
-  variant?:
-    | 'default'
-    | 'outline'
-    | 'secondary'
-    | 'ghost'
-    | 'link'
-    | 'danger'
-    | 'warning'
-    | 'success';
+  variant?: ButtonVariantTypes;
   size?: 'default' | 'sm' | 'lg' | 'icon';
   style?: string;
   ref?: React.Ref<HTMLButtonElement>;

@@ -1,5 +1,5 @@
 import React, { JSX, useEffect, useRef } from 'react';
-import Button from './button';
+import Button, { ButtonVariantTypes } from './button';
 
 interface ModalProps {
   visible: boolean;
@@ -13,6 +13,10 @@ interface ModalProps {
   hideCancelButton?: boolean;
   index?: number;
   size?: 'sm' | 'md' | 'lg';
+  confirmLabel?: string;
+  cancelLabel?: string;
+  confirmVariant?: ButtonVariantTypes;
+  cancelVariant?: ButtonVariantTypes;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -27,6 +31,10 @@ const Modal: React.FC<ModalProps> = ({
   footer,
   index,
   size = 'md',
+  cancelLabel,
+  cancelVariant,
+  confirmLabel,
+  confirmVariant,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const modalSizes = {
@@ -90,14 +98,18 @@ const Modal: React.FC<ModalProps> = ({
           <div className="flex w-full justify-end gap-2">
             {!hideCancelButton && (
               <Button
-                variant="outline"
+                variant={cancelVariant || 'outline'}
                 onClick={onCancel}
-                label="Cancelar"
+                label={cancelLabel || 'Cancelar'}
                 style="hover:bg-muted"
               />
             )}
             {!hideOkButton && onConfirm && (
-              <Button variant="success" onClick={onConfirm} label="Confirmar" />
+              <Button
+                variant={confirmVariant || 'success'}
+                onClick={onConfirm}
+                label={confirmLabel || 'Confirmar'}
+              />
             )}
           </div>
         </footer>

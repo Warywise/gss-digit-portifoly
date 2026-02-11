@@ -57,12 +57,53 @@ export async function addComment(projectId: string, content: string) {
   } = await supabase.auth.getUser();
   if (!user) throw new Error('Unauthorized');
 
-  await supabase.from('interactions').insert({
-    project_id: projectId,
-    user_id: user.id,
-    type: 'comment',
-    content,
-  });
+  const { data } = await supabase
+    .from('interactions')
+    .insert({
+      project_id: projectId,
+      user_id: user.id,
+      type: 'comment',
+      content,
+    })
+    .select();
+
+  revalidateTag('projects-store');
+
+  return data?.[0];
+}
+
+export async function deleteInteraction(interactionId: string) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) throw new Error('Unauthorized');
+
+  const { error } = await supabase
+    .from('interactions')
+    .delete()
+    .eq('id', interactionId)
+    .eq('user_id', user.id);
+
+  if (error) throw new Error(error.message);
+
+  revalidateTag('projects-store');
+}
+
+export async function editInteraction(interactionId: string, newContent: string) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) throw new Error('Unauthorized');
+
+  const { error } = await supabase
+    .from('interactions')
+    .update({ content: newContent })
+    .eq('id', interactionId)
+    .eq('user_id', user.id);
+
+  if (error) throw new Error(error.message);
 
   revalidateTag('projects-store');
 }
