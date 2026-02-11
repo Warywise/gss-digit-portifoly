@@ -1,5 +1,11 @@
 import { create } from 'zustand';
-import { addComment, getUserInteractions, toggleLike } from '../actions/interactions';
+import {
+  addComment,
+  deleteInteraction,
+  editInteraction,
+  getUserInteractions,
+  toggleLike,
+} from '../actions/interactions';
 
 interface UserStoreState {
   likedProjectIds: string[];
@@ -12,6 +18,8 @@ interface UserStoreState {
 
   handleLike: (projectId: string) => Promise<void>;
   handleComment: (projectId: string, content: string) => Promise<void>;
+  handleDeleteComment: (interactionId: string) => Promise<void>;
+  handleEditComment: (interactionId: string, newContent: string) => Promise<void>;
 }
 
 export const useUserStore = create<UserStoreState>((set, get) => ({
@@ -63,21 +71,44 @@ export const useUserStore = create<UserStoreState>((set, get) => ({
     }
   },
 
-  // TODO: implementar futuramente tipo de action: add, edit, delete
   handleComment: async (interactionId: string, content: string) => {
     const { commentIds } = get();
 
-    // ATUALIZAÇÃO OTIMISTA
+    try {
+      const newComment = await addComment(interactionId, content);
+      if (newComment) {
+        set((state) => ({
+          commentIds: [...state.commentIds, newComment.id],
+        }));
+      }
+    } catch (error) {
+      console.error('Error adding comment: ', error);
+      // ROLLBACK
+      set({ commentIds });
+    }
+  },
+
+  handleDeleteComment: async (interactionId: string) => {
+    const { commentIds } = get();
     set((state) => ({
-      commentIds: [...state.commentIds, interactionId],
+      commentIds: state.commentIds.filter((id) => id !== interactionId),
     }));
 
     try {
-      await addComment(interactionId, content);
+      await deleteInteraction(interactionId);
     } catch (error) {
-      console.error('Erro ao sincronizar comment: ', error);
-      // ROLLBACK
+      console.error('Error deleting comment: ', error);
       set({ commentIds });
+      throw error;
+    }
+  },
+
+  handleEditComment: async (interactionId: string, newContent: string) => {
+    try {
+      await editInteraction(interactionId, newContent);
+    } catch (error) {
+      console.error('Error editing comment: ', error);
+      throw error;
     }
   },
 }));
