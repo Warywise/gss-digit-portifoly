@@ -12,6 +12,7 @@ import { useAuth } from '@/lib/providers/auth-provider';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import { useToast } from './ui/toast';
+import ProfileSettingsModal from './profile-settings-modal';
 
 // Botão do Menu Mobile (Hamburger/Close)
 const MobileMenuButton = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) => (
@@ -54,6 +55,7 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [darkMode, setDarkMode] = useState(getStoredItem<boolean>(THEME_STORAGE_KEY));
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
 
   const sentinelRef = useRef<HTMLDivElement>(null);
 
@@ -143,7 +145,10 @@ const Header = () => {
             {!loading && (
               <div className="flex items-center text-center order-1 md:order-2 gap-3 animate-fade-in">
                 {userData && (
-                  <div className="flex flex-col items-center gap-2 text-sm text-text">
+                  <div
+                    className="flex flex-col items-center gap-2 text-sm text-text cursor-pointer"
+                    onClick={() => setShowProfileModal(!showProfileModal)}
+                  >
                     {userData.avatar_url ? (
                       <Image
                         src={userData.avatar_url}
@@ -159,7 +164,7 @@ const Header = () => {
                       </div>
                     )}
                     <span className="sm:inline font-medium">
-                      {userData.name || userData.full_name || userData.display_name}
+                      {userData.display_name || userData.name || userData.full_name}
                     </span>
                   </div>
                 )}
@@ -198,6 +203,11 @@ const Header = () => {
 
       {/* Elemento 'sentinela' do scroll */}
       <div ref={sentinelRef} style={{ height: '1px' }} />
+
+      <ProfileSettingsModal
+        visible={showProfileModal}
+        onCancel={() => setShowProfileModal(false)}
+      />
 
       <MobileNav isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
     </>

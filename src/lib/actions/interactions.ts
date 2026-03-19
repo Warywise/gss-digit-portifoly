@@ -107,3 +107,7 @@ export async function editInteraction(interactionId: string, newContent: string)
 
   revalidateTag('projects-store');
 }
+
+export async function revalidateProjectsCache() {
+  revalidateTag('projects-store');
+}
