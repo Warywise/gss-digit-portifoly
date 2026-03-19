@@ -1,0 +1,14 @@
+{
+  "Header": {
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "contact": "Contact"
+    }
+  },
+  "Auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "profileSettings": "Profile Settings"
+  }
+}
