@@ -2,17 +2,17 @@
 
 import { THEME_STORAGE_KEY } from '@/utils/constants';
 import { getStoredItem, setStoredItem } from '@/utils/handleLocalStorage';
-import Link from 'next/link';
+import { Link, usePathname, useRouter } from '@/i18n/routing';
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { FaRightFromBracket, FaRightToBracket } from 'react-icons/fa6';
+import { FaRightFromBracket, FaRightToBracket, FaGlobe } from 'react-icons/fa6';
 import Button from './ui/button';
 import { FaUser } from 'react-icons/fa';
 import Image from 'next/image';
 import { useAuth } from '@/lib/providers/auth-provider';
 import { createClient } from '@/lib/supabase/client';
-import { useRouter } from 'next/navigation';
 import { useToast } from './ui/toast';
 import ProfileSettingsModal from './profile-settings-modal';
+import { useTranslations, useLocale } from 'next-intl';
 
 // Botão do Menu Mobile (Hamburger/Close)
 const MobileMenuButton = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) => (
@@ -32,19 +32,20 @@ const MobileMenuButton = ({ isOpen, onClick }: { isOpen: boolean; onClick: () =>
 
 // Menu de Navegação Mobile (Overlay)
 const MobileNav = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  const t = useTranslations('Header.nav');
   if (!isOpen) return null;
 
   return (
     <div className="mobile-nav" onClick={onClose}>
       <nav className="flex flex-col items-center space-y-8">
         <Link href="/" className="mobile-nav-link" onClick={onClose}>
-          Home
+          {t('home')}
         </Link>
         <Link href="/about" className="mobile-nav-link" onClick={onClose}>
-          About
+          {t('about')}
         </Link>
         <Link href="/contact" className="mobile-nav-link" onClick={onClose}>
-          Contact
+          {t('contact')}
         </Link>
       </nav>
     </div>
@@ -62,7 +63,11 @@ const Header = () => {
   const { user, loading, showAuthModal } = useAuth();
   const userData = user?.user_metadata;
   const supabase = createClient();
+  const tNav = useTranslations('Header.nav');
+  const tAuth = useTranslations('Auth');
+  const locale = useLocale();
   const router = useRouter();
+  const pathname = usePathname();
   const showToast = useToast();
 
   const handleLogout = async () => {
@@ -87,6 +92,11 @@ const Header = () => {
       setStoredItem(THEME_STORAGE_KEY, darkMode);
     }
   }, [darkMode]);
+
+  const toggleLanguage = () => {
+    const nextLocale = locale === 'pt' ? 'en' : 'pt';
+    router.replace(pathname, { locale: nextLocale });
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -117,17 +127,29 @@ const Header = () => {
         <div className="container flex items-center justify-between">
           <nav className="hidden md:flex items-center space-x-8">
             <Link href="/" className="text-lg hover:text-primary transition-colors">
-              Home
+              {tNav('home')}
             </Link>
             <Link href="/about" className="text-lg hover:text-primary transition-colors">
-              About
+              {tNav('about')}
             </Link>
             <Link href="/contact" className="text-lg hover:text-primary transition-colors">
-              Contact
+              {tNav('contact')}
             </Link>
           </nav>
 
           <div className="flex items-center gap-3">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleLanguage}
+              title={locale === 'pt' ? 'Switch to English' : 'Mudar para Português'}
+              label={
+                <span className="flex items-center gap-1 font-bold">
+                  <FaGlobe /> {locale.toUpperCase()}
+                </span>
+              }
+            />
+
             {/* Dark mode switcher - prefers-scheme: dark */}
             <button
               type="button"
@@ -174,11 +196,11 @@ const Header = () => {
                     <span className="flex flex-col items-center hover:underline">
                       {userData ? (
                         <>
-                          Sair <FaRightFromBracket size={18} />
+                          {tAuth('signOut')} <FaRightFromBracket size={18} />
                         </>
                       ) : (
                         <>
-                          Entrar <FaRightToBracket size={18} />
+                          {tAuth('signIn')} <FaRightToBracket size={18} />
                         </>
                       )}
                     </span>
@@ -186,7 +208,7 @@ const Header = () => {
                   variant="ghost"
                   size="icon"
                   onClick={userData ? handleLogout : showAuthModal}
-                  title={userData ? 'Sair da conta' : 'Entrar na conta'}
+                  title={userData ? tAuth('signOut') : tAuth('signIn')}
                 />
               </div>
             )}
