@@ -30,7 +30,7 @@ const AnonymousExplanation: React.FC<AnonymousExplanationProps> = ({
           Criaremos um perfil temporário com um{' '}
           <strong className="font-extrabold">nome aleatório e divertido</strong> para você interagir
           (dar likes e comentar).
-          <div className="h-3" />
+          <span className="block h-3" />
           Seus dados ficarão salvos neste navegador. Se quiser, poderá converter essa conta em uma
           conta real no futuro para não perder seu histórico.
         </p>

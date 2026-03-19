@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   },
   images: {
     remotePatterns: [
+      new URL('https://**.com/**'),
       new URL('https://user-images.githubusercontent.com/**'),
       new URL('https://github.com/user-attachments/assets/**'),
       new URL('https://lh3.googleusercontent.com/**'),
