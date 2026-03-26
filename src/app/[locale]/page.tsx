@@ -2,8 +2,9 @@ import Profile from '@/components/profile';
 import { getProjectsStore } from '@/lib/store/projects-store';
 import ProjectsMainPage from '@/components/projects-main-page';
 
-export default async function Home() {
-  const projectsData = await getProjectsStore();
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const projectsData = await getProjectsStore(locale);
 
   return (
     <div className="grid items-start justify-items-center min-h-screen p-4 gap-16 sm:p-16">

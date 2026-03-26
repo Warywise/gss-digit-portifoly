@@ -10,5 +10,52 @@
     "signIn": "Entrar",
     "signOut": "Sair",
     "profileSettings": "Configurações de Perfil"
+  },
+  "About": {
+    "title": "Sobre",
+    "role": "Desenvolvedor Fullstack",
+    "locationLabel": "Localização",
+    "locationValue": "Nova Iguaçu, RJ",
+    "emailLabel": "Email",
+    "languagesLabel": "Idiomas",
+    "languagesValue": "Português (Nativo), Inglês (Conversacional)",
+    "downloadResume": "Baixar Currículo",
+    "biographyTitle": "Biografia",
+    "biographyP1": "Sou um desenvolvedor full-stack do Brasil com mais de 3 anos de experiência na construção de aplicações web e mobile. Sou especialista em Node.js, React e TypeScript, e trabalhei com ferramentas como PostgreSQL, AWS, React Native e outras.",
+    "biographyP2": "Além do código, sou marido, pai e um cara que curte música, natureza e criar uma vibe positiva por onde passo. Valorizo trabalho em equipe, comunicação clara e entregar soluções que realmente fazem a diferença.",
+    "biographyP3": "Seja para uma nova oportunidade ou apenas uma boa conversa sobre tecnologia, sinta-se à vontade para entrar em contato!",
+    "skillsTitle": "Habilidades",
+    "experienceTitle": "Experiência",
+    "present": "Presente",
+    "jobs": {
+      "invenzi": {
+        "position": "Desenvolvedor de Software",
+        "company": "Invenzi",
+        "startAt": "Out 2024",
+        "jobDescription": "Desenvolvimento e manutenção de uma plataforma multi-idioma para controle de acesso. Atuei com diversas integrações com hardware e regras personalizadas por local. Envolvido em features novas, refatorações e melhorias contínuas."
+      },
+      "w3lcome": {
+        "position": "Desenvolvedor Fullstack Jr II",
+        "company": "W3lcome",
+        "startAt": "Jun 2023",
+        "endAt": "Out 2024",
+        "jobDescription": "Desenvolvimento de novas features e microserviços em uma plataforma multi-idioma de gerenciamento de visitas e reservas. Também trabalhei com integrações, manutenção e arquitetura de código."
+      },
+      "pontuax": {
+        "position": "Analista de Desenvolvimento Jr",
+        "company": "PontuaX",
+        "startAt": "Abr 2022",
+        "endAt": "Mar 2023",
+        "jobDescription": "Atuação em produto voltado à pontuação por abastecimento de combustível, com alta prioridade em atualizações constantes em tempo real. Desenvolvi features, análises e refatorações, prezando pela performance e escalabilidade da aplicação."
+      }
+    },
+    "softSkills": {
+      "adaptability": "Adaptabilidade",
+      "agileMethodologies": "Metodologias Ágeis",
+      "communication": "Comunicação",
+      "empathy": "Empatia",
+      "problemSolving": "Resolução de Problemas",
+      "teamwork": "Trabalho em Equipe"
+    }
   }
 }
