@@ -5,6 +5,7 @@ import Modal from './ui/modal';
 import Input from './ui/input';
 import Button from './ui/button';
 import { FaGoogle } from 'react-icons/fa';
+import { FaGlobe, FaMoon, FaSun, FaRightFromBracket } from 'react-icons/fa6';
 import { useAuth } from '@/lib/providers/auth-provider';
 import { createClient } from '@/lib/supabase/client';
 import { useToast } from './ui/toast';
@@ -15,12 +16,22 @@ interface ProfileSettingsModalProps {
   visible: boolean;
   onCancel: () => void;
   onConfirm?: () => void;
+  darkMode?: boolean;
+  toggleTheme?: () => void;
+  locale?: string;
+  toggleLanguage?: () => void;
+  onLogout?: () => void;
 }
 
 export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
   visible,
   onCancel,
   onConfirm,
+  darkMode,
+  toggleTheme,
+  locale,
+  toggleLanguage,
+  onLogout,
 }) => {
   const { user } = useAuth();
   const supabase = createClient();
@@ -202,6 +213,52 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
             </div>
           </div>
         )}
+      </div>
+
+      {/* Preferências do App (Apenas Mobile) */}
+      <div className="sm:hidden mt-2 pt-4 border-t border-border flex flex-col gap-3">
+        <h4 className="text-sm font-medium text-text/90">Preferências do App</h4>
+        <div className="flex items-center justify-between gap-3">
+          <Button
+            variant="outline"
+            style="flex flex-1 items-center justify-center gap-2"
+            onClick={toggleTheme}
+            label={
+              <>
+                {darkMode ? <FaSun /> : <FaMoon />}
+                {darkMode ? 'Tema Claro' : 'Tema Escuro'}
+              </>
+            }
+          />
+          <Button
+            variant="outline"
+            style="flex flex-1 items-center justify-center gap-2"
+            onClick={toggleLanguage}
+            label={
+              <>
+                <FaGlobe />
+                {locale === 'pt' ? 'EN' : 'PT'}
+              </>
+            }
+          />
+        </div>
+      </div>
+
+      {/* Sair da Conta (Todas as telas) */}
+      <div className="mt-2 pt-4 border-t border-border">
+        <Button
+          variant="ghost"
+          style="w-full flex items-center justify-center gap-2 text-red-500 hover:text-red-600 hover:bg-red-50/50 dark:hover:bg-red-950/30"
+          onClick={() => {
+            if (onLogout) onLogout();
+            onCancel();
+          }}
+          label={
+            <>
+              Sair da Conta <FaRightFromBracket />
+            </>
+          }
+        />
       </div>
     </div>
   );
