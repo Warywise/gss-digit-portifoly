@@ -7,9 +7,11 @@ import {
   FaInstagram,
   FaLinkedin,
   FaMapLocationDot,
+  FaPhone,
   FaWhatsapp,
 } from 'react-icons/fa6';
 import ContactUsForm from '@/components/contact-us-form';
+import { useTranslations } from 'next-intl';
 
 const SocialItem = ({ icon, link }: { link: string; icon: JSX.Element }) => (
   <Link
@@ -23,24 +25,23 @@ const SocialItem = ({ icon, link }: { link: string; icon: JSX.Element }) => (
 );
 
 const ContactUsPage = () => {
+  const t = useTranslations('Contact');
+
   return (
     <div className="container p-8">
-      <h1 className="text-3xl font-bold mb-8 text-center">Contact Us</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center">{t('title')}</h1>
       <main className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
         <section className="space-y-6">
-          <h2 className="text-2xl font-semibold">Let&apos;s Connect</h2>
-          <p className="text-subtitle">
-            Have a project in mind or just want to say hello? Fill out the form and I&apos;ll get
-            back to you as soon as possible.
-          </p>
+          <h2 className="text-2xl font-semibold">{t('letsConnect')}</h2>
+          <p className="text-subtitle">{t('intro')}</p>
 
           <div className="space-y-4 mt-8">
             <Card>
               <CardContent style="flex items-center space-x-4">
                 <InfoCard
                   icon={<FaEnvelope size={18} />}
-                  title="Email"
-                  label="g_santanaa@outlook.com"
+                  title={t('emailLabel')}
+                  label="g_santanna@outlook.com"
                 />
               </CardContent>
             </Card>
@@ -48,8 +49,8 @@ const ContactUsPage = () => {
             <Card>
               <CardContent style="flex items-center space-x-4">
                 <InfoCard
-                  icon={<FaEnvelope size={18} />}
-                  title="Phone"
+                  icon={<FaPhone size={18} />}
+                  title={t('phoneLabel')}
                   label="55 (21) 97249-9255"
                 />
               </CardContent>
@@ -59,15 +60,15 @@ const ContactUsPage = () => {
               <CardContent style="flex items-center space-x-4">
                 <InfoCard
                   icon={<FaMapLocationDot size={18} />}
-                  title="Location"
-                  label="Nova Iguaçu, Rio de Janeiro"
+                  title={t('locationLabel')}
+                  label={t('locationValue')}
                 />
               </CardContent>
             </Card>
 
             <Card>
               <CardContent>
-                <h3 className="font-medium mb-3">Connect on Social Media</h3>
+                <h3 className="font-medium mb-3">{t('socialMedia')}</h3>
                 <div className="flex space-x-4">
                   <SocialItem
                     icon={<FaLinkedin size={18} />}
@@ -76,7 +77,7 @@ const ContactUsPage = () => {
                   <SocialItem icon={<FaGithub size={18} />} link="https://github.com/Warywise" />
                   <SocialItem
                     icon={<FaWhatsapp size={18} />}
-                    link="https://wa.me/5521972499255?text=Hello%20Gustavo!%20👋"
+                    link={`https://wa.me/5521972499255?text=${encodeURIComponent(t('whatsappText'))}`}
                   />
                   <SocialItem
                     icon={<FaInstagram size={18} />}

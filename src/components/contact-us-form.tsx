@@ -4,6 +4,7 @@ import Button from './ui/button';
 import { Card, CardContent } from './ui/card';
 import Input from './ui/input';
 import { useToast } from './ui/toast';
+import { useTranslations } from 'next-intl';
 
 const INITIAL_STATE = {
   name: '',
@@ -13,6 +14,7 @@ const INITIAL_STATE = {
 };
 
 const ContactUsForm = () => {
+  const t = useTranslations('Contact.form');
   const toastMessage = useToast();
   const [formState, setFormState] = useState(INITIAL_STATE);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,7 +38,7 @@ const ContactUsForm = () => {
       });
 
       if (!result.ok) {
-        toastMessage('error', 'Failed to send message. Try again later.');
+        toastMessage('error', t('error'));
         throw new Error('Failed to send message', { cause: result.statusText });
       }
     } catch (err) {
@@ -47,28 +49,26 @@ const ContactUsForm = () => {
     }
 
     setFormState(INITIAL_STATE);
-    toastMessage('success', 'Message sent successfully!');
+    toastMessage('success', t('success'));
   };
 
   return (
     <section className="grid space-y-6">
       <Card>
         <div className="flex flex-col space-y-1.5 p-6">
-          <h3 className="text-2xl font-semibold leading-none tracking-tight">Send a message</h3>
-          <p className="text-sm text-muted-foreground">
-            Fill out the form below to get in touch with me.
-          </p>
+          <h3 className="text-2xl font-semibold leading-none tracking-tight">{t('title')}</h3>
+          <p className="text-sm text-muted-foreground">{t('description')}</p>
         </div>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm font-medium">
-                Name
+                {t('name')}
               </label>
               <Input
                 id="name"
                 name="name"
-                placeholder="Your name"
+                placeholder={t('namePlaceholder')}
                 value={formState.name}
                 onChange={handleChange}
                 required
@@ -77,13 +77,13 @@ const ContactUsForm = () => {
 
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium">
-                Email
+                {t('email')}
               </label>
               <Input
                 id="email"
                 name="email"
                 type="email"
-                placeholder="Your email address"
+                placeholder={t('emailPlaceholder')}
                 value={formState.email}
                 onChange={handleChange}
                 required
@@ -92,12 +92,12 @@ const ContactUsForm = () => {
 
             <div className="space-y-2">
               <label htmlFor="subject" className="text-sm font-medium">
-                Subject
+                {t('subject')}
               </label>
               <Input
                 id="subject"
                 name="subject"
-                placeholder="What's this about?"
+                placeholder={t('subjectPlaceholder')}
                 value={formState.subject}
                 onChange={handleChange}
                 required
@@ -106,12 +106,12 @@ const ContactUsForm = () => {
 
             <div className="space-y-2">
               <label htmlFor="message" className="text-sm font-medium">
-                Message
+                {t('message')}
               </label>
               <textarea
                 id="message"
                 name="message"
-                placeholder="Your message"
+                placeholder={t('messagePlaceholder')}
                 rows={5}
                 value={formState.message}
                 onChange={handleChange}
@@ -121,7 +121,7 @@ const ContactUsForm = () => {
             </div>
 
             <Button
-              label={isSubmitting ? 'Sending...' : 'Send Message'}
+              label={isSubmitting ? t('submitting') : t('submit')}
               type="submit"
               style="w-full"
               disabled={false}
