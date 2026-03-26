@@ -10,5 +10,52 @@
     "signIn": "Sign In",
     "signOut": "Sign Out",
     "profileSettings": "Profile Settings"
+  },
+  "About": {
+    "title": "About",
+    "role": "Fullstack Developer",
+    "locationLabel": "Location",
+    "locationValue": "Nova Iguaçu, RJ",
+    "emailLabel": "Email",
+    "languagesLabel": "Languages",
+    "languagesValue": "Portuguese (Native), English (Conversational)",
+    "downloadResume": "Download Resume",
+    "biographyTitle": "Biography",
+    "biographyP1": "I'm a full-stack developer from Brazil with over 3 years of experience building web and mobile applications. I specialize in Node.js, React, and TypeScript, and have worked with tools like PostgreSQL, AWS, React Native and others.",
+    "biographyP2": "Beyond code, I'm a husband, a dad, and a guy who enjoys music, nature, and creating a positive vibe wherever I go. I value teamwork, clean communication, and delivering solutions that truly make a difference.",
+    "biographyP3": "Whether it's a new opportunity or just a good tech conversation, feel free to get in touch!",
+    "skillsTitle": "Skills",
+    "experienceTitle": "Experience",
+    "present": "Present",
+    "jobs": {
+      "invenzi": {
+        "position": "Software Developer",
+        "company": "Invenzi",
+        "startAt": "Oct 2024",
+        "jobDescription": "Development and maintenance of a multi-language platform for access control. I worked with various hardware integrations and custom rules per location. Involved in new features, refactoring, and continuous improvements."
+      },
+      "w3lcome": {
+        "position": "Jr II Fullstack Developer",
+        "company": "W3lcome",
+        "startAt": "Jun 2023",
+        "endAt": "Oct 2024",
+        "jobDescription": "Development of new features and microservices in a multi-language platform for visit and reservation management. Also worked on integrations, maintenance, and code architecture."
+      },
+      "pontuax": {
+        "position": "Jr Development Analyst",
+        "company": "PontuaX",
+        "startAt": "Apr 2022",
+        "endAt": "Mar 2023",
+        "jobDescription": "Worked on a product focused on points for fuel supply, with high priority on constant real-time updates. Developed features, analyses, and refactoring, emphasizing application performance and scalability."
+      }
+    },
+    "softSkills": {
+      "adaptability": "Adaptability",
+      "agileMethodologies": "Agile Methodologies",
+      "communication": "Communication",
+      "empathy": "Empathy",
+      "problemSolving": "Problem Solving",
+      "teamwork": "Teamwork"
+    }
   }
 }

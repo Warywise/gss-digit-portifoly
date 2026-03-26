@@ -43,17 +43,6 @@ const projects = [
     tag: 'Tools',
     techs: ['Eslint', 'Figma', 'Git & Github', 'Jira', 'VS Code', 'Slack', 'Trello'],
   },
-  {
-    tag: 'Soft Skills',
-    techs: [
-      'Adaptability',
-      'Agile Methodologies',
-      'Communication',
-      'Empathy',
-      'Problem Solving',
-      'Teamwork',
-    ],
-  },
 ];
 
 export default projects;

@@ -2,6 +2,7 @@ import techsData from '@/TECHS_DATA';
 import Button from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 interface ExperienceProps {
   position: string;
@@ -11,34 +12,33 @@ interface ExperienceProps {
   jobDescription: string;
 }
 
-const jobsData = [
-  {
-    position: 'Desenvolvedor de Software',
-    startAt: 'Out 2024',
-    endAt: null,
-    company: 'Invenzi',
-    jobDescription:
-      'Desenvolvimento e manutenção de uma plataforma multi-idioma para controle de acesso. Atuei com diversas integrações com hardware e regras personalizadas por local. Envolvido em features novas, refatorações e melhorias contínuas.',
-  },
-  {
-    position: 'Desenvolvedor Fullstack Jr II',
-    startAt: 'Jun 2023',
-    endAt: 'Out 2024',
-    company: 'W3lcome',
-    jobDescription:
-      'Desenvolvimento de novas features e microserviços em uma plataforma multi-idioma de gerenciamento de visitas e reservas. Também trabalhei com integrações, manutenção e arquitetura de código.',
-  },
-  {
-    position: 'Analista de Desenvolvimento Jr',
-    startAt: 'Abr 2022',
-    endAt: 'Mar 2023',
-    company: 'PontuaX',
-    jobDescription:
-      'Atuação em produto voltado à pontuação por abastecimento de combustível, com alta prioridade em atualizações constantes em tempo real. Desenvolvi features, análises e refatorações, prezando pela performance e escalabilidade da aplicação.',
-  },
-];
-
 const AboutPage = () => {
+  const t = useTranslations('About');
+
+  const jobsData: ExperienceProps[] = [
+    {
+      position: t('jobs.invenzi.position'),
+      startAt: t('jobs.invenzi.startAt'),
+      endAt: null,
+      company: t('jobs.invenzi.company'),
+      jobDescription: t('jobs.invenzi.jobDescription'),
+    },
+    {
+      position: t('jobs.w3lcome.position'),
+      startAt: t('jobs.w3lcome.startAt'),
+      endAt: t('jobs.w3lcome.endAt'),
+      company: t('jobs.w3lcome.company'),
+      jobDescription: t('jobs.w3lcome.jobDescription'),
+    },
+    {
+      position: t('jobs.pontuax.position'),
+      startAt: t('jobs.pontuax.startAt'),
+      endAt: t('jobs.pontuax.endAt'),
+      company: t('jobs.pontuax.company'),
+      jobDescription: t('jobs.pontuax.jobDescription'),
+    },
+  ];
+
   const TechCard = ({ tag, techs }: { tag: string; techs: string[] }) => (
     <article className="bg-card border border-border rounded-lg p-4">
       <h3 className="font-medium mb-2">{tag}</h3>
@@ -54,7 +54,7 @@ const AboutPage = () => {
     <div className={`border-l-2 ${job.endAt ? 'border-muted' : 'border-primary'} pl-4`}>
       <div className="flex justify-between items-center mb-2">
         <h3 className="font-medium">{job.position}</h3>
-        <span className="text-sm text-subtitle">{`${job.startAt} - ${job.endAt || 'Present'}`}</span>
+        <span className="text-sm text-subtitle">{`${job.startAt} - ${job.endAt || t('present')}`}</span>
       </div>
       <p className="text-sm text-subtitle mb-1">{job.company}</p>
       <p className="text-sm">{job.jobDescription}</p>
@@ -77,28 +77,28 @@ const AboutPage = () => {
                 />
               </div>
               <h2 className="mt-4 text-xl font-semibold">{"Gustavo Sant'Anna"}</h2>
-              <p className="text-subtitle">Fullstack Developer</p>
+              <p className="text-subtitle">{t('role')}</p>
             </div>
 
             <div className="p-6">
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-sm font-medium text-subtitle mb-1">Location</h3>
-                  <p>Nova Iguaçu, RJ</p>
+                  <h3 className="text-sm font-medium text-subtitle mb-1">{t('locationLabel')}</h3>
+                  <p>{t('locationValue')}</p>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-medium text-subtitle mb-1">Email</h3>
+                  <h3 className="text-sm font-medium text-subtitle mb-1">{t('emailLabel')}</h3>
                   <p>g_santanna@outlook.com</p>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-medium text-subtitle mb-1">Languages</h3>
-                  <p>Portuguese (Native), English (Conversational)</p>
+                  <h3 className="text-sm font-medium text-subtitle mb-1">{t('languagesLabel')}</h3>
+                  <p>{t('languagesValue')}</p>
                 </div>
 
                 <Link href="/my_resume.pdf" download="currículo-gustavo-santanna.pdf">
-                  <Button label="Download Resume" style="w-full" />
+                  <Button label={t('downloadResume')} style="w-full" />
                 </Link>
               </div>
             </div>
@@ -109,38 +109,39 @@ const AboutPage = () => {
         <div className="md:col-span-2 space-y-8">
           {/* Bio Section */}
           <section>
-            <h2 className="text-2xl font-semibold mb-4">Biography</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('biographyTitle')}</h2>
             <div className="prose max-w-none">
-              <p className="mb-3">
-                I&apos;m a full-stack developer from Brazil with over 3 years of experience building
-                web and mobile applications. I specialize in Node.js, React, and TypeScript, and
-                have worked with tools like PostgreSQL, AWS, React Native and others.
-              </p>
-              <p className="mb-3">
-                Beyond code, I&apos;m a husband, a dad, and a guy who enjoys music, nature, and
-                creating a positive vibe wherever I go. I value teamwork, clean communication, and
-                delivering solutions that truly make a difference.
-              </p>
-              <p>
-                Whether it&apos;s a new opportunity or just a good tech conversation, feel free to
-                get in touch!
-              </p>
+              <p className="mb-3">{t('biographyP1')}</p>
+              <p className="mb-3">{t('biographyP2')}</p>
+              <p>{t('biographyP3')}</p>
             </div>
           </section>
 
           {/* Skills Section */}
           <section>
-            <h2 className="text-2xl font-semibold mb-4">Skills</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('skillsTitle')}</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {techsData.map((data) => (
                 <TechCard key={data.tag} tag={data.tag} techs={data.techs} />
               ))}
+              <TechCard
+                key="Soft Skills"
+                tag="Soft Skills"
+                techs={[
+                  t('softSkills.adaptability'),
+                  t('softSkills.agileMethodologies'),
+                  t('softSkills.communication'),
+                  t('softSkills.empathy'),
+                  t('softSkills.problemSolving'),
+                  t('softSkills.teamwork'),
+                ]}
+              />
             </div>
           </section>
 
           {/* Experience Section */}
           <section>
-            <h2 className="text-2xl font-semibold mb-4">Experience</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('experienceTitle')}</h2>
 
             <div className="space-y-6">
               {jobsData.map((job, ind) => (
