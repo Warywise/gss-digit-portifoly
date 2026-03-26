@@ -95,5 +95,32 @@
     "contactUs": "Entre em Contato",
     "contactDesc": "Se você tiver alguma dúvida sobre esta Política de Privacidade ou nossos Termos de Serviço, entre em contato conosco em:",
     "emailLabel": "E-mail:"
+  },
+  "Contact": {
+    "title": "Contato",
+    "letsConnect": "Vamos Conversar",
+    "intro": "Tem um projeto em mente ou quer apenas dizer olá? Preencha o formulário e entrarei em contato o mais breve possível.",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Telefone",
+    "locationLabel": "Localização",
+    "locationValue": "Nova Iguaçu, Rio de Janeiro",
+    "socialMedia": "Conecte-se nas Redes Sociais",
+    "whatsappText": "Olá Gustavo! 👋",
+    "form": {
+      "title": "Envie uma mensagem",
+      "description": "Preencha o formulário abaixo para entrar em contato comigo.",
+      "name": "Nome",
+      "namePlaceholder": "Seu nome",
+      "email": "E-mail",
+      "emailPlaceholder": "Seu endereço de e-mail",
+      "subject": "Assunto",
+      "subjectPlaceholder": "Sobre o que é isso?",
+      "message": "Mensagem",
+      "messagePlaceholder": "Sua mensagem",
+      "submit": "Enviar Mensagem",
+      "submitting": "Enviando...",
+      "success": "Mensagem enviada com sucesso!",
+      "error": "Falha ao enviar mensagem. Tente novamente mais tarde."
+    }
   }
 }
