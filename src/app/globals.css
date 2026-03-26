@@ -95,7 +95,7 @@ body {
 .dark-mode-btn {
   @apply rounded-full border border-solid border-border relative;
   @apply transition-colors bg-foreground/50 hover:bg-foreground/80 hover:border-transparent;
-  @apply flex items-center justify-center px-4 py-1;
+  @apply items-center justify-center px-4 py-1;
 }
 
 .footer-social-link {

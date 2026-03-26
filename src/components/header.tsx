@@ -106,10 +106,11 @@ const Header = () => {
       // Observa em rel. ao viewport | Dispara quando o element sai/entra  | Dispara após 10px de scroll
     );
 
-    if (sentinelRef.current) observer.observe(sentinelRef.current);
+    const currentSentinel = sentinelRef.current;
+    if (currentSentinel) observer.observe(currentSentinel);
 
     return () => {
-      if (sentinelRef.current) observer.unobserve(sentinelRef.current);
+      if (currentSentinel) observer.unobserve(currentSentinel);
     };
   }, []);
 
@@ -124,7 +125,7 @@ const Header = () => {
   return (
     <>
       <header className={`sticky px-4 top-0 z-50 transition-all duration-200 py-3 ${scrollClass}`}>
-        <div className="container flex items-center justify-between">
+        <div className="container flex items-center justify-between min-w-full">
           <nav className="hidden md:flex items-center space-x-8">
             <Link href="/" className="text-lg hover:text-primary transition-colors">
               {tNav('home')}
@@ -137,23 +138,25 @@ const Header = () => {
             </Link>
           </nav>
 
-          <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleLanguage}
-              title={locale === 'pt' ? 'Switch to English' : 'Mudar para Português'}
-              label={
-                <span className="flex items-center gap-1 font-bold">
-                  <FaGlobe /> {locale.toUpperCase()}
-                </span>
-              }
-            />
-
+          <div className="flex items-center gap-2">
+            <div className="block order-3 md:order-0">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleLanguage}
+                title={locale === 'pt' ? 'Switch to English' : 'Mudar para Português'}
+                label={
+                  <span className="flex items-center gap-1 font-bold">
+                    <FaGlobe /> {locale.toUpperCase()}
+                  </span>
+                }
+              />
+            </div>
+            <div className="block w-px h-6 bg-ring order-2" />
             {/* Dark mode switcher - prefers-scheme: dark */}
             <button
               type="button"
-              className="dark-mode-btn order-2 md:order-1"
+              className="dark-mode-btn flex order-1 md:order-2"
               onClick={() => setDarkMode(!darkMode)}
             >
               <span
@@ -164,11 +167,12 @@ const Header = () => {
                 {darkMode ? '🌙' : '☀️'}
               </span>
             </button>
+
             {!loading && (
-              <div className="flex items-center text-center order-1 md:order-2 gap-3 animate-fade-in">
+              <div className="flex items-center text-center order-0 md:order-3 gap-1 ml-0 mr-2 md:mr-0 md:ml-3 animate-fade-in">
                 {userData && (
                   <div
-                    className="flex flex-col items-center gap-2 text-sm text-text cursor-pointer"
+                    className="flex flex-row items-center gap-2 text-sm text-text cursor-pointer"
                     onClick={() => setShowProfileModal(!showProfileModal)}
                   >
                     {userData.avatar_url ? (
@@ -185,31 +189,44 @@ const Header = () => {
                         <FaUser />
                       </div>
                     )}
-                    <span className="sm:inline font-medium">
-                      {userData.display_name || userData.name || userData.full_name}
+                    <span className="hidden md:inline-block font-medium text-sm text-left leading-tight">
+                      {(() => {
+                        const name =
+                          userData.display_name || userData.name || userData.full_name || '';
+                        const words = name.trim().split(' ');
+                        if (words.length > 1) {
+                          return (
+                            <>
+                              <span className="block">{words[0]}</span>
+                              <span className="block">{words.slice(1, 3).join(' ')}</span>
+                            </>
+                          );
+                        }
+                        return name;
+                      })()}
                     </span>
                   </div>
                 )}
 
-                <Button
-                  label={
-                    <span className="flex flex-col items-center hover:underline">
-                      {userData ? (
-                        <>
-                          {tAuth('signOut')} <FaRightFromBracket size={18} />
-                        </>
-                      ) : (
-                        <>
-                          {tAuth('signIn')} <FaRightToBracket size={18} />
-                        </>
-                      )}
-                    </span>
-                  }
-                  variant="ghost"
-                  size="icon"
-                  onClick={userData ? handleLogout : showAuthModal}
-                  title={userData ? tAuth('signOut') : tAuth('signIn')}
-                />
+                <div className={userData ? 'hidden md:block' : 'block ml-2'}>
+                  <Button
+                    label={
+                      <span className="flex flex-col items-center hover:underline">
+                        {userData ? (
+                          <FaRightFromBracket size={18} />
+                        ) : (
+                          <>
+                            {tAuth('signIn')} <FaRightToBracket size={18} />
+                          </>
+                        )}
+                      </span>
+                    }
+                    variant="ghost"
+                    size="icon"
+                    onClick={userData ? handleLogout : showAuthModal}
+                    title={userData ? tAuth('signOut') : tAuth('signIn')}
+                  />
+                </div>
               </div>
             )}
           </div>
@@ -229,6 +246,11 @@ const Header = () => {
       <ProfileSettingsModal
         visible={showProfileModal}
         onCancel={() => setShowProfileModal(false)}
+        darkMode={darkMode}
+        toggleTheme={() => setDarkMode(!darkMode)}
+        locale={locale}
+        toggleLanguage={toggleLanguage}
+        onLogout={handleLogout}
       />
 
       <MobileNav isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
