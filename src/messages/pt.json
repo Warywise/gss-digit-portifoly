@@ -122,5 +122,31 @@
       "success": "Mensagem enviada com sucesso!",
       "error": "Falha ao enviar mensagem. Tente novamente mais tarde."
     }
+  },
+  "Profile": {
+    "role": "Desenvolvedor Fullstack",
+    "bio": "Desenvolvedor apaixonado com mais de 3 anos de experiência na construção de aplicações web e mobile modernas. Especialista em TypeScript, React e Node.js.",
+    "contact": "Contato",
+    "projects": "Projetos",
+    "commits": "Commits",
+    "coffees": "Cafés"
+  },
+  "Projects": {
+    "title": "Projetos",
+    "searchPlaceholder": "Buscar projetos...",
+    "filterAll": "Todos",
+    "filterDeployed": "Publicados",
+    "noProjectsFound": "Nenhum projeto encontrado",
+    "deployed": "Publicado",
+    "commits": "commits",
+    "tooltipLike": "Curtir",
+    "tooltipUnlike": "Remover curtir",
+    "tooltipComment": "Comentar",
+    "tooltipShare": "Compartilhar"
+  },
+  "Footer": {
+    "rights": "Todos os direitos reservados.",
+    "privacyPolicyTerms": "Política de Privacidade | Termos de Serviço",
+    "sendEmail": "Enviar um e-mail"
   }
 }
