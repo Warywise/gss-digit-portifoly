@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import Button from './ui/button';
 import ProjectsModel from '@/types/projects';
+import { useTranslations } from 'next-intl';
 
 interface FilterTabsProps {
   handleFilter: Dispatch<SetStateAction<ProjectsModel[]>>;
@@ -8,6 +9,7 @@ interface FilterTabsProps {
 }
 
 const FilterTabs: React.FC<FilterTabsProps> = ({ handleFilter, projectsData }) => {
+  const t = useTranslations('Projects');
   const [filter, setFilter] = useState('All');
 
   useEffect(() => {
@@ -16,7 +18,7 @@ const FilterTabs: React.FC<FilterTabsProps> = ({ handleFilter, projectsData }) =
     });
 
     handleFilter(filteredProjects);
-  }, [filter, handleFilter]);
+  }, [filter, handleFilter, projectsData]);
 
   return (
     <div className="block row-start-2">
@@ -24,14 +26,14 @@ const FilterTabs: React.FC<FilterTabsProps> = ({ handleFilter, projectsData }) =
         <Button
           style={filter === 'All' ? 'bg-placeholder/50 text-foreground' : ''}
           variant="ghost"
-          label="All"
+          label={t('filterAll')}
           onClick={() => setFilter('All')}
           size="sm"
         />
         <Button
           style={filter === 'Deployed' ? 'bg-placeholder/50 text-foreground' : ''}
           variant="ghost"
-          label="Deployed"
+          label={t('filterDeployed')}
           onClick={() => setFilter('Deployed')}
           size="sm"
         />

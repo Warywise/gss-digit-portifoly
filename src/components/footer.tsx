@@ -1,15 +1,18 @@
 import Link from 'next/link';
 import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa6';
+import { useTranslations } from 'next-intl';
 
 const Footer = () => {
+  const t = useTranslations('Footer');
+
   return (
     <footer className="bottom-0 container px-4 py-8 mt-12 border-t border-border min-w-full">
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
         <nav className="text-sm text-subtitle">
-          &copy; {new Date().getFullYear()} Gss Digit. All rights reserved.
+          &copy; {new Date().getFullYear()} Gss Digit. {t('rights')}
           <p>
             <Link href="/policy" className="footer-social-link hover:underline">
-              Privacy Policy | Terms of Service
+              {t('privacyPolicyTerms')}
             </Link>
           </p>
         </nav>
@@ -44,7 +47,7 @@ const Footer = () => {
             title="Email"
           >
             <FaEnvelope />
-            <span className="hover:underline">Send an email</span>
+            <span className="hover:underline">{t('sendEmail')}</span>
           </Link>
           <Link
             className="footer-social-link"

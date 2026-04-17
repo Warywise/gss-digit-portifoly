@@ -10,12 +10,14 @@ import ProjectsModel from '@/types/projects';
 import { useAuth } from '@/lib/providers/auth-provider';
 import { toggleLike } from '@/lib/actions/interactions';
 import { useUserStore } from '@/lib/store/user-store';
+import { useTranslations } from 'next-intl';
 
 interface ProjectCardProps {
   project: ProjectsModel;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const t = useTranslations('Projects');
   const { user, showAuthModal } = useAuth();
   const elementRef = useRef<HTMLDivElement>(null);
   // Estado otimista para o Like (Feedback instantâneo)
@@ -74,7 +76,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             height={width}
           />
           <div className="absolute top-4 right-4">
-            {project.deployed && <Badge label="Deployed" style="bg-primary text-foreground" />}
+            {project.deployed && <Badge label={t('deployed')} style="bg-primary text-foreground" />}
           </div>
         </div>
 
@@ -88,7 +90,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               >
                 {project.name}
               </h3>
-              <span className="text-xs text-text">{project.commits} commits</span>
+              <span className="text-xs text-text">
+                {project.commits} {t('commits')}
+              </span>
             </div>
 
             <p className="text-sm text-text/80 line-clamp-2 mb-4">{project.description}</p>
@@ -107,7 +111,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       <div className="flex items-center justify-between pt-2 pl-2 border-t border-border">
         <div className="flex items-center space-x-4">
           {/* TODO: fazer variants para o tooltip */}
-          <Tooltip title={isLiked ? 'Unlike' : 'Like'}>
+          <Tooltip title={isLiked ? t('tooltipUnlike') : t('tooltipLike')}>
             <Button
               label={
                 <>
@@ -129,7 +133,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             />
           </Tooltip>
 
-          <Tooltip title="Coment">
+          <Tooltip title={t('tooltipComment')}>
             <Button
               variant="link"
               size="sm"
@@ -146,7 +150,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </div>
 
         <div className="flex items-center px-4 pb-4">
-          <Tooltip title="Share">
+          <Tooltip title={t('tooltipShare')}>
             <Button
               label={<FaShare size={18} />}
               variant="link"

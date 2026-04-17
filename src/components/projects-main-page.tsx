@@ -6,12 +6,14 @@ import FilterTabs from './filter-tabs';
 import ProjectCard from './project-card';
 import { FaRegCircleQuestion } from 'react-icons/fa6';
 import ProjectsModel from '@/types/projects';
+import { useTranslations } from 'next-intl';
 
 interface ProjectsMainPageProps {
   projectsData: ProjectsModel[];
 }
 
 export default function ProjectsMainPage({ projectsData }: ProjectsMainPageProps) {
+  const t = useTranslations('Projects');
   const [projects, setProjects] = useState(projectsData);
 
   // TODO: carregar atualização com filtros ativos
@@ -22,7 +24,7 @@ export default function ProjectsMainPage({ projectsData }: ProjectsMainPageProps
   return (
     <main className="flex flex-col gap-16 row-start-2 items-center sm:items-start w-full">
       <div className="mb-6 grid grid-cols-2 gap-4 w-full">
-        <h2 className="text-xl md:text-2xl font-bold">Projects</h2>
+        <h2 className="text-xl md:text-2xl font-bold">{t('title')}</h2>
 
         <SearchInput handleSearch={setProjects} projectsData={projectsData} />
 
@@ -34,7 +36,7 @@ export default function ProjectsMainPage({ projectsData }: ProjectsMainPageProps
         ))}
         {!projects.length && (
           <h4 className="text-lg flex gap-4 items-center">
-            <FaRegCircleQuestion /> No projects found
+            <FaRegCircleQuestion /> {t('noProjectsFound')}
           </h4>
         )}
       </div>

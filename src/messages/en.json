@@ -122,5 +122,31 @@
       "success": "Message sent successfully!",
       "error": "Failed to send message. Try again later."
     }
+  },
+  "Profile": {
+    "role": "Fullstack Developer",
+    "bio": "Passionate developer with 3+ years of experience building modern web and mobile applications. Specializing in TypeScript, React and Node.js.",
+    "contact": "Contact",
+    "projects": "Projects",
+    "commits": "Commits",
+    "coffees": "Coffees"
+  },
+  "Projects": {
+    "title": "Projects",
+    "searchPlaceholder": "Search projects...",
+    "filterAll": "All",
+    "filterDeployed": "Deployed",
+    "noProjectsFound": "No projects found",
+    "deployed": "Deployed",
+    "commits": "commits",
+    "tooltipLike": "Like",
+    "tooltipUnlike": "Unlike",
+    "tooltipComment": "Comment",
+    "tooltipShare": "Share"
+  },
+  "Footer": {
+    "rights": "All rights reserved.",
+    "privacyPolicyTerms": "Privacy Policy | Terms of Service",
+    "sendEmail": "Send an email"
   }
 }
