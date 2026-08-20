@@ -23,6 +23,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   // Estado otimista para o Like (Feedback instantâneo)
   const [isPending, startTransition] = useTransition();
   const likedProjectIds = useUserStore((state) => state.likedProjectIds);
+  const setPendingLike = useUserStore((state) => state.setPendingLike);
   const isLiked = likedProjectIds.includes(project.id);
 
   const [width, setWidth] = useState(0);
@@ -46,6 +47,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   const handleLikeClick = () => {
     if (!user) {
+      setPendingLike(project.id);
       showAuthModal();
       return;
     }

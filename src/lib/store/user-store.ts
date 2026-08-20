@@ -11,8 +11,10 @@ interface UserStoreState {
   likedProjectIds: string[];
   commentIds: string[];
   isLoading: boolean;
+  pendingLikeProjectId: string | null;
 
   // Actions
+  setPendingLike: (projectId: string | null) => void;
   fetchInteractions: () => Promise<void>;
   clearInteractions: () => void;
 
@@ -26,6 +28,9 @@ export const useUserStore = create<UserStoreState>((set, get) => ({
   likedProjectIds: [],
   commentIds: [],
   isLoading: false,
+  pendingLikeProjectId: null,
+
+  setPendingLike: (projectId) => set({ pendingLikeProjectId: projectId }),
 
   fetchInteractions: async () => {
     set({ isLoading: true });
