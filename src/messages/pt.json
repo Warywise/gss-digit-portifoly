@@ -21,9 +21,9 @@
     "languagesValue": "Português (Nativo), Inglês (Conversacional)",
     "downloadResume": "Baixar Currículo",
     "biographyTitle": "Biografia",
-    "biographyP1": "Sou um desenvolvedor full-stack do Brasil com mais de 3 anos de experiência na construção de aplicações web e mobile. Sou especialista em Node.js, React e TypeScript, e trabalhei com ferramentas como PostgreSQL, AWS, React Native e outras.",
-    "biographyP2": "Além do código, sou marido, pai e um cara que curte música, natureza e criar uma vibe positiva por onde passo. Valorizo trabalho em equipe, comunicação clara e entregar soluções que realmente fazem a diferença.",
-    "biographyP3": "Seja para uma nova oportunidade ou apenas uma boa conversa sobre tecnologia, sinta-se à vontade para entrar em contato!",
+    "biographyP1": "Sou um desenvolvedor full-stack residente no Brasil com mais de 4 anos de experiência no desenvolvimento de aplicações escaláveis web e mobile. Tenho forte especialização no ecossistema JavaScript (Node.js, React e TypeScript), aliada à experiência com banco de dados e nuvem como PostgreSQL e AWS.",
+    "biographyP2": "Além do âmbito técnico, sou marido e pai, apaixonado por música e natureza. Procuro sempre contribuir para um ambiente de trabalho colaborativo e positivo. Valorizo fortemente o trabalho em equipe, a comunicação assertiva e a entrega de soluções que geram impacto real de negócio.",
+    "biographyP3": "Seja para explorar uma nova oportunidade profissional ou para trocar ideias sobre tecnologia e inovação, sinta-se à vontade para entrar em contato!",
     "skillsTitle": "Habilidades",
     "experienceTitle": "Experiência",
     "present": "Presente",
@@ -32,21 +32,21 @@
         "position": "Desenvolvedor de Software",
         "company": "Invenzi",
         "startAt": "Out 2024",
-        "jobDescription": "Desenvolvimento e manutenção de uma plataforma multi-idioma para controle de acesso. Atuei com diversas integrações com hardware e regras personalizadas por local. Envolvido em features novas, refatorações e melhorias contínuas."
+        "jobDescription": "Desenvolvimento e manutenção de plataforma multi-idioma de controle de acesso. Liderança em integrações complexas de hardware e implementação de regras de negócio customizadas por localidade, além de atuar em novas features, refatorações estratégicas e melhoria contínua."
       },
       "w3lcome": {
         "position": "Desenvolvedor Fullstack Jr II",
         "company": "W3lcome",
         "startAt": "Jun 2023",
         "endAt": "Out 2024",
-        "jobDescription": "Desenvolvimento de novas features e microserviços em uma plataforma multi-idioma de gerenciamento de visitas e reservas. Também trabalhei com integrações, manutenção e arquitetura de código."
+        "jobDescription": "Criação de novos microserviços e features em plataforma multi-idioma voltada para gestão de visitas e reservas. Atuação direta na manutenção de integrações, otimização da arquitetura de código e garantia de estabilidade do sistema."
       },
       "pontuax": {
         "position": "Analista de Desenvolvimento Jr",
         "company": "PontuaX",
         "startAt": "Abr 2022",
         "endAt": "Mar 2023",
-        "jobDescription": "Atuação em produto voltado à pontuação por abastecimento de combustível, com alta prioridade em atualizações constantes em tempo real. Desenvolvi features, análises e refatorações, prezando pela performance e escalabilidade da aplicação."
+        "jobDescription": "Desenvolvimento de produto focado em pontuação e fidelização por abastecimento de combustível, com alta criticidade em processamento em tempo real. Condução de análises, desenvolvimento de features e refatorações orientadas à performance e escalabilidade."
       }
     },
     "softSkills": {
@@ -125,7 +125,7 @@
   },
   "Profile": {
     "role": "Desenvolvedor Fullstack",
-    "bio": "Desenvolvedor apaixonado com mais de 3 anos de experiência na construção de aplicações web e mobile modernas. Especialista em TypeScript, React e Node.js.",
+    "bio": "Desenvolvedor full-stack apaixonado por tecnologia, com mais de 4 anos de experiência na arquitetura e desenvolvimento de aplicações web e mobile modernas. Especialista em TypeScript, React e Node.js.",
     "contact": "Contato",
     "projects": "Projetos",
     "commits": "Commits",
