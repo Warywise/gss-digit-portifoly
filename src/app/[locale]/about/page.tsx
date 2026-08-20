@@ -2,7 +2,7 @@ import techsData from '@/TECHS_DATA';
 import Button from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface ExperienceProps {
   position: string;
@@ -14,6 +14,7 @@ interface ExperienceProps {
 
 const AboutPage = () => {
   const t = useTranslations('About');
+  const locale = useLocale();
 
   const jobsData: ExperienceProps[] = [
     {
@@ -97,9 +98,19 @@ const AboutPage = () => {
                   <p>{t('languagesValue')}</p>
                 </div>
 
-                <Link href="/my_resume.pdf" download="currículo-gustavo-santanna.pdf">
-                  <Button label={t('downloadResume')} style="w-full" />
-                </Link>
+                {locale === 'pt' && (
+                  <Link
+                    href="/Curriculo_Gustavo_SantAnna.pdf"
+                    download="currículo-gustavo-santanna.pdf"
+                  >
+                    <Button label={t('downloadResume')} style="w-full" />
+                  </Link>
+                )}
+                {locale === 'en' && (
+                  <Link href="/Gustavo_SantAnna_Resume.pdf" download="gustavo-santanna-resume.pdf">
+                    <Button label={t('downloadResume')} style="w-full" />
+                  </Link>
+                )}
               </div>
             </div>
           </article>
