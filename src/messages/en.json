@@ -21,9 +21,9 @@
     "languagesValue": "Portuguese (Native), English (Conversational)",
     "downloadResume": "Download Resume",
     "biographyTitle": "Biography",
-    "biographyP1": "I'm a full-stack developer from Brazil with over 3 years of experience building web and mobile applications. I specialize in Node.js, React, and TypeScript, and have worked with tools like PostgreSQL, AWS, React Native and others.",
-    "biographyP2": "Beyond code, I'm a husband, a dad, and a guy who enjoys music, nature, and creating a positive vibe wherever I go. I value teamwork, clean communication, and delivering solutions that truly make a difference.",
-    "biographyP3": "Whether it's a new opportunity or just a good tech conversation, feel free to get in touch!",
+    "biographyP1": "I am a full-stack developer based in Brazil with over 4 years of experience building scalable web and mobile applications. I specialize in the JavaScript ecosystem (Node.js, React, and TypeScript), alongside hands-on experience with cloud and database technologies like AWS and PostgreSQL.",
+    "biographyP2": "Beyond the technical sphere, I am a husband and father, passionate about music and nature. I strive to foster a collaborative and positive work environment. I strongly value teamwork, assertive communication, and delivering solutions that drive real business impact.",
+    "biographyP3": "Whether you're looking to discuss a new professional opportunity or simply exchange ideas about technology and innovation, feel free to reach out!",
     "skillsTitle": "Skills",
     "experienceTitle": "Experience",
     "present": "Present",
@@ -32,21 +32,21 @@
         "position": "Software Developer",
         "company": "Invenzi",
         "startAt": "Oct 2024",
-        "jobDescription": "Development and maintenance of a multi-language platform for access control. I worked with various hardware integrations and custom rules per location. Involved in new features, refactoring, and continuous improvements."
+        "jobDescription": "Development and maintenance of a multi-language access control platform. Led complex hardware integrations and implemented customized business rules per location, alongside developing new features, strategic refactoring, and driving continuous product improvement."
       },
       "w3lcome": {
         "position": "Jr II Fullstack Developer",
         "company": "W3lcome",
         "startAt": "Jun 2023",
         "endAt": "Oct 2024",
-        "jobDescription": "Development of new features and microservices in a multi-language platform for visit and reservation management. Also worked on integrations, maintenance, and code architecture."
+        "jobDescription": "Created new microservices and features for a multi-language platform focused on visit and reservation management. Actively contributed to maintaining integrations, optimizing code architecture, and ensuring system stability."
       },
       "pontuax": {
         "position": "Jr Development Analyst",
         "company": "PontuaX",
         "startAt": "Apr 2022",
         "endAt": "Mar 2023",
-        "jobDescription": "Worked on a product focused on points for fuel supply, with high priority on constant real-time updates. Developed features, analyses, and refactoring, emphasizing application performance and scalability."
+        "jobDescription": "Developed a loyalty and points product for fuel supply, prioritizing high-criticality real-time processing. Conducted system analyses, feature development, and performance-oriented refactoring to improve application scalability."
       }
     },
     "softSkills": {
@@ -125,7 +125,7 @@
   },
   "Profile": {
     "role": "Fullstack Developer",
-    "bio": "Passionate developer with 3+ years of experience building modern web and mobile applications. Specializing in TypeScript, React and Node.js.",
+    "bio": "Passionate full-stack developer with over 4 years of experience architecting and building modern web and mobile applications. Specialized in TypeScript, React, and Node.js.",
     "contact": "Contact",
     "projects": "Projects",
     "commits": "Commits",
