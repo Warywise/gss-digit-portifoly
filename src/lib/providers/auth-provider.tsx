@@ -23,6 +23,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const fetchInteractions = useUserStore((state) => state.fetchInteractions);
   const clearInteractions = useUserStore((state) => state.clearInteractions);
+  const handleLike = useUserStore((state) => state.handleLike);
+  const pendingLikeProjectId = useUserStore((state) => state.pendingLikeProjectId);
+  const setPendingLike = useUserStore((state) => state.setPendingLike);
 
   const showAuthModal = () => setIsAuthModalOpen(true);
 
@@ -67,10 +70,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       <AuthModal
         visible={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
-        // TODO: encontrar uma maneira de realizar uma ação pendente após o login
-        // onSuccess={() => {
-        //   toggleLike(project.id);
-        // }}
+        onSuccess={() => {
+          if (pendingLikeProjectId) {
+            handleLike(pendingLikeProjectId);
+            setPendingLike(null);
+          }
+        }}
       />
       {children}
     </AuthContext.Provider>
