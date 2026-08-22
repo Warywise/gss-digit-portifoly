@@ -1,24 +1,14 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import Button from './ui/button';
-import ProjectsModel from '@/types/projects';
 import { useTranslations } from 'next-intl';
 
 interface FilterTabsProps {
-  handleFilter: Dispatch<SetStateAction<ProjectsModel[]>>;
-  projectsData: ProjectsModel[];
+  filter: string;
+  setFilter: Dispatch<SetStateAction<string>>;
 }
 
-const FilterTabs: React.FC<FilterTabsProps> = ({ handleFilter, projectsData }) => {
+const FilterTabs: React.FC<FilterTabsProps> = ({ filter, setFilter }) => {
   const t = useTranslations('Projects');
-  const [filter, setFilter] = useState('All');
-
-  useEffect(() => {
-    const filteredProjects = projectsData.filter((project) => {
-      return filter === 'Deployed' ? project.deployed : project;
-    });
-
-    handleFilter(filteredProjects);
-  }, [filter, handleFilter, projectsData]);
 
   return (
     <div className="block row-start-2">
