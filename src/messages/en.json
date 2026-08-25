@@ -142,7 +142,9 @@
     "tooltipLike": "Like",
     "tooltipUnlike": "Unlike",
     "tooltipComment": "Comment",
-    "tooltipShare": "Share"
+    "tooltipShare": "Share",
+    "linkCopied": "Link copied to clipboard!",
+    "shareMore": "See more projects in Gustavo's portfolio:"
   },
   "Footer": {
     "rights": "All rights reserved.",

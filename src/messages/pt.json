@@ -142,7 +142,9 @@
     "tooltipLike": "Curtir",
     "tooltipUnlike": "Remover curtir",
     "tooltipComment": "Comentar",
-    "tooltipShare": "Compartilhar"
+    "tooltipShare": "Compartilhar",
+    "linkCopied": "Link copiado para a área de transferência!",
+    "shareMore": "Veja mais projetos no portfólio de Gustavo:"
   },
   "Footer": {
     "rights": "Todos os direitos reservados.",

@@ -11,6 +11,7 @@ import { useAuth } from '@/lib/providers/auth-provider';
 import { toggleLike } from '@/lib/actions/interactions';
 import { useUserStore } from '@/lib/store/user-store';
 import { useTranslations } from 'next-intl';
+import { useToast } from '@/components/ui/toast';
 
 interface ProjectCardProps {
   project: ProjectsModel;
@@ -18,6 +19,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const t = useTranslations('Projects');
+  const showToast = useToast();
   const { user, showAuthModal } = useAuth();
   const elementRef = useRef<HTMLDivElement>(null);
   // Estado otimista para o Like (Feedback instantâneo)
@@ -59,6 +61,31 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         console.error('Erro ao dar like:', error);
       }
     });
+  };
+
+  const handleShare = async () => {
+    const projectLink = project.deployed && project.url ? project.url : project.gitRepo;
+    const portfolioLink = window.location.origin;
+    const textToShare = `${project.name}\n\n${t('shareMore')} ${portfolioLink}`;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: project.name,
+          text: textToShare,
+          url: projectLink,
+        });
+      } else {
+        await navigator.clipboard.writeText(projectLink);
+        showToast('success', t('linkCopied'));
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name === 'AbortError') {
+        return;
+      }
+      await navigator.clipboard.writeText(projectLink);
+      showToast('success', t('linkCopied'));
+    }
   };
 
   return (
@@ -158,7 +185,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               variant="link"
               size="sm"
               style="proj-button"
-              onClick={() => {}}
+              onClick={handleShare}
             />
           </Tooltip>
         </div>
