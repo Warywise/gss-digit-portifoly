@@ -105,6 +105,24 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
 
+create or replace function public.handle_user_update()
+returns trigger as $$
+begin
+  update public.profiles
+  set
+    display_name = COALESCE(new.raw_user_meta_data->>'display_name', new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'name', public.profiles.display_name),
+    avatar_url = COALESCE(new.raw_user_meta_data->>'avatar_url', public.profiles.avatar_url),
+    updated_at = now()
+  where id = new.id;
+  return new;
+end;
+$$ language plpgsql security definer;
+
+drop trigger if exists on_auth_user_updated on auth.users;
+create trigger on_auth_user_updated
+  after update on auth.users
+  for each row execute procedure public.handle_user_update();
+
 -- Policies 
 
 -- ================================================================
