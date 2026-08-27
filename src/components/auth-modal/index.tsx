@@ -10,6 +10,7 @@ import ModalHeader from './modal-header';
 import AnonymousExplanation from './anonymous-explanation';
 import LoginOptions from './login-options';
 import LoginEmail from './email-login';
+import { useTranslations } from 'next-intl';
 
 interface AuthModalProps {
   visible: boolean;
@@ -20,6 +21,7 @@ interface AuthModalProps {
 const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
   const supabase = createClient();
   const showToast = useToast();
+  const t = useTranslations('AuthModal');
 
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState<'options' | 'email' | 'anonymous'>('anonymous');
@@ -49,7 +51,7 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
       },
     });
 
-    onFinaly(error, 'Login com Google realizado com sucesso!');
+    onFinaly(error, t('loginGoogleSuccess'));
   };
 
   // 2. Login Anônimo
@@ -64,7 +66,7 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
       },
     });
 
-    onFinaly(error, 'Você entrou no modo anônimo!');
+    onFinaly(error, t('anonymousSuccess'));
   };
 
   // 3. Login/Cadastro com Email
@@ -103,7 +105,7 @@ const AuthModal = ({ visible, onClose, onSuccess }: AuthModalProps) => {
       setIsSignUp(false);
     }
 
-    onFinaly(error, isSignUp ? 'Cadastro realizado com sucesso!' : 'Bem-vindo de volta!');
+    onFinaly(error, isSignUp ? t('signUpSuccess') : t('loginSuccess'));
   };
 
   const showEmailForm = () => {

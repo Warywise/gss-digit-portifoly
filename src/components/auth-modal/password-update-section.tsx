@@ -5,6 +5,7 @@ import Button from '../ui/button';
 import Input from '../ui/input';
 import { createClient } from '@/lib/supabase/client';
 import { useToast } from '../ui/toast';
+import { useTranslations } from 'next-intl';
 
 const PasswordUpdateSection = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -13,12 +14,13 @@ const PasswordUpdateSection = () => {
 
   const supabase = createClient();
   const toast = useToast();
+  const t = useTranslations('AuthModal');
 
   const handleUpdatePassword = async () => {
     const newPassword = passwordRef.current?.value || '';
 
     if (newPassword.length < 6) {
-      toast('warning', 'A nova senha deve ter no mínimo 6 caracteres.');
+      toast('warning', t('passwordMinLength'));
       return;
     }
 
@@ -27,9 +29,9 @@ const PasswordUpdateSection = () => {
     setIsLoading(false);
 
     if (error) {
-      toast('error', `Erro ao alterar senha: ${error.message}`);
+      toast('error', `${t('updatePasswordError')}${error.message}`);
     } else {
-      toast('success', 'Sua senha foi atualizada com sucesso!');
+      toast('success', t('updatePasswordSuccess'));
       setIsEditing(false);
     }
   };
@@ -38,7 +40,7 @@ const PasswordUpdateSection = () => {
     return (
       <Button
         variant="outline"
-        label="Alterar Senha"
+        label={t('passwordUpdateTitle')}
         onClick={() => setIsEditing(true)}
         style="w-full"
       />
@@ -47,10 +49,10 @@ const PasswordUpdateSection = () => {
 
   return (
     <div className="flex flex-col gap-3 rounded-md border border-border bg-background p-4 shadow-sm">
-      <span className="text-sm font-medium text-text/90">Nova Senha</span>
+      <span className="text-sm font-medium text-text/90">{t('passwordUpdateTitle')}</span>
       <Input
         type="password"
-        placeholder="Digite a nova senha"
+        placeholder={t('newPasswordPlaceholder')}
         ref={passwordRef}
         minLength={6}
         disabled={isLoading}
@@ -59,13 +61,13 @@ const PasswordUpdateSection = () => {
       <div className="mt-1 flex justify-end gap-2">
         <Button
           variant="ghost"
-          label="Cancelar"
+          label={t('cancelBtn')}
           onClick={() => setIsEditing(false)}
           disabled={isLoading}
         />
         <Button
           variant="default"
-          label={isLoading ? 'Salvando...' : 'Salvar Senha'}
+          label={isLoading ? t('updatingBtn') : t('updatePasswordBtn')}
           onClick={handleUpdatePassword}
           disabled={isLoading}
         />

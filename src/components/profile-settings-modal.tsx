@@ -11,6 +11,7 @@ import { createClient } from '@/lib/supabase/client';
 import { useToast } from './ui/toast';
 import { revalidateProjectsCache } from '@/lib/actions/interactions';
 import PasswordUpdateSection from './auth-modal/password-update-section';
+import { useTranslations } from 'next-intl';
 
 interface ProfileSettingsModalProps {
   visible: boolean;
@@ -36,6 +37,7 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
   const { user } = useAuth();
   const supabase = createClient();
   const toast = useToast();
+  const t = useTranslations('ProfileSettings');
 
   const displayNameRef = useRef<HTMLInputElement>(null);
   const avatarUrlRef = useRef<HTMLInputElement>(null);
@@ -66,10 +68,10 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
     setIsLoading(false);
 
     if (error) {
-      toast('error', `Erro ao atualizar: ${error.message}`);
+      toast('error', `${t('errorUpdate')}: ${error.message}`);
     } else {
       revalidateProjectsCache();
-      toast('success', 'Seus dados foram atualizados com sucesso.');
+      toast('success', t('successUpdate'));
       if (onConfirm) onConfirm();
       onCancel();
     }
@@ -86,7 +88,7 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
     setIsLoading(false);
 
     if (error) {
-      toast('error', `Erro ao vincular Google: ${error.message}`);
+      toast('error', `${t('errorLinkGoogle')}: ${error.message}`);
     }
   };
 
@@ -95,7 +97,7 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
     const password = passwordRef.current?.value || '';
 
     if (!email || !password) {
-      toast('warning', 'Preencha E-mail e Senha para vincular.');
+      toast('warning', t('warnFillFields'));
       return;
     }
 
@@ -104,9 +106,9 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
     setIsLoading(false);
 
     if (error) {
-      toast('error', `Erro ao vincular E-mail: ${error.message}`);
+      toast('error', `${t('errorLinkEmail')}: ${error.message}`);
     } else {
-      toast('success', 'Sua conta foi promovida com sucesso!');
+      toast('success', t('successLinkEmail'));
       if (emailRef.current) emailRef.current.value = '';
       if (passwordRef.current) passwordRef.current.value = '';
     }
@@ -119,7 +121,7 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
         {user?.email && (
           <div className="flex flex-col gap-2">
             <label htmlFor="userEmail" className="text-sm font-medium text-text/90">
-              E-mail Vinculado
+              {t('linkedEmail')}
             </label>
             <Input
               id="userEmail"
@@ -134,11 +136,11 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
 
         <div className="flex flex-col gap-2">
           <label htmlFor="displayName" className="text-sm font-medium text-text/90">
-            Nome de Exibição
+            {t('displayName')}
           </label>
           <Input
             id="displayName"
-            placeholder="Insira seu nome de exibição"
+            placeholder={t('displayNamePlaceholder')}
             style="w-full"
             ref={displayNameRef}
             disabled={isLoading}
@@ -147,12 +149,12 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
 
         <div className="flex flex-col gap-2">
           <label htmlFor="avatarUrl" className="text-sm font-medium text-text/90">
-            URL do Avatar
+            {t('avatarUrl')}
           </label>
           <Input
             id="avatarUrl"
             type="url"
-            placeholder="https://exemplo.com/avatar.jpg"
+            placeholder={t('avatarUrlPlaceholder')}
             style="w-full"
             ref={avatarUrlRef}
             disabled={isLoading}
@@ -171,25 +173,25 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
             <>
               <FaGoogle className="text-lg" />
               {user?.app_metadata?.providers?.includes('google')
-                ? 'Google Vinculado'
-                : 'Vincular Conta Google'}
+                ? t('googleLinked')
+                : t('linkGoogle')}
             </>
           }
         />
 
         {user?.is_anonymous && (
           <>
-            <span className="mt-2 text-xs font-medium text-text/75">Ou vincular com E-mail</span>
+            <span className="mt-2 text-xs font-medium text-text/75">{t('orLinkEmail')}</span>
             <div className="flex flex-col gap-3">
               <Input
-                placeholder="Digite um E-mail"
+                placeholder={t('emailPlaceholder')}
                 type="email"
                 style="w-full"
                 ref={emailRef}
                 disabled={isLoading}
               />
               <Input
-                placeholder="Digite uma Senha"
+                placeholder={t('passwordPlaceholder')}
                 type="password"
                 style="w-full"
                 ref={passwordRef}
@@ -198,7 +200,7 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
               <Button
                 variant="secondary"
                 style="w-full"
-                label="Vincular com E-mail"
+                label={t('linkEmailBtn')}
                 onClick={handleLinkEmail}
                 disabled={isLoading}
               />
@@ -217,7 +219,7 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
 
       {/* Preferências do App (Apenas Mobile) */}
       <div className="sm:hidden mt-2 pt-4 border-t border-border flex flex-col gap-3">
-        <h4 className="text-sm font-medium text-text/90">Preferências do App</h4>
+        <h4 className="text-sm font-medium text-text/90">{t('appPreferences')}</h4>
         <div className="flex items-center justify-between gap-3">
           <Button
             variant="outline"
@@ -226,7 +228,7 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
             label={
               <>
                 {darkMode ? <FaSun /> : <FaMoon />}
-                {darkMode ? 'Tema Claro' : 'Tema Escuro'}
+                {darkMode ? t('lightTheme') : t('darkTheme')}
               </>
             }
           />
@@ -255,7 +257,7 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
           }}
           label={
             <>
-              Sair da Conta <FaRightFromBracket />
+              {t('logout')} <FaRightFromBracket />
             </>
           }
         />
@@ -268,8 +270,8 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
       visible={visible}
       onCancel={onCancel}
       onConfirm={handleUpdateProfile}
-      header="Configurações de Perfil"
-      confirmLabel={isLoading ? 'Salvando...' : 'Salvar Alterações'}
+      header={t('header')}
+      confirmLabel={isLoading ? t('savingBtn') : t('saveChangesBtn')}
       body={<ModalBody />}
     />
   );
