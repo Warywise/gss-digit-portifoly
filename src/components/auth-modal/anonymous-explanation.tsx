@@ -1,6 +1,7 @@
 import { FaUserSecret } from 'react-icons/fa6';
 import Button from '../ui/button';
 import { useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface AnonymousExplanationProps {
   onCancel: () => void;
@@ -17,6 +18,8 @@ const AnonymousExplanation: React.FC<AnonymousExplanationProps> = ({
   changeNickname,
   displayName,
 }) => {
+  const t = useTranslations('AuthModal');
+
   useEffect(() => {
     changeNickname();
   }, [changeNickname]);
@@ -25,21 +28,20 @@ const AnonymousExplanation: React.FC<AnonymousExplanationProps> = ({
     <div className="flex flex-col gap-4 py-4 text-center">
       <article className="bg-secondary/25 p-4 rounded-lg flex flex-col items-center gap-2">
         <FaUserSecret size={32} className="text-primary" />
-        <h3 className="font-bold text-lg">Modo Anônimo</h3>
+        <h3 className="font-bold text-lg">{t('anonymousMode')}</h3>
         <p className="text-sm text-text/70 subtitle text-justify px-2 mb-2">
-          Criaremos um perfil temporário com um{' '}
-          <strong className="font-extrabold">nome aleatório e divertido</strong> para você interagir
-          (dar likes e comentar).
+          {t('anonymousP1')}
+          <strong className="font-extrabold">{t('anonymousP1Strong')}</strong>
+          {t('anonymousP1End')}
           <span className="block h-3" />
-          Seus dados ficarão salvos neste navegador. Se quiser, poderá converter essa conta em uma
-          conta real no futuro para não perder seu histórico.
+          {t('anonymousP2')}
         </p>
 
         <div className="bg-secondary/10 p-4 rounded-sm">
-          <h3 className="text-sm font-medium">Seu nome de usuário será:</h3>
+          <h3 className="text-sm font-medium">{t('anonymousUsernameTitle')}</h3>
           <h4 className="mt-1 font-bold text-md font-mono">{displayName}</h4>
           <Button
-            label="Gerar outro nome"
+            label={t('generateOtherNameBtn')}
             variant="secondary"
             size="sm"
             style="mt-2"
@@ -51,13 +53,13 @@ const AnonymousExplanation: React.FC<AnonymousExplanationProps> = ({
 
       <div className="flex gap-3 mt-2">
         <Button
-          label="Cancelar"
+          label={t('cancelBtn')}
           variant="outline"
           style="flex-1 justify-center"
           onClick={onCancel}
         />
         <Button
-          label={loading ? 'Criando...' : 'Entendi, Criar Perfil!'}
+          label={loading ? t('creatingBtn') : t('understandCreateBtn')}
           variant="default"
           style="flex-1 justify-center"
           onClick={onConfirm}

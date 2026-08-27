@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import Button from '../ui/button';
 import { FaPaperPlane, FaRightToBracket } from 'react-icons/fa6';
 import { useAuth } from '@/lib/providers/auth-provider';
@@ -22,6 +23,7 @@ const CommentInput = ({
   initialContent = '',
   onCancel,
 }: CommentInputProps) => {
+  const t = useTranslations('ProjectDetails');
   const { user, showAuthModal } = useAuth();
   const [content, setContent] = useState(initialContent);
 
@@ -36,13 +38,11 @@ const CommentInput = ({
   if (!user) {
     return (
       <div className="comment-input-login">
-        <p className="text-sm text-subtitle mb-3">
-          Faça login para deixar seu comentário e participar da discussão.
-        </p>
+        <p className="text-sm text-subtitle mb-3">{t('loginToComment')}</p>
         <Button
           label={
             <>
-              <FaRightToBracket /> Entrar para Comentar
+              <FaRightToBracket /> {t('loginToCommentBtn')}
             </>
           }
           onClick={showAuthModal}
@@ -81,7 +81,7 @@ const CommentInput = ({
       <form onSubmit={handleSubmit} className="flex-1 relative">
         <textarea
           className="custom-textarea min-h-[80px] pr-12 resize-none text-sm"
-          placeholder="O que você achou deste projeto?"
+          placeholder={t('commentPlaceholder')}
           value={content}
           onChange={(e) => setContent(e.target.value)}
           disabled={isSubmitting}
@@ -94,7 +94,7 @@ const CommentInput = ({
               label={<FaUndo />}
               size="sm"
               disabled={!content.trim() || isSubmitting}
-              title={isEdit ? 'Cancelar edição' : 'Cancelar'}
+              title={isEdit ? t('cancelEdit') : t('cancelBtn')}
               onClick={onCancel}
               variant="warning"
             />
@@ -104,7 +104,7 @@ const CommentInput = ({
             label={isSubmitting ? <span className="animate-spin">⏳</span> : <ButtonIcon />}
             size={onCancel ? 'sm' : 'icon'}
             disabled={!content.trim() || isSubmitting}
-            title={isEdit ? 'Editar comentário' : 'Enviar comentário'}
+            title={isEdit ? t('editCommentTitle') : t('sendCommentTitle')}
           />
         </div>
       </form>

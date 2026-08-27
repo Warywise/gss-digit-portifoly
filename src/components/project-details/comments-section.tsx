@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import Button from '../ui/button';
 import { useToast } from '../ui/toast';
 import { formatRelativeTime } from '@/utils/date-formater';
@@ -12,6 +13,7 @@ import { FaPen, FaTrash, FaTriangleExclamation } from 'react-icons/fa6';
 import Modal from '../ui/modal';
 
 const CommentsSection: React.FC<{ project: ProjectsModel }> = ({ project }) => {
+  const t = useTranslations('ProjectDetails');
   const { handleComment, handleDeleteComment, handleEditComment, commentIds } = useUserStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [editingId, setEditingId] = useState('');
@@ -25,10 +27,10 @@ const CommentsSection: React.FC<{ project: ProjectsModel }> = ({ project }) => {
     try {
       await handleComment(project.id, content);
 
-      showToast('success', 'Comentário enviado!');
+      showToast('success', t('commentSuccess'));
     } catch (error) {
       console.error(error);
-      showToast('error', 'Erro ao enviar comentário.');
+      showToast('error', t('commentError'));
     } finally {
       setIsSubmitting(false);
     }
@@ -39,11 +41,11 @@ const CommentsSection: React.FC<{ project: ProjectsModel }> = ({ project }) => {
 
     try {
       await handleEditComment(commentId, editContent);
-      showToast('success', 'Comentário editado!');
+      showToast('success', t('editSuccess'));
       setEditingId('');
     } catch (error) {
       console.error(error);
-      showToast('error', 'Erro ao editar.');
+      showToast('error', t('editError'));
       setEditingId(commentId);
     }
   };
@@ -51,18 +53,18 @@ const CommentsSection: React.FC<{ project: ProjectsModel }> = ({ project }) => {
   const onDeleteComment = async (commentId: string) => {
     try {
       await handleDeleteComment(commentId);
-      showToast('success', 'Comentário excluído.');
+      showToast('success', t('deleteSuccess'));
       setCommentToDelete('');
     } catch (error) {
       console.error(error);
-      showToast('error', 'Erro ao excluir.');
+      showToast('error', t('deleteError'));
     }
   };
 
   return (
     <div className="flex flex-col gap-2 w-full">
       <div className="space-y-2">
-        <h4 className="font-medium">Project Links</h4>
+        <h4 className="font-medium">{t('projectLinks')}</h4>
         <div className="flex gap-2">
           {project.gitRepo && (
             <Button
@@ -70,7 +72,7 @@ const CommentsSection: React.FC<{ project: ProjectsModel }> = ({ project }) => {
               size="sm"
               label={
                 <a href={project.gitRepo} target="_blank" rel="noopener noreferrer">
-                  GitHub Repo
+                  {t('githubRepo')}
                 </a>
               }
             />
@@ -80,7 +82,7 @@ const CommentsSection: React.FC<{ project: ProjectsModel }> = ({ project }) => {
               size="sm"
               label={
                 <a href={project.url} target="_blank" rel="noopener noreferrer">
-                  Live Demo
+                  {t('liveDemo')}
                 </a>
               }
             />
@@ -90,7 +92,9 @@ const CommentsSection: React.FC<{ project: ProjectsModel }> = ({ project }) => {
 
       {/* Comments */}
       <div className="space-y-4 border-t border-border pt-2 mt-2 w-full">
-        <h4 className="font-medium mb-3">Comments ({project.comments})</h4>
+        <h4 className="font-medium mb-3">
+          {t('commentsTitle')} ({project.comments})
+        </h4>
         <div className="comments-box">
           {project.commentsList && project.commentsList.length > 0 ? (
             project.commentsList.map((comment) => {
@@ -164,9 +168,7 @@ const CommentsSection: React.FC<{ project: ProjectsModel }> = ({ project }) => {
               );
             })
           ) : (
-            <div className="text-center py-8 text-subtitle italic">
-              Seja o primeiro a comentar neste projeto! 🚀
-            </div>
+            <div className="text-center py-8 text-subtitle italic">{t('emptyComments')}</div>
           )}
         </div>
       </div>
@@ -179,19 +181,14 @@ const CommentsSection: React.FC<{ project: ProjectsModel }> = ({ project }) => {
         onCancel={() => setCommentToDelete('')}
         onConfirm={() => onDeleteComment(commentToDelete)}
         confirmVariant="danger"
-        confirmLabel="Sim, excluir"
+        confirmLabel={t('yesDelete')}
         header={
           <div className="flex items-center gap-2 text-danger font-bold">
             <FaTriangleExclamation />
-            <span>Excluir Comentário</span>
+            <span>{t('deleteWarningTitle')}</span>
           </div>
         }
-        body={
-          <p className="text-sm">
-            Tem certeza que deseja excluir permanentemente este comentário? Esta ação não pode ser
-            desfeita.
-          </p>
-        }
+        body={<p className="text-sm">{t('deleteWarningDesc')}</p>}
         size="sm"
         closable
       />
