@@ -1,5 +1,6 @@
 import React, { JSX, useEffect, useRef } from 'react';
 import Button, { ButtonVariantTypes } from './button';
+import { useTranslations } from 'next-intl';
 
 interface ModalProps {
   visible: boolean;
@@ -37,6 +38,7 @@ const Modal: React.FC<ModalProps> = ({
   confirmVariant,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations('Common');
   const modalSizes = {
     sm: 'w-3/5 md:w-2/5 lg:w-1/5',
     md: 'w-5/6 md:w-3/5 lg:w-2/5',
@@ -100,7 +102,7 @@ const Modal: React.FC<ModalProps> = ({
               <Button
                 variant={cancelVariant || 'outline'}
                 onClick={onCancel}
-                label={cancelLabel || 'Cancelar'}
+                label={cancelLabel || t('cancel')}
                 style="hover:bg-muted"
               />
             )}
@@ -108,7 +110,7 @@ const Modal: React.FC<ModalProps> = ({
               <Button
                 variant={confirmVariant || 'success'}
                 onClick={onConfirm}
-                label={confirmLabel || 'Confirmar'}
+                label={confirmLabel || t('confirm')}
               />
             )}
           </div>

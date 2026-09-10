@@ -15,20 +15,23 @@ import ProfileSettingsModal from './profile-settings-modal';
 import { useTranslations, useLocale } from 'next-intl';
 
 // Botão do Menu Mobile (Hamburger/Close)
-const MobileMenuButton = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) => (
-  <button
-    type="button"
-    className="mobile-menu-button"
-    onClick={onClick}
-    aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
-  >
-    <div className="block w-8">
-      <span className={`mobile-menu-icon ${isOpen ? 'rotate-45' : '-translate-y-2'}`} />
-      <span className={`mobile-menu-icon ${isOpen ? 'opacity-0' : ''}`} />
-      <span className={`mobile-menu-icon ${isOpen ? '-rotate-45' : 'translate-y-2'}`} />
-    </div>
-  </button>
-);
+const MobileMenuButton = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) => {
+  const tNav = useTranslations('Header');
+  return (
+    <button
+      type="button"
+      className="mobile-menu-button"
+      onClick={onClick}
+      aria-label={isOpen ? tNav('closeMenu') : tNav('openMenu')}
+    >
+      <div className="block w-8">
+        <span className={`mobile-menu-icon ${isOpen ? 'rotate-45' : '-translate-y-2'}`} />
+        <span className={`mobile-menu-icon ${isOpen ? 'opacity-0' : ''}`} />
+        <span className={`mobile-menu-icon ${isOpen ? '-rotate-45' : 'translate-y-2'}`} />
+      </div>
+    </button>
+  );
+};
 
 // Menu de Navegação Mobile (Overlay)
 const MobileNav = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
@@ -64,6 +67,7 @@ const Header = () => {
   const userData = user?.user_metadata;
   const supabase = createClient();
   const tNav = useTranslations('Header.nav');
+  const tHeader = useTranslations('Header');
   const tAuth = useTranslations('Auth');
   const locale = useLocale();
   const router = useRouter();
@@ -75,7 +79,7 @@ const Header = () => {
     if (error) {
       console.error('Erro ao sair:', error);
     } else {
-      showToast('success', 'Você saiu da conta.');
+      showToast('success', tHeader('logoutSuccess'));
       router.refresh();
     }
   };
@@ -144,7 +148,7 @@ const Header = () => {
                 variant="ghost"
                 size="icon"
                 onClick={toggleLanguage}
-                title={locale === 'pt' ? 'Switch to English' : 'Mudar para Português'}
+                title={locale === 'pt' ? tHeader('switchLangEn') : tHeader('switchLangPt')}
                 label={
                   <span className="flex items-center gap-1 font-bold">
                     <FaGlobe /> {locale.toUpperCase()}
