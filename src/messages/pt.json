@@ -1,10 +1,15 @@
 {
   "Header": {
     "nav": {
-      "home": "Home",
+      "home": "Início",
       "about": "Sobre",
       "contact": "Contato"
-    }
+    },
+    "logoutSuccess": "Você saiu da conta.",
+    "switchLangEn": "Mudar para Inglês",
+    "switchLangPt": "Switch to Portuguese",
+    "closeMenu": "Fechar menu",
+    "openMenu": "Abrir menu"
   },
   "Auth": {
     "signIn": "Entrar",
@@ -247,5 +252,9 @@
     "cancelEdit": "Cancelar edição",
     "cancelBtn": "Cancelar",
     "sendCommentTitle": "Enviar comentário"
+  },
+  "Common": {
+    "cancel": "Cancelar",
+    "confirm": "Confirmar"
   }
 }
