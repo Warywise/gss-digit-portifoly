@@ -214,3 +214,53 @@ create policy "Usuário pode editar seus próprios comentários"
 on interactions for update
 using ( (select auth.uid()) = user_id )
 with check ( (select auth.uid()) = user_id );
+
+create table if not exists public.keep_alive_logs (
+  id uuid not null default gen_random_uuid(),
+  executed_at timestamp with time zone not null default timezone('utc'::text, now()),
+  status text not null,
+  duration_ms integer null,
+  trigger_type text null default 'cron',
+  response_data jsonb null,
+  error_message text null,
+  constraint keep_alive_logs_pkey primary key (id)
+);
+
+alter table public.keep_alive_logs enable row level security;
+
+drop policy if exists "Logs de keep-alive são visíveis para leitura" on public.keep_alive_logs;
+create policy "Logs de keep-alive são visíveis para leitura"
+on public.keep_alive_logs for select using (true);
+
+create or replace function public.log_keep_alive(
+  p_status text,
+  p_duration_ms integer,
+  p_trigger_type text,
+  p_response_data jsonb,
+  p_error_message text default null
+)
+returns void as $$
+begin
+  insert into public.keep_alive_logs (
+    status,
+    duration_ms,
+    trigger_type,
+    response_data,
+    error_message
+  ) values (
+    p_status,
+    p_duration_ms,
+    p_trigger_type,
+    p_response_data,
+    p_error_message
+  );
+
+  delete from public.keep_alive_logs
+  where id not in (
+    select id from public.keep_alive_logs
+    order by executed_at desc
+    limit 100
+  );
+end;
+$$ language plpgsql security definer;
+

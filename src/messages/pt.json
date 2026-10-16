@@ -256,5 +256,34 @@
   "Common": {
     "cancel": "Cancelar",
     "confirm": "Confirmar"
+  },
+  "Status": {
+    "title": "Status do Sistema",
+    "description": "Monitoramento em tempo real da integridade do banco de dados e auditoria do keep-alive.",
+    "systemOnline": "Supabase Conectado",
+    "systemError": "Instabilidade Detectada",
+    "triggerPingBtn": "Disparar Ping Agora",
+    "pingingBtn": "Executando Ping...",
+    "pingSuccess": "Ping executado com sucesso!",
+    "pingError": "Erro ao executar ping.",
+    "metricsTitle": "Métricas da Conexão",
+    "latency": "Latência",
+    "totalProjects": "Total de Projetos",
+    "totalInteractions": "Total de Interações",
+    "recentLogsTitle": "Histórico de Execuções",
+    "timeCol": "Horário",
+    "statusCol": "Status",
+    "originCol": "Origem",
+    "latencyCol": "Duração",
+    "detailsCol": "Detalhes",
+    "emptyLogs": "Nenhum registro de log encontrado.",
+    "successStatus": "Sucesso",
+    "errorStatus": "Erro",
+    "cronOrigin": "Vercel Cron",
+    "manualOrigin": "Manual",
+    "viewDetails": "Ver Payload",
+    "hideDetails": "Ocultar",
+    "loadingLogs": "Carregando histórico...",
+    "records": "registros"
   }
 }
