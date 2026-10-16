@@ -256,5 +256,34 @@
   "Common": {
     "cancel": "Cancel",
     "confirm": "Confirm"
+  },
+  "Status": {
+    "title": "System Status",
+    "description": "Real-time database health monitoring and keep-alive execution audit.",
+    "systemOnline": "Supabase Connected",
+    "systemError": "Instability Detected",
+    "triggerPingBtn": "Trigger Ping Now",
+    "pingingBtn": "Running Ping...",
+    "pingSuccess": "Ping executed successfully!",
+    "pingError": "Error executing ping.",
+    "metricsTitle": "Connection Metrics",
+    "latency": "Latency",
+    "totalProjects": "Total Projects",
+    "totalInteractions": "Total Interactions",
+    "recentLogsTitle": "Execution History",
+    "timeCol": "Timestamp",
+    "statusCol": "Status",
+    "originCol": "Trigger",
+    "latencyCol": "Duration",
+    "detailsCol": "Details",
+    "emptyLogs": "No log records found.",
+    "successStatus": "Success",
+    "errorStatus": "Error",
+    "cronOrigin": "Vercel Cron",
+    "manualOrigin": "Manual",
+    "viewDetails": "View Payload",
+    "hideDetails": "Hide",
+    "loadingLogs": "Loading history...",
+    "records": "records"
   }
 }

@@ -87,6 +87,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=sua_anon_key_aqui
 
 # Envio de E-mails (Formulário de Contato)
 RESEND_API_KEY=sua_resend_api_key_aqui
+
+# Automação Keep-Alive (Prevenção de pausa no Supabase)
+CRON_SECRET=sua_chave_secreta_aqui
 ```
 
 ### 4\. Configurar o Banco de Dados (Supabase)
@@ -95,10 +98,20 @@ O esquema do banco de dados e as políticas de segurança (RLS) estão documenta
 
 1.  Acesse o SQL Editor no painel do Supabase.
 2.  Copie o conteúdo de `src/lib/supabase/schema.sql`.
-3.  Execute o script para criar as tabelas e triggers.
+3.  Execute o script para criar as tabelas, triggers e funções.
 4.  **Importante:** Ative o "Anonymous Sign-ins" em *Authentication \> Providers* no painel do Supabase.
 
-### 5\. Rodar o servidor de desenvolvimento
+### 5\. Monitoramento do Keep-Alive (Supabase)
+
+Para evitar que o Supabase entre em hibernação no plano gratuito, o projeto conta com um Vercel Cron agendado diariamente para o endpoint `/api/keep-alive`.
+
+* **Página de Status no Site:** Acesse diretamente `/status` (ex.: `https://seu-dominio.vercel.app/status` ou `http://localhost:3000/status`). A página carrega com o layout do projeto, exibe as métricas de latência e histórico, e permite disparar pings sob demanda sem a necessidade de digitar senhas (o servidor autentica via Server Actions).
+* **Endpoint de API REST (Postman / cURL / Vercel Cron):**
+  * Rota: `GET /api/keep-alive`
+  * Header de autenticação: `Authorization: Bearer <CRON_SECRET>` (ou query param `?key=<CRON_SECRET>`).
+  * Retorno: Resposta estritamente em **JSON** contendo status do ping, métricas e histórico.
+
+### 6\. Rodar o servidor de desenvolvimento
 
 ```bash
 npm run dev
