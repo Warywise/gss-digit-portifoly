@@ -185,8 +185,8 @@ const Header = () => {
                         alt="Avatar"
                         width={32}
                         height={32}
-                        objectFit=""
-                        className="rounded-full border border-border"
+                        unoptimized
+                        className="rounded-full border border-border object-cover"
                       />
                     ) : (
                       <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-primary">

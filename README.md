@@ -39,7 +39,7 @@ Um portfólio moderno e interativo desenvolvido com **Next.js 15 (App Router)**.
 6.  [x] Implementação da lógica de Comentários e Likes no Frontend.
 7.  [x] Toggle de Idioma (PT-BR / EN).
 8.  [ ] **(Em planejamento)** Criação de um Painel Administrativo para gerenciar projetos.
-9.  [ ] **(Em planejamento)** Seletor de Avatares: Permitir que o usuário escolha entre uma lista de avatares predefinidos ou vincule o link de uma imagem externa.
+9.  [x] Seletor de Avatares: Permitir que o usuário escolha entre uma lista de avatares predefinidos da galeria local ou vincule o link de uma imagem externa (HTTPS).
 
 -----
 

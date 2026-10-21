@@ -69,10 +69,10 @@ const CommentInput = ({
               alt="Me"
               width={32}
               height={32}
-              className="rounded-full border border-border"
+              unoptimized
+              className="rounded-full border border-border object-cover"
             />
           ) : (
-            // TODO: melhorar update do profile de acordo com o auth.user do Supabase
             <div className="avatar-placeholder">{displayName.substring(0, 2).toUpperCase()}</div>
           )}
         </div>

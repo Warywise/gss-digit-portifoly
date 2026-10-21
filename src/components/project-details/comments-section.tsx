@@ -111,7 +111,8 @@ const CommentsSection: React.FC<{ project: ProjectsModel }> = ({ project }) => {
                         alt={comment.author}
                         width={32}
                         height={32}
-                        className="rounded-full border border-border"
+                        unoptimized
+                        className="rounded-full border border-border object-cover"
                       />
                     ) : (
                       <div className="avatar-placeholder">

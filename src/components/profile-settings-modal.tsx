@@ -11,6 +11,7 @@ import { createClient } from '@/lib/supabase/client';
 import { useToast } from './ui/toast';
 import { revalidateProjectsCache } from '@/lib/actions/interactions';
 import PasswordUpdateSection from './auth-modal/password-update-section';
+import AvatarPicker from './avatar-picker';
 import { useTranslations } from 'next-intl';
 
 interface ProfileSettingsModalProps {
@@ -40,26 +41,23 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
   const t = useTranslations('ProfileSettings');
 
   const displayNameRef = useRef<HTMLInputElement>(null);
-  const avatarUrlRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState('');
 
   useEffect(() => {
     if (user?.user_metadata) {
       if (displayNameRef.current) {
         displayNameRef.current.value = user.user_metadata.display_name || '';
       }
-      if (avatarUrlRef.current) {
-        avatarUrlRef.current.value = user.user_metadata.avatar_url || '';
-      }
+      setAvatarUrl(user.user_metadata.avatar_url || '');
     }
   }, [user, visible]);
 
   const handleUpdateProfile = async () => {
     const displayName = displayNameRef.current?.value || '';
-    const avatarUrl = avatarUrlRef.current?.value || '';
 
     setIsLoading(true);
     const { error } = await supabase.auth.updateUser({
@@ -147,19 +145,11 @@ export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({
           />
         </div>
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="avatarUrl" className="text-sm font-medium text-text/90">
-            {t('avatarUrl')}
-          </label>
-          <Input
-            id="avatarUrl"
-            type="url"
-            placeholder={t('avatarUrlPlaceholder')}
-            style="w-full"
-            ref={avatarUrlRef}
-            disabled={isLoading}
-          />
-        </div>
+        <AvatarPicker
+          selectedAvatar={avatarUrl}
+          onSelectAvatar={setAvatarUrl}
+          disabled={isLoading}
+        />
       </div>
 
       {/* Seção abaixo do formulário */}
